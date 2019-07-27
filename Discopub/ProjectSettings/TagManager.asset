@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - TextSentLabel
+  - Textbox
   layers:
   - Default
   - TransparentFX
