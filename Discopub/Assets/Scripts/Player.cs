@@ -14,12 +14,14 @@ namespace Assets.Scripts
         [ClientRpc]
         public void RpcNotifyMessage(string peerId, string message)
         {
+            Debug.Log($"Player {peerId} sent {message}");
             textSentLabel.text = $"Player {peerId} sent {message}";
         }
 
         [Command]
         public void CmdSendMessage()
         {
+            Debug.Log($"Sending message {inputField.text}");
             foreach (var player in captainMess.Players().Cast<Player>())
             {
                 if (player.peerId != peerId)
