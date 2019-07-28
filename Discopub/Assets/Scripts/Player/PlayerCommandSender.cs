@@ -10,7 +10,5 @@ namespace Assets.Scripts.Player
         {
             _player = player;
         }
-
-        public void SendMessage() => _player.SendMessage();
     }
 }
