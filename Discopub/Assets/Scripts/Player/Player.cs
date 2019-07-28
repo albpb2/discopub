@@ -31,8 +31,10 @@ namespace Assets.Scripts.Player
             }
         }
 
-        public override void OnStartLocalPlayer()
+        public override void OnStartClient()
         {
+            base.OnStartClient();
+
             var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
             playerCommandSender.SetPlayer(this);
         }
