@@ -9,6 +9,12 @@
             var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
             playerCommandSender.SetPlayer(this);
 
+            CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchScene");
+        }
+
+        protected void Awake()
+        {
+            DontDestroyOnLoad(this);
         }
     }
 }
