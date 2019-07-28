@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Assets.Scripts.Lobby.UI;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TMPro;
+using UnityEngine;
 
 namespace Assets.Scripts.Network
 {
     public class NetworkListener : CaptainsMessListener
     {
+        [SerializeField]
+        private TMP_Text _loadingText;
+        [SerializeField]
+        private LobbyCountdown _lobbyCountdown;
+
         public override void OnStartGame(List<CaptainsMessPlayer> aStartingPlayers)
         {
             base.OnStartGame(aStartingPlayers);
@@ -20,6 +24,12 @@ namespace Assets.Scripts.Network
                     discoPubPlayer.StartMatch();
                 }
             }
+        }
+
+        public override void OnCountdownStarted()
+        {
+            _loadingText.gameObject.SetActive(false);
+            _lobbyCountdown.gameObject.SetActive(true);
         }
     }
 }
