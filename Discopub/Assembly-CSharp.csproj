@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCommandSender.cs" />
+    <Compile Include="Assets\Scripts\Scenes\LobbyManager.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterGUI.cs" />
