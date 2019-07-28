@@ -12,28 +12,34 @@ namespace Assets.Scripts.Player
         private CaptainsMess _captainMess;
 
         [ClientRpc]
-        public void RpcNotifyMessage(string peerId, string message)
+        public void RpcNotifyMessage(string senderPeerId, string message)
         {
-            Debug.Log($"Player {peerId} sent {message}");
-            _textSentLabel.text = $"Player {peerId} sent {message}";
+            Debug.Log($"Player {senderPeerId} sent {message}");
+            _textSentLabel.text = $"Player {senderPeerId} sent {message}";
+        }
+        
+        public void SendMessage()
+        {
+            CmdSendMessage(_inputField.text, peerId);
         }
 
         [Command]
-        public void CmdSendMessage()
+        public void CmdSendMessage(string text, string senderPeerId)
         {
-            Debug.Log($"Sending message {_inputField.text}");
+            Debug.Log($"Sending message {text}");
             foreach (var player in _captainMess.Players().Cast<Player>())
             {
-                if (player.peerId != peerId)
+                if (player.peerId != senderPeerId)
                 {
-                    player.RpcNotifyMessage(peerId, _inputField.text);
+                    Debug.Log($"Receiver peerId = {player.peerId}");
+                    player.RpcNotifyMessage(senderPeerId, text);
                 }
             }
         }
 
-        public override void OnStartClient()
+        public override void OnStartLocalPlayer()
         {
-            base.OnStartClient();
+            base.OnStartLocalPlayer();
 
             var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
             playerCommandSender.SetPlayer(this);
