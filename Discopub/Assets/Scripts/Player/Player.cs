@@ -1,4 +1,7 @@
-﻿namespace Assets.Scripts.Player
+﻿using UnityEngine;
+using UnityEngine.Networking;
+
+namespace Assets.Scripts.Player
 {
     public class Player : CaptainsMessPlayer
     {
@@ -9,6 +12,12 @@
             var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
             playerCommandSender.SetPlayer(this);
 
+            SendReadyToBeginMessage();
+        }
+
+        public void StartMatch()
+        {
+            Debug.Log("Starting match");
             CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchScene");
         }
 
