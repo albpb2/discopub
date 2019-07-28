@@ -10,5 +10,10 @@ namespace Assets.Scripts.Player
         {
             _player = player;
         }
+
+        protected void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
     }
 }
