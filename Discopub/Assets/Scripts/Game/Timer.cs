@@ -27,6 +27,11 @@ namespace Assets.Scripts.Game
         [ClientRpc]
         public void RpcSetRemainingTime(float seconds)
         {
+            if (isServer)
+            {
+                return;
+            }
+
             Debug.Log($"Received remaining seconds: {seconds}");
             _remainingSeconds = seconds;
         }
