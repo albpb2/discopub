@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -91,9 +92,8 @@ namespace Assets.Scripts.Game
 
         private void RefreshTimerText()
         {
-            int minutes = (int)_remainingSeconds % 60;
-            int seconds = (int)_remainingSeconds - (minutes * 60);
-            _timerText.text = $"´{minutes}:{seconds}";
+            TimeSpan timeSpan = TimeSpan.FromSeconds(_remainingSeconds);
+            _timerText.text = string.Format("{0:D1}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
         }
     }
 }
