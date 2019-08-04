@@ -71,6 +71,7 @@
     <Compile Include="Assets\CaptainMess\CaptainsMessNetworkManager.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessPlayer.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessServer.cs" />
+    <Compile Include="Assets\Scripts\Buttons\ButtonPanelManager.cs" />
     <Compile Include="Assets\Scripts\Game\MatchManager.cs" />
     <Compile Include="Assets\Scripts\Game\Timer.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />

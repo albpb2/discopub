@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Buttons;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts.Game
 {
-    public class MatchManager : MonoBehaviour
+    public class MatchManager : NetworkBehaviour
     {
         [SerializeField]
         private Timer _timer;
+        [SerializeField]
+        private ButtonPanelManager _buttonPanelManager;
 
         void Awake()
         {
@@ -23,6 +27,8 @@ namespace Assets.Scripts.Game
 
             Debug.Log("Starting timer from match manager");
             _timer.StartTimer();
+
+            _buttonPanelManager.RpcCreatePanel();
         }
     }
 }
