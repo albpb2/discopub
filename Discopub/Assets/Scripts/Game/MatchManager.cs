@@ -12,6 +12,8 @@ namespace Assets.Scripts.Game
         {
             const int timerSeconds = 120;
             _timer.SetTime(timerSeconds);
+
+            StartCoroutine(StartTimer());
         }
 
         private IEnumerator StartTimer()
