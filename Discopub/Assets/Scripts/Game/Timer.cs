@@ -17,7 +17,7 @@ namespace Assets.Scripts.Game
         private bool _started;
         private Coroutine _refreshClientsCoroutine;
         
-        public void RpcSetTime(int seconds)
+        public void SetTime(int seconds)
         {
             _totalSeconds = seconds;
             _remainingSeconds = _totalSeconds;
@@ -38,6 +38,7 @@ namespace Assets.Scripts.Game
 
             if (isServer)
             {
+                Debug.Log("Server starting refresh clients coroutine");
                 _refreshClientsCoroutine = StartCoroutine(SendTimeToClients());
             }
         }
