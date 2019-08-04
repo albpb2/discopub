@@ -71,6 +71,7 @@
     <Compile Include="Assets\CaptainMess\CaptainsMessNetworkManager.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessPlayer.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessServer.cs" />
+    <Compile Include="Assets\Scripts\Game\Timer.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Lobby\UI\LobbyCountdown.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
