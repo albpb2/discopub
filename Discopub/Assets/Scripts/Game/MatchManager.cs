@@ -28,7 +28,7 @@ namespace Assets.Scripts.Game
             Debug.Log("Starting timer from match manager");
             _timer.StartTimer();
 
-            _buttonPanelManager.RpcCreatePanel();
+            _buttonPanelManager.CreatePanel();
         }
     }
 }
