@@ -650,6 +650,32 @@ PrefabInstance:
       propertyPath: showGUI
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_Channels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 5727469083266383406, guid: 7caf5ba8980450c419f72853ec9bef4e,
+        type: 3}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_CustomConfig
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_Channels.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27fdbd974548df4419662c37d852e3a8, type: 3}
 --- !u!1 &1003280886
