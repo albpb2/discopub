@@ -34,6 +34,7 @@ namespace Assets.Scripts.Game
 
             Debug.Log($"Received remaining seconds: {seconds}");
             _remainingSeconds = seconds;
+            RefreshTimerText();
         }
 
         public void StartTimer()
