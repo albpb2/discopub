@@ -8,6 +8,8 @@ namespace Assets.Scripts.Buttons
     {
         [SerializeField]
         private GameObject[] _panels;
+        [SerializeField]
+        private GameObject _actionButtonPrefab;
 
         private CaptainsMess _captainsMess;
         
@@ -23,7 +25,7 @@ namespace Assets.Scripts.Buttons
             var players = (CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager).LobbyPlayers();
             foreach (var player in players)
             {
-                TargetEnablePanel(player.connectionToClient, new[]
+                TargetEnablePanel(player.connectionToClient, player.peerId, new[]
                 {
                     $"Player {i} test target rpc 1",
                     $"Player {i} test target rpc 2",
@@ -34,13 +36,24 @@ namespace Assets.Scripts.Buttons
         }
 
         [TargetRpc]
-        public void TargetEnablePanel(NetworkConnection connection, string[] buttonNames)
+        public void TargetEnablePanel(NetworkConnection connection, string playerPeerId, string[] buttonNames)
         {
             _panels[0].SetActive(true);
             var buttons = _panels[0].GetComponentsInChildren<Button>();
+
             for (var i = 0; i < buttons.Length; i++)
             {
-                buttons[i].GetComponentInChildren<TMPro.TMP_Text>().text = buttonNames[i];
+                var parent = buttons[i].transform.parent;
+                Destroy(buttons[i]);
+
+                var actionButton = Instantiate(_actionButtonPrefab);
+                actionButton.transform.parent = parent;
+
+                var actionButtonController = actionButton.GetComponentInChildren<ActionButtonController>();
+                actionButtonController.SetUp(buttonNames[i], playerPeerId);
+
+                var actionButtonText = actionButton.GetComponentInChildren<TMPro.TMP_Text>();
+                actionButtonText.text = buttonNames[i];
             }
         }
 
