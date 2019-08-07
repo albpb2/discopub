@@ -43,16 +43,18 @@ namespace Assets.Scripts.Buttons
 
             for (var i = 0; i < buttons.Length; i++)
             {
-                var parent = buttons[i].transform.parent;
-                Destroy(buttons[i]);
+                var actionButtonGameObject = Instantiate(_actionButtonPrefab);
 
-                var actionButton = Instantiate(_actionButtonPrefab);
-                actionButton.transform.parent = parent;
+                var actionButton = actionButtonGameObject.GetComponentInChildren<Button>();
+                actionButton.transform.parent = buttons[i].transform.parent;
+                actionButton.transform.localScale = buttons[i].transform.localScale;
+                actionButton.transform.localPosition = buttons[i].transform.localPosition;
+                Destroy(buttons[i].gameObject);
 
-                var actionButtonController = actionButton.GetComponentInChildren<ActionButtonController>();
+                var actionButtonController = actionButtonGameObject.GetComponentInChildren<ActionButtonController>();
                 actionButtonController.SetUp(buttonNames[i], playerPeerId);
 
-                var actionButtonText = actionButton.GetComponentInChildren<TMPro.TMP_Text>();
+                var actionButtonText = actionButton.GetComponentInChildren<Text>();
                 actionButtonText.text = buttonNames[i];
             }
         }
