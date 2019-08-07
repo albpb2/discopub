@@ -20,6 +20,8 @@ namespace Assets.Scripts.Game
         private ProgressBar _actionProgressBar;
         [SerializeField]
         private PlayerActionsManager _playerActionsManager;
+        [SerializeField]
+        private MatchPointsCounter _matchPointsCounter;
 
         private List<CaptainsMessPlayer> _players;
         private List<ActionCountdown> _actionCountdowns;
@@ -49,6 +51,8 @@ namespace Assets.Scripts.Game
             {
                 _playerActionsManager.InitializeActions(_players);
                 StartCountdowns();
+                const int maxPoints = 200;
+                _matchPointsCounter.SetMaxPoints(maxPoints);
             }
         }
 
