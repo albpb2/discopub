@@ -32,9 +32,12 @@ namespace Assets.Scripts.Game
 
         public void IncreasePoints(int pointsToAdd)
         {
-            _currentPoints += pointsToAdd;
-            _currentPoints = Math.Min(_currentPoints, _maxPoints);
-            RpcPrintPoints();
+            SetPoints(_currentPoints + pointsToAdd);
+        }
+
+        public void DecreasePoints(int pointsToAdd)
+        {
+            SetPoints(_currentPoints - pointsToAdd);
         }
 
         [ClientRpc]
