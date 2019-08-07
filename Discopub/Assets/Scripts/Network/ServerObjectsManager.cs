@@ -9,7 +9,7 @@ namespace Assets.Scripts.Network
     /// </summary>
     public class ServerObjectsManager : NetworkBehaviour
     {
-        protected void Awake()
+        protected void Start()
         {
             if (!isServer)
             {
