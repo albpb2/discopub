@@ -3914,6 +3914,7 @@ MonoBehaviour:
   _panels:
   - {fileID: 1560553222}
   - {fileID: 1909431680}
+  _actionButtonPrefab: {fileID: 0}
 --- !u!114 &2000010750
 MonoBehaviour:
   m_ObjectHideFlags: 0
