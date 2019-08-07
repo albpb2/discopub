@@ -118,7 +118,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5229692801630629625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5461719334701745375}
+        m_MethodName: SubmitAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &3329625676563168786
@@ -130,6 +141,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889040432378371284}
+  - component: {fileID: 5461719334701745375}
   m_Layer: 0
   m_Name: ActionButtonController
   m_TagString: Untagged
@@ -151,6 +163,18 @@ Transform:
   m_Father: {fileID: 3844929278370593565}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5461719334701745375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329625676563168786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd9b3cabc9ab794abfa100316f1163d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4861707703425307614
 GameObject:
   m_ObjectHideFlags: 0
