@@ -76,6 +76,7 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\Scripts\Buttons\ButtonPanelManager.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
+    <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
     <Compile Include="Assets\Scripts\Game\MatchManager.cs" />
     <Compile Include="Assets\Scripts\Game\MatchPointsCounter.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerActionsManager.cs" />
