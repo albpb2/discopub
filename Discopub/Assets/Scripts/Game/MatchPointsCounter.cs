@@ -15,19 +15,19 @@ namespace Assets.Scripts.Game
         public void ResetPoints()
         {
             _currentPoints = 0;
-            RpcPrintPoints();
+            RpcPrintPoints(_currentPoints, _maxPoints);
         }
 
         public void SetMaxPoints(int maxPoints)
         {
             _maxPoints = maxPoints;
-            RpcPrintPoints();
+            RpcPrintPoints(_currentPoints, _maxPoints);
         }
 
         public void SetPoints(int currentPoints)
         {
             _currentPoints = Math.Min(currentPoints, _maxPoints);
-            RpcPrintPoints();
+            RpcPrintPoints(_currentPoints, _maxPoints);
         }
 
         public void IncreasePoints(int pointsToAdd)
@@ -41,9 +41,9 @@ namespace Assets.Scripts.Game
         }
 
         [ClientRpc]
-        private void RpcPrintPoints()
+        private void RpcPrintPoints(int currentPoints, int maxPoints)
         {
-            _matchPointsText.text = $"{_currentPoints}/{_maxPoints}";
+            _matchPointsText.text = $"{currentPoints}/{maxPoints}";
         }
     }
 }
