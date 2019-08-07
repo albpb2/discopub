@@ -151,7 +151,7 @@ RectTransform:
   - {fileID: 1401755573}
   - {fileID: 1203759404}
   m_Father: {fileID: 41047438}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -250,9 +250,9 @@ RectTransform:
   m_Children:
   - {fileID: 572404692}
   - {fileID: 664038495}
+  - {fileID: 4589559}
   - {fileID: 1560553223}
   - {fileID: 1909431681}
-  - {fileID: 4589559}
   - {fileID: 1299365662}
   - {fileID: 805679697}
   m_Father: {fileID: 0}
@@ -1253,6 +1253,7 @@ MonoBehaviour:
   _networkedObjectsRoot: {fileID: 1079399059}
   _actionProgressBar: {fileID: 1597817687}
   _playerActionsManager: {fileID: 685404147}
+  _matchPointsCounter: {fileID: 170051762}
 --- !u!4 &554735796
 Transform:
   m_ObjectHideFlags: 0
@@ -3179,7 +3180,7 @@ RectTransform:
   - {fileID: 462842975}
   - {fileID: 574105023}
   m_Father: {fileID: 41047438}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -3678,7 +3679,7 @@ RectTransform:
   - {fileID: 42866969}
   - {fileID: 472301971}
   m_Father: {fileID: 41047438}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
