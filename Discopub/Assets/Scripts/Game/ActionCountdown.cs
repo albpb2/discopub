@@ -13,6 +13,9 @@ namespace Assets.Scripts.Game
         private float _remainingSeconds;
         private bool _active;
 
+        public delegate void ActionCountdownFinished(int playerPeerId);
+        public static event ActionCountdownFinished onActionCountdownFinished;
+
         public void AssignToPlayer(CaptainsMessPlayer player)
         {
             _player = player;

@@ -12,7 +12,7 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
 
-        public void DispatchAction(string actionName)
+        public void DispatchAction(string actionName, int peerId)
         {
             if (_playerActionsManager.IsRightAction(actionName))
             {
@@ -20,8 +20,23 @@ namespace Assets.Scripts.Game
             }
             else
             {
-                _matchPointsCounter.DecreasePoints(PointsToLosePerWrongAction);
+                FailAction(peerId);
             }
+        }
+
+        public void FailAction(int playerPeerId)
+        {
+            _matchPointsCounter.DecreasePoints(PointsToLosePerWrongAction);
+        }
+
+        protected void Awake()
+        {
+            ActionCountdown.onActionCountdownFinished += FailAction;
+        }
+
+        protected void OnDisable()
+        {
+            ActionCountdown.onActionCountdownFinished -= FailAction;
         }
     }
 }
