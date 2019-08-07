@@ -25,14 +25,6 @@ namespace Assets.Scripts.Game
         private List<ActionCountdown> _actionCountdowns;
         private Dictionary<string, List<string>> _actionsPerPlayer;
 
-        void Awake()
-        {
-            const int timerSeconds = 120;
-            _timer.SetTime(timerSeconds);
-
-            StartCoroutine(StartTimer());
-        }
-
         private IEnumerator StartTimer()
         {
             const int secondsToStartTimer = 3;
@@ -46,6 +38,11 @@ namespace Assets.Scripts.Game
 
         protected void Start()
         {
+            const int timerSeconds = 120;
+            _timer.SetTime(timerSeconds);
+
+            StartCoroutine(StartTimer());
+
             _players = (CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager).LobbyPlayers();
 
             if (isServer)
