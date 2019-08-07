@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Game
@@ -23,6 +24,11 @@ namespace Assets.Scripts.Game
                 _actionsPerPlayer[player.peerId].Add($"Player {i} test target rpc 2");
                 i++;
             }
+        }
+
+        public bool IsRightAction(string actionName)
+        {
+            return _actionsPerPlayer.Values.Any(v => v.Contains(actionName));
         }
     }
 }
