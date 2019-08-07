@@ -18,9 +18,12 @@ namespace Assets.Scripts.Game
         private GameObject _networkedObjectsRoot;
         [SerializeField]
         private ProgressBar _actionProgressBar;
+        [SerializeField]
+        private PlayerActionsManager _playerActionsManager;
 
         private List<CaptainsMessPlayer> _players;
         private List<ActionCountdown> _actionCountdowns;
+        private Dictionary<string, List<string>> _actionsPerPlayer;
 
         void Awake()
         {
@@ -47,6 +50,7 @@ namespace Assets.Scripts.Game
 
             if (isServer)
             {
+                _playerActionsManager.InitializeActions(_players);
                 StartCountdowns();
             }
         }
