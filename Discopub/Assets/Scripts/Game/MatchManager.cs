@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Buttons;
+using Assets.Scripts.Importers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,8 @@ namespace Assets.Scripts.Game
         private PlayerActionsManager _playerActionsManager;
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
+        [SerializeField]
+        private ActionButtonsPanelCreator _actionButtonsPanelCreator;
 
         private List<CaptainsMessPlayer> _players;
         private List<ActionCountdown> _actionCountdowns;
@@ -35,7 +38,13 @@ namespace Assets.Scripts.Game
             Debug.Log("Starting timer from match manager");
             _timer.StartTimer();
 
-            _buttonPanelManager.CreatePanel();
+            //_buttonPanelManager.CreatePanel();
+
+            var actions = ActionImporter.ImportActions("Actions.txt", true).ToArray();
+            foreach(var player in _players)
+            {
+                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, actions);
+            }
         }
 
         protected void Start()
