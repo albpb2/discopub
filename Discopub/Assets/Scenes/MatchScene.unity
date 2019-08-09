@@ -585,13 +585,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 108790411}
+  - component: {fileID: 108790412}
   m_Layer: 5
   m_Name: TestPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &108790411
 RectTransform:
   m_ObjectHideFlags: 0
@@ -611,6 +612,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 484.0001}
   m_SizeDelta: {x: 0, y: 960}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &108790412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108790410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!1 &150159469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,7 +1255,7 @@ MonoBehaviour:
   _actionProgressBar: {fileID: 1597817687}
   _playerActionsManager: {fileID: 685404147}
   _matchPointsCounter: {fileID: 170051762}
-  _actionButtonsPanelCreator: {fileID: 0}
+  _actionButtonsPanelCreator: {fileID: 1607725707}
 --- !u!4 &554735796
 Transform:
   m_ObjectHideFlags: 0
@@ -2707,6 +2733,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c2f4c91cb7a81d47bb68a355356c924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _actionButtonsPanelParent: {fileID: 108790410}
+  _actionButtonPrefab: {fileID: 8055017098623295236, guid: b8f00a8edf4a4824cb8d94c3b7cd6aec,
+    type: 3}
+  _emptyLayoutPrefab: {fileID: 290579084025201794, guid: 5311cf3176121ee4bbc55b3c6087f67a,
+    type: 3}
 --- !u!114 &1607725708
 MonoBehaviour:
   m_ObjectHideFlags: 0
