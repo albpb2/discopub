@@ -31,7 +31,7 @@ namespace Assets.Scripts.Importers
             
             try
             {
-                return lines.Select((l, i) => ParseLine(l, i)).Where(a => a != null).ToList();
+                return lines.Select((l, i) => ParseLine(l, i)).ToList();
             }
             catch (Exception e)
             {
@@ -49,16 +49,14 @@ namespace Assets.Scripts.Importers
         {
             if (string.IsNullOrWhiteSpace(line))
             {
-                Debug.Log($"Actions line {lineIndex} is blank. Skipping line.");
-                return null;
+                throw new Exception($"Actions line {lineIndex} is empty.");
             }
 
             var lineParts = line.Split(LineSeparator);
 
             if (lineParts.Length != ExpectedLineParts)
             {
-                Debug.Log($"Actions line {lineIndex} has {lineParts.Length}. Skipping line.");
-                return null;
+                throw new Exception($"Actions line {lineIndex} has {lineParts.Length}.");
             }
 
             var action = new Action
