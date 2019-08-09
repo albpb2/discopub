@@ -40,7 +40,7 @@ namespace Assets.Scripts.Game
 
             //_buttonPanelManager.CreatePanel();
 
-            var actions = ActionImporter.ImportActions("Actions.txt", true).ToArray();
+            var actions = ActionImporter.ImportActions("Config/Actions", true).ToArray();
             foreach(var player in _players)
             {
                 _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, actions);
