@@ -14,6 +14,8 @@ namespace Assets.Scripts.Buttons
         private GameObject _actionButtonsPanelParent;
         [SerializeField]
         private GameObject _actionButtonPrefab;
+        [SerializeField]
+        private GameObject _emptyLayoutPrefab;
 
         [TargetRpc]
         public void TargetCreateActionButtonsPanels(NetworkConnection connection, Action[] actions)
@@ -37,18 +39,17 @@ namespace Assets.Scripts.Buttons
 
         private GameObject InstantiateLayout(LayoutType layoutType, GameObject parentObject)
         {
-            var layoutGameObject = new GameObject();
-            layoutGameObject.transform.parent = parentObject.transform;
+            var layoutGameObject = Instantiate(_emptyLayoutPrefab, parentObject.transform);
 
             HorizontalOrVerticalLayoutGroup layout;
 
             switch (layoutType)
             {
                 case LayoutType.Horizontal:
-                    layout = gameObject.AddComponent<HorizontalLayoutGroup>();
+                    layout = layoutGameObject.AddComponent<HorizontalLayoutGroup>();
                     break;
                 default:
-                    layout = gameObject.AddComponent<VerticalLayoutGroup>();
+                    layout = layoutGameObject.AddComponent<VerticalLayoutGroup>();
                     break;
             }
 
@@ -65,21 +66,20 @@ namespace Assets.Scripts.Buttons
             if (actions.Count == 1)
             {
                 var prefab = ResolveActionPrefab(actions[0].ControlType);
-                var controlGameObject = Instantiate(prefab);
-                controlGameObject.transform.parent = layoutGameObject.transform;
+                var controlGameObject = Instantiate(prefab, layoutGameObject.transform);
             }
             else
             {
-                var halfActionsCount = Mathf.CeilToInt(actions.Count / 2);
+                var halfActionsCount = Mathf.CeilToInt((float)actions.Count / 2);
                 var firstHalfOfActions = actions.Take(halfActionsCount).ToList();
                 var secondHalfOfActions = actions.Skip(halfActionsCount).ToList();
 
                 var inverseLayoutType = CalculateInverseLayout(layoutType);
 
-                var firstLayout = InstantiateLayout(layoutType, layoutGameObject);
+                var firstLayout = InstantiateLayout(inverseLayoutType, layoutGameObject);
                 FillLayout(firstLayout, inverseLayoutType, firstHalfOfActions);
 
-                var secondLayout = InstantiateLayout(layoutType, layoutGameObject);
+                var secondLayout = InstantiateLayout(inverseLayoutType, layoutGameObject);
                 FillLayout(secondLayout, inverseLayoutType, secondHalfOfActions);
             }
         }
