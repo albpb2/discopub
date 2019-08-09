@@ -76,12 +76,14 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionButtonController.cs" />
     <Compile Include="Assets\Scripts\Buttons\ButtonPanelManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
     <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
     <Compile Include="Assets\Scripts\Game\MatchManager.cs" />
     <Compile Include="Assets\Scripts\Game\MatchPointsCounter.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerActionsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Timer.cs" />
+    <Compile Include="Assets\Scripts\Importers\ActionImporter.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Lobby\UI\LobbyCountdown.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
