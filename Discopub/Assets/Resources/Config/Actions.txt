@@ -1,0 +1,6 @@
+Name	ControlType	Values	ActionPoints
+TestAction1	ActionButton	Test action 1	1
+TestAction2	ActionButton	Test action 2	1
+TestAction3	ActionButton	Test action 3	1
+TestAction4	ActionButton	Test action 4	1
+TestAction5	ActionButton	Test action 5	1
