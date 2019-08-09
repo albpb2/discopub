@@ -2,9 +2,9 @@
 {
     public struct Action
     {
-        public string Name { get; set; }
-        public string ControlType { get; set; }
-        public string[] Values { get; set; }
-        public int ActionPoints { get; set; }
+        public string Name;
+        public string ControlType;
+        public string[] Values;
+        public int ActionPoints;
     }
 }
