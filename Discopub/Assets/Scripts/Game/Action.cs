@@ -1,6 +1,6 @@
 ﻿namespace Assets.Scripts.Game
 {
-    public class Action
+    public struct Action
     {
         public string Name { get; set; }
         public string ControlType { get; set; }
