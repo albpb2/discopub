@@ -5,6 +5,8 @@ namespace Assets.Scripts.Buttons
 {
     public class ActionButtonController : MonoBehaviour
     {
+        private const string DefaultButtonActionValue = "";
+
         private string _actionName;
         private Player.Player _player;
 
@@ -18,7 +20,7 @@ namespace Assets.Scripts.Buttons
 
         public void SubmitAction()
         {
-            _player.CmdSubmitAction(_actionName);
+            _player.CmdSubmitAction(_actionName, DefaultButtonActionValue);
         }
     }
 }

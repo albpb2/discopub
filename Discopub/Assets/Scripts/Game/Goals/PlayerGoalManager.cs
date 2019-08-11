@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
 
 namespace Assets.Scripts.Game.Goals
@@ -33,6 +34,7 @@ namespace Assets.Scripts.Game.Goals
             {
                 ActiveGoal = _goalProvider.GetNextGoal();
                 _actionCountdown.StartCountdown();
+                _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>(ActiveGoal.RequiredActions));
             }
         }
 

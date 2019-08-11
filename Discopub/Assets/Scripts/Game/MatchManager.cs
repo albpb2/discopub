@@ -20,8 +20,6 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private ProgressBar _actionProgressBar;
         [SerializeField]
-        private PlayerActionsManager _playerActionsManager;
-        [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
         [SerializeField]
         private ActionButtonsPanelCreator _actionButtonsPanelCreator;
@@ -62,7 +60,6 @@ namespace Assets.Scripts.Game
 
             if (isServer)
             {
-                _playerActionsManager.InitializeActions(_players);
                 StartCountdowns();
                 const int maxPoints = 200;
                 _matchPointsCounter.SetMaxPoints(maxPoints);

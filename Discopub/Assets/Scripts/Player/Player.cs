@@ -26,14 +26,14 @@ namespace Assets.Scripts.Player
         }
 
         [Command]
-        public void CmdSubmitAction(string actionName)
+        public void CmdSubmitAction(string actionName, string actionValue)
         {
             if (_actionDispatcher == null)
             {
                 _actionDispatcher = FindObjectOfType<ActionDispatcher>();
             }
 
-            _actionDispatcher.DispatchAction(actionName, peerId);
+            _actionDispatcher.DispatchAction(actionName, actionValue, peerId);
         }
 
         protected void Awake()
