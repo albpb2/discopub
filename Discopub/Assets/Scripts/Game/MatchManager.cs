@@ -12,8 +12,6 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private Timer _timer;
         [SerializeField]
-        private ButtonPanelManager _buttonPanelManager;
-        [SerializeField]
         private GameObject _actionCountdownPrefab;
         [SerializeField]
         private GameObject _networkedObjectsRoot;
