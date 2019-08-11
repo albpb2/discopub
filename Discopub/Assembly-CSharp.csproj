@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Buttons\ActionButtonsPanelCreator.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionControlType.cs" />
     <Compile Include="Assets\Scripts\Buttons\ButtonPanelManager.cs" />
+    <Compile Include="Assets\Scripts\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
     <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
