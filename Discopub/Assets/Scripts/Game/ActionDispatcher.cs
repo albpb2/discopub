@@ -28,15 +28,5 @@ namespace Assets.Scripts.Game
         {
             _matchPointsCounter.DecreasePoints(PointsToLosePerWrongAction);
         }
-
-        protected void Awake()
-        {
-            ActionCountdown.onActionCountdownFinished += FailAction;
-        }
-
-        protected void OnDisable()
-        {
-            ActionCountdown.onActionCountdownFinished -= FailAction;
-        }
     }
 }

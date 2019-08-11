@@ -18,9 +18,6 @@ namespace Assets.Scripts.Game
         private bool _started;
         private Coroutine _refreshClientsCoroutine;
 
-        public delegate void TimerEnded();
-        public event TimerEnded onTimerEnded;
-        
         public void SetTime(int seconds)
         {
             _totalSeconds = seconds;
@@ -96,11 +93,6 @@ namespace Assets.Scripts.Game
                 Debug.Log("Sending final time to client (0)");
                 StopCoroutine(_refreshClientsCoroutine);
                 RpcSetRemainingTime(0);
-                
-                if (onTimerEnded != null)
-                {
-                    onTimerEnded();
-                }
             }
         }
 

@@ -11,7 +11,7 @@ namespace Assets.Scripts.Game.Goals
         private Player.Player _player;
         private GoalProvider _goalProvider;
         private Goal _activeGoal;
-        private Timer _timer;
+        private ActionCountdown _actionCountdown;
         private ActionDispatcher _actionDispatcher;
 
         public Goal ActiveGoal
@@ -32,15 +32,15 @@ namespace Assets.Scripts.Game.Goals
             if (isServer)
             {
                 ActiveGoal = _goalProvider.GetNextGoal();
-                _timer.StartTimer();
+                _actionCountdown.StartCountdown();
             }
         }
 
-        public void SetPlayer(Player.Player player, Timer timer)
+        public void SetPlayer(Player.Player player, ActionCountdown actionCountdown)
         {
             _player = player;
-            _timer = timer;
-            _timer.onTimerEnded += FailGoal;
+            _actionCountdown = actionCountdown;
+            _actionCountdown.onActionCountdownFinished += FailGoal;
         }
 
         protected void Awake()
@@ -54,9 +54,9 @@ namespace Assets.Scripts.Game.Goals
 
         protected void OnDisable()
         {
-            if (_timer != null)
+            if (_actionCountdown != null)
             {
-                _timer.onTimerEnded -= FailGoal;
+                _actionCountdown.onActionCountdownFinished -= FailGoal;
             }
         }
 

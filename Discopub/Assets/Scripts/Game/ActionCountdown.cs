@@ -13,8 +13,8 @@ namespace Assets.Scripts.Game
         private float _remainingSeconds;
         private bool _active;
 
-        public delegate void ActionCountdownFinished(string playerPeerId);
-        public static event ActionCountdownFinished onActionCountdownFinished;
+        public delegate void ActionCountdownFinished();
+        public event ActionCountdownFinished onActionCountdownFinished;
 
         public void AssignToPlayer(CaptainsMessPlayer player)
         {
@@ -85,6 +85,12 @@ namespace Assets.Scripts.Game
         {
             UpdateProgressBar(_remainingSeconds);
             StopCountdown();
+
+            if (onActionCountdownFinished != null)
+            {
+                onActionCountdownFinished();
+            }
+
             StartCoroutine(RestartTimer());
         }
 
