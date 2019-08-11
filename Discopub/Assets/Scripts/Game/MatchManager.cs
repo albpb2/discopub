@@ -47,6 +47,8 @@ namespace Assets.Scripts.Game
             }
 
             var goals = GoalImporter.ImportGoals("Config/Goals", true, 2).ToArray();
+
+            var difficultyLevels = GameDifficultyImporter.ImportGamedifficultyLevels("Config/DifficultyLevels", true).ToArray();
         }
 
         protected void Start()
