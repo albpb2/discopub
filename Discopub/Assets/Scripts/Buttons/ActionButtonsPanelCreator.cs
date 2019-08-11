@@ -10,6 +10,8 @@ namespace Assets.Scripts.Buttons
 {
     public class ActionButtonsPanelCreator : NetworkBehaviour
     {
+        private GameObject actionButtonsPanel;
+
         [SerializeField]
         private GameObject _actionButtonsPanelParent;
         [SerializeField]
@@ -21,8 +23,15 @@ namespace Assets.Scripts.Buttons
         public void TargetCreateActionButtonsPanels(NetworkConnection connection, Action[] actions)
         {
             var initialLayoutType = CalculateInitialLayoutType();
-            var initialLayout = InstantiateLayout(initialLayoutType, _actionButtonsPanelParent);
-            FillLayout(initialLayout, initialLayoutType, actions.ToList());
+            actionButtonsPanel = InstantiateLayout(initialLayoutType, _actionButtonsPanelParent);
+            FillLayout(actionButtonsPanel, initialLayoutType, actions.ToList());
+            actionButtonsPanel.SetActive(false);
+        }
+
+        [TargetRpc]
+        public void EnableActionButtonsPannel(NetworkConnection connection)
+        {
+            actionButtonsPanel.SetActive(true);
         }
 
         private LayoutType CalculateInitialLayoutType()
