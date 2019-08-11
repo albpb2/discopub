@@ -45,6 +45,8 @@ namespace Assets.Scripts.Game
             {
                 _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, actions);
             }
+
+            var goals = GoalImporter.ImportGoals("Config/Goals", true, 2).ToArray();
         }
 
         protected void Start()
