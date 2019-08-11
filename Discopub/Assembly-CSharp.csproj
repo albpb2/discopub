@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\Game\PlayerActionsManager.cs" />
     <Compile Include="Assets\Scripts\Game\Timer.cs" />
     <Compile Include="Assets\Scripts\Importers\ActionImporter.cs" />
+    <Compile Include="Assets\Scripts\Importers\GoalImporter.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Lobby\UI\LobbyCountdown.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
