@@ -2,9 +2,9 @@
 {
     public class GameDifficulty
     {
-        public int MinRound { get; set; }
+        public int? MinRound { get; set; }
 
-        public int MaxRound { get; set; }
+        public int? MaxRound { get; set; }
 
         public int ActionPoints { get; set; }
 
