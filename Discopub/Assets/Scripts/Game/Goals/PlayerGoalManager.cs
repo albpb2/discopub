@@ -11,6 +11,8 @@ namespace Assets.Scripts.Game.Goals
         private Player.Player _player;
         private GoalProvider _goalProvider;
         private Goal _activeGoal;
+        private Timer _timer;
+        private ActionDispatcher _actionDispatcher;
 
         public Goal ActiveGoal
         {
@@ -30,12 +32,15 @@ namespace Assets.Scripts.Game.Goals
             if (isServer)
             {
                 ActiveGoal = _goalProvider.GetNextGoal();
+                _timer.StartTimer();
             }
         }
 
-        public void SetPlayer(Player.Player player)
+        public void SetPlayer(Player.Player player, Timer timer)
         {
             _player = player;
+            _timer = timer;
+            _timer.onTimerEnded += FailGoal;
         }
 
         protected void Awake()
@@ -43,6 +48,15 @@ namespace Assets.Scripts.Game.Goals
             if (isServer)
             {
                 _goalProvider = FindObjectOfType<GoalProvider>();
+                _actionDispatcher = FindObjectOfType<ActionDispatcher>();
+            }
+        }
+
+        protected void OnDisable()
+        {
+            if (_timer != null)
+            {
+                _timer.onTimerEnded -= FailGoal;
             }
         }
 
@@ -50,6 +64,12 @@ namespace Assets.Scripts.Game.Goals
         private void TargetSetGoalText(NetworkConnection connection, string goalText)
         {
             _goalText.text = goalText;
+        }
+
+        private void FailGoal()
+        {
+            _actionDispatcher.FailAction(_player.peerId);
+            StartNextGoal();
         }
     }
 }
