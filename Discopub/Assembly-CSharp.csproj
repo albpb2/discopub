@@ -81,6 +81,8 @@
     <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
     <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Game\Goal.cs" />
+    <Compile Include="Assets\Scripts\Game\GoalAction.cs" />
     <Compile Include="Assets\Scripts\Game\MatchManager.cs" />
     <Compile Include="Assets\Scripts\Game\MatchPointsCounter.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerActionsManager.cs" />
