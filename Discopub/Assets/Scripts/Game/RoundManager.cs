@@ -2,6 +2,7 @@
 using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.Goals;
 using Assets.Scripts.Importers;
+using Assets.Scripts.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private ActionButtonsPanelCreator _actionButtonsPanelCreator;
         [SerializeField]
-        private GameObject _endOfRoundPanel;
+        private EndOfRoundPanel _endOfRoundPanel;
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
 
@@ -198,8 +199,9 @@ namespace Assets.Scripts.Game
                 playerGoalManager.RemoveGoals();
             }
 
-            _endOfRoundPanel.SetActive(true);
             _actionButtonsPanelCreator.RpcDestroyPanel();
+
+            _endOfRoundPanel.RpcShowPanel();
             SetUpRound(_currentRound++);
         }
 
@@ -213,7 +215,7 @@ namespace Assets.Scripts.Game
         {
             foreach (var player in _players)
             {
-                _actionButtonsPanelCreator.EnableActionButtonsPannel(player.connectionToClient);
+                _actionButtonsPanelCreator.TargetEnableActionButtonsPannel(player.connectionToClient);
             }
 
             _timer.StartTimer();
@@ -222,6 +224,8 @@ namespace Assets.Scripts.Game
             {
                 _playerGoalManagers[player.peerId].StartNextGoal();
             }
+
+            _endOfRoundPanel.RpcHidePanel();
         }
     }
 }
