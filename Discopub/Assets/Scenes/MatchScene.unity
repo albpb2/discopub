@@ -742,7 +742,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1079399060}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &170051762
 MonoBehaviour:
@@ -1293,84 +1293,6 @@ MonoBehaviour:
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
---- !u!1 &554735794
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 554735796}
-  - component: {fileID: 554735797}
-  - component: {fileID: 554735795}
-  m_Layer: 0
-  m_Name: MatchManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &554735795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554735794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa645153e55363a43ad6adb3e711ad41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _roundManager: {fileID: 1189001268}
---- !u!4 &554735796
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554735794}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.08810425, y: -116.248535, z: 84.25}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1079399060}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &554735797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 554735794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8258ea15b8f74c4889ce485d21cbbb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!1 &572404691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,7 +1825,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1079399060}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1027439675
 MonoBehaviour:
@@ -2137,7 +2059,6 @@ Transform:
   m_Children:
   - {fileID: 1443071437}
   - {fileID: 2000010748}
-  - {fileID: 554735796}
   - {fileID: 170051761}
   - {fileID: 1607725706}
   - {fileID: 1027439674}
@@ -2345,7 +2266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timer: {fileID: 1443071438}
-  _actionCountdownPrefab: {fileID: 5217914374419458925, guid: 26c046dba52060a479955f9b04c36ba4,
+  _actionCountdownPrefab: {fileID: 5727469083266383406, guid: 7caf5ba8980450c419f72853ec9bef4e,
     type: 3}
   _playerGoalManagerPrefab: {fileID: 4481783186034129868, guid: 598c5809f7af37d42aaae99565b51abe,
     type: 3}
@@ -2353,6 +2274,7 @@ MonoBehaviour:
   _actionButtonsPanelCreator: {fileID: 1607725707}
   _endOfRoundPanel: {fileID: 1027439676}
   _matchPointsCounter: {fileID: 170051762}
+  _goalProvider: {fileID: 1873416029}
 --- !u!1 &1203759403
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,7 +2941,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1079399060}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1607725707
 MonoBehaviour:
@@ -3628,11 +3550,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36acd00a013713f41b20a8d72fab3838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panels:
-  - {fileID: 1560553222}
-  - {fileID: 0}
-  _actionButtonPrefab: {fileID: 4861707703425307614, guid: 7057b93c60c0003418e80e23ce2c0ca2,
-    type: 3}
 --- !u!114 &2000010750
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,46 @@
-Name	Text	Action1	Action1Value	Action2	Action2Value
-TestAction1Goal	Test action 1	TestAction1	
-TestAction1and2Goal	Test action 1 and 2	TestAction1		TestAction2	
+Name;Text;Action1;Action1Value;Action2;Action2Value
+ExpulsarBorracho;Expulsar borracho;ExpulsarBorracho;
+CobrarDatafono;Cobrar con datáfono;CobrarDatafono;
+CobrarEfectivo;Cobrar en efectivo;CobrarEfectivo;
+CargarDatafono;Cargar datáfono;CargarDatafono;
+CerrarCaja;Cerrar caja;CerrarCaja;
+LlamarSeguridad;Llamar a seguridad;LlamarSeguridad;
+ReponerPapel;Reponer papel del culo;ReponerPapel;
+LimpiarPota;Limpiar pota;LimpiarPota;
+PasarMocho;Pasar mocho;PasarMocho;
+EscurrirBayeta;Escurrir bayeta;EscurrirBayeta;
+ExprimirLimones;Exprimir limones;ExprimirLimones;
+ExprimirNaranjas;Exprimir naranjas;ExprimirNaranjas;
+EnfriarBebidas;Enfriar bebidas;EnfriarBebidas;
+SecarVasos;Secar vasos;SecarVasos;
+DarClaveWifi;Dar clave wifi;DarClaveWifi;
+LimpiarBano;Limpiar baño;LimpiarBano;
+AtornillarTaburetes;Atornillar taburetes;AtornillarTaburetes;
+LimpiarBarra;Limpiar barra;LimpiarBarra;
+DesatascarBano;Desatascar baño;DesatascarBano;
+DesatascarFregadero;Desatascar fregadero;DesatascarFregadero;
+CambiarCancion;Cambiar canción;CambiarCancion;
+PincharReggaeton;Pinchar reggaeton;PincharReggaeton;
+PincharTrap;Pinchar trap;PincharTrap;
+PincharBoleros;Pinchar boleros;PincharBoleros;
+PincharSalsa;Pinchar salsa;PincharSalsa;
+PincharTemazo;Pinchar temazo;PincharTemazo;
+ServirGarrafon;Servir garrafón;ServirGarrafon;
+VaciarLavavajillas;Vaciar lavavajinas;VaciarLavavajillas;
+SalirAFumar;Salir a fumar;SalirAFumar;
+CambiarTurno;Cambiar turno;CambiarTurno;
+CogerTelefono;Coger teléfono;CogerTelefono;
+AnimarBorracho;Animar al borracho;AnimarBorracho;
+AvisarUltimaRonda;Avisar última ronda;AvisarUltimaRonda;
+CambiarBarrilCerveza;Cambiar barril de cerveza;CambiarBarrilCerveza;
+PurgarCerveza;Purgar cerveza;PurgarCerveza;
+ApagarFuegote;Apagar fuegote;ApagarFuegote;
+PicarHielo;Picar hielo;PicarHielo;
+InvitarColegas;Invitar a colegas;InvitarColegas;
+DaleMasGasolina;Dale más gasolina;DaleMasGasolina;
+HacerSelfie;Hacer selfie;HacerSelfie;
+ReponerNevera;Reponer nevera;ReponerNevera;
+LavarVasos;Lavar vasos ;LavarVasos;
+LigarConClientes;Ligar con clientes;LigarConClientes;
+InvitarRonda;Invitar a ronda;InvitarRonda;
+HacerseElInteresante;Hacerse el interesante;HacerseElInteresante;

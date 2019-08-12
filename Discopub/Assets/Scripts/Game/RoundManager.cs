@@ -3,6 +3,7 @@ using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.Goals;
 using Assets.Scripts.Importers;
 using Assets.Scripts.UI;
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,8 @@ namespace Assets.Scripts.Game
         private EndOfRoundPanel _endOfRoundPanel;
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
+        [SerializeField]
+        private GoalProvider _goalProvider;
 
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
@@ -39,9 +42,7 @@ namespace Assets.Scripts.Game
         private bool _isCurrentRoundActive;
         private List<GameDifficulty> _difficultyLevels;
         private System.Random _random;
-        private List<Goal> _goals;
         private List<Action> _roundActions;
-        private List<Goal> _roundGoals;
 
         public void SetUpRound(int roundNumber)
         {
@@ -53,14 +54,10 @@ namespace Assets.Scripts.Game
 
             SetRoundTime(roundNumber, roundDifficulty);
 
-            var serializedActions = JsonUtility.ToJson(_actions);
-            var clonedActions = JsonUtility.FromJson<List<Action>>(serializedActions);
+            var serializedActions = JsonConvert.SerializeObject(_actions);
+            var clonedActions = JsonConvert.DeserializeObject<List<Action>>(serializedActions);
             clonedActions.Shuffle();
-
-            var serializedGoals = JsonUtility.ToJson(_goals);
-            var clonedGoals = JsonUtility.FromJson<List<Goal>>(serializedGoals);
-            clonedGoals.Shuffle();
-
+            
             _roundActions = new List<Action>();
 
             foreach (var player in _players)
@@ -84,6 +81,7 @@ namespace Assets.Scripts.Game
                     var action = clonedActions.First(a => a.ActionPoints <= remainingActionPoints);
                     playerActions.Add(action);
                     clonedActions.Remove(action);
+                    remainingActionPoints -= action.ActionPoints;
                 }
 
                 _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, playerActions.ToArray());
@@ -91,14 +89,7 @@ namespace Assets.Scripts.Game
                 _roundActions.AddRange(playerActions);
             }
 
-            _roundGoals = new List<Goal>();
-            foreach (var goal in clonedGoals)
-            {
-                if (goal.RequiredActions.All(a => _roundActions.Any(sa => sa.Name == a.Name)))
-                {
-                    _roundGoals.Add(goal);
-                }
-            }
+            _goalProvider.SetAvailableGoals(_roundActions);
 
             foreach(var actionCountdown in _actionCountdowns.Values)
             {
@@ -118,13 +109,15 @@ namespace Assets.Scripts.Game
         {
             _random = new System.Random();
             _timer.onTimerEnded += EndRound;
+            _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
+            _actionCountdowns = new Dictionary<string, ActionCountdown>();
         }
 
         protected void Start()
         {
             ImportActions();
             ImportDifficultyLevels();
-            
+
             var networkManager = CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager;
 
             _players = networkManager.LobbyPlayers().Cast<Player.Player>().ToList();
@@ -137,6 +130,9 @@ namespace Assets.Scripts.Game
                 var actionCountdown = InstantiateActionCountdown(player);
                 InstantiatePlayerGoalManager(player, actionCountdown);
             }
+
+            SetUpRound(1);
+            ScheduleRoundStart();
         }
 
         protected void OnDisable()
@@ -185,11 +181,6 @@ namespace Assets.Scripts.Game
         private void ImportDifficultyLevels()
         {
             _difficultyLevels = GameDifficultyImporter.ImportGamedifficultyLevels("Config/DifficultyLevels", true).ToList();
-        }
-
-        private void ImportGoals()
-        {
-            _goals = GoalImporter.ImportGoals("Config/Goals", true, 2).ToList();
         }
 
         private void EndRound()

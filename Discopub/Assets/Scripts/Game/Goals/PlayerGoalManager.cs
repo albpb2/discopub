@@ -51,7 +51,7 @@ namespace Assets.Scripts.Game.Goals
             _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>());
         }
 
-        protected void Awake()
+        protected void Start()
         {
             if (isServer)
             {

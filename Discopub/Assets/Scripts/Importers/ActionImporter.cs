@@ -10,8 +10,8 @@ namespace Assets.Scripts.Importers
     public static class ActionImporter
     {
         private const int ExpectedLineParts = 4;
-        private const char LineSeparator = '\t';
-        private const char ValuesSeparator = ';';
+        private const char LineSeparator = ';';
+        private const char ValuesSeparator = ',';
 
         private const int NameLinePartIndex = 0;
         private const int ControlTypeLinePartIndex = 1;

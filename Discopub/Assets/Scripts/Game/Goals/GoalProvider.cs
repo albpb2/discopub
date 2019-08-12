@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Importers;
+﻿using Assets.Scripts.Extensions;
+using Assets.Scripts.Importers;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,10 +24,12 @@ namespace Assets.Scripts.Game.Goals
 
         public void SetAvailableGoals(List<Action> roundActions)
         {
+            _goals.Shuffle();
+
             _availableGoals = new LinkedList<Goal>();
             foreach(var goal in _goals)
             {
-                if (goal.RequiredActions.TrueForAll(a => roundActions.Any(ra => ra.Name == a.Name)))
+                if (goal.RequiredActions.All(a => roundActions.Any(ra => ra.Name == a.Name)))
                 {
                     _availableGoals.AddLast(CloneGoal(goal));
                 }
@@ -36,7 +39,7 @@ namespace Assets.Scripts.Game.Goals
 
         protected void Awake()
         {
-            var goals = GoalImporter.ImportGoals(GoalFilePath, true, MaxGoalActions);
+            _goals = GoalImporter.ImportGoals(GoalFilePath, true, MaxGoalActions);
         }
 
         private Goal CloneGoal(Goal goal)

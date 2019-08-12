@@ -10,7 +10,7 @@ namespace Assets.Scripts.Importers
     public static class GameDifficultyImporter
     {
         private const int ExpectedLineParts = 4;
-        private const char LineSeparator = '\t';
+        private const char LineSeparator = ';';
 
         private const int MinRoundLinePartIndex = 0;
         private const int MaxRoundLinePartIndex = 1;

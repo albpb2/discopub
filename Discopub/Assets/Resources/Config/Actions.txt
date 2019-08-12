@@ -1,6 +1,46 @@
-Name	ControlType	Values	ActionPoints
-TestAction1	ActionButton	Test action 1	1
-TestAction2	ActionButton	Test action 2	1
-TestAction3	ActionButton	Test action 3	1
-TestAction4	ActionButton	Test action 4	1
-TestAction5	ActionButton	Test action 5	1
+Name;ControlType;Values;ActionPoints
+ExpulsarBorracho;ActionButton;Expulsar borracho;1
+CobrarDatafono;ActionButton;Cobrar con datáfono;1
+CobrarEfectivo;ActionButton;Cobrar en efectivo;1
+CargarDatafono;ActionButton;Cargar datáfono;1
+CerrarCaja;ActionButton;Cerrar caja;1
+LlamarSeguridad;ActionButton;Llamar a seguridad;1
+ReponerPapel;ActionButton;Reponer papel del culo;1
+LimpiarPota;ActionButton;Limpiar pota;1
+PasarMocho;ActionButton;Pasar mocho;1
+EscurrirBayeta;ActionButton;Escurrir bayeta;1
+ExprimirLimones;ActionButton;Exprimir limones;1
+ExprimirNaranjas;ActionButton;Exprimir naranjas;1
+EnfriarBebidas;ActionButton;Enfriar bebidas;1
+SecarVasos;ActionButton;Secar vasos;1
+DarClaveWifi;ActionButton;Dar clave wifi;1
+LimpiarBano;ActionButton;Limpiar baño;1
+AtornillarTaburetes;ActionButton;Atornillar taburetes;1
+LimpiarBarra;ActionButton;Limpiar barra;1
+DesatascarBano;ActionButton;Desatascar baño;1
+DesatascarFregadero;ActionButton;Desatascar fregadero;1
+CambiarCancion;ActionButton;Cambiar canción;1
+PincharReggaeton;ActionButton;Pinchar reggaeton;1
+PincharTrap;ActionButton;Pinchar trap;1
+PincharBoleros;ActionButton;Pinchar boleros;1
+PincharSalsa;ActionButton;Pinchar salsa;1
+PincharTemazo;ActionButton;Pinchar temazo;1
+ServirGarrafon;ActionButton;Servir garrafón;1
+VaciarLavavajillas;ActionButton;Vaciar lavavajinas;1
+SalirAFumar;ActionButton;Salir a fumar;1
+CambiarTurno;ActionButton;Cambiar turno;1
+CogerTelefono;ActionButton;Coger teléfono;1
+AnimarBorracho;ActionButton;Animar al borracho;1
+AvisarUltimaRonda;ActionButton;Avisar última ronda;1
+CambiarBarrilCerveza;ActionButton;Cambiar barril de cerveza;1
+PurgarCerveza;ActionButton;Purgar cerveza;1
+ApagarFuegote;ActionButton;Apagar fuegote;1
+PicarHielo;ActionButton;Picar hielo;1
+InvitarColegas;ActionButton;Invitar a colegas;1
+DaleMasGasolina;ActionButton;Dale más gasolina;1
+HacerSelfie;ActionButton;Hacer selfie;1
+ReponerNevera;ActionButton;Reponer nevera;1
+LavarVasos;ActionButton;Lavar vasos ;1
+LigarConClientes;ActionButton;Ligar con clientes;1
+InvitarRonda;ActionButton;Invitar a ronda;1
+HacerseElInteresante;ActionButton;Hacerse el interesante;1

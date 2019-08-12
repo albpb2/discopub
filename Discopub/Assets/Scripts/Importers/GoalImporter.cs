@@ -10,7 +10,7 @@ namespace Assets.Scripts.Importers
     public class GoalImporter
     {
         private const int MinimumExpectedLineParts = 4; // Name, text and at least one action (name and value)
-        private const char LineSeparator = '\t';
+        private const char LineSeparator = ';';
 
         private const int NameLinePartIndex = 0;
         private const int TextLinePartIndex = 1;

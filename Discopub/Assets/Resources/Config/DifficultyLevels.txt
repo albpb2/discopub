@@ -1,4 +1,4 @@
-MinRound	MaxRound	ActionPoints	ActionSeconds
-	3	4	10
-4	7	5	9
-8		5	7
+MinRound;MaxRound;ActionPoints;ActionSeconds
+;3;4;10
+4;7;5;9
+8;;5;7
