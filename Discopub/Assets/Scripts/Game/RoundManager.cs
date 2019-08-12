@@ -2,6 +2,7 @@
 using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.Goals;
 using Assets.Scripts.Importers;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Assets.Scripts.Game
 {
     public class RoundManager : MonoBehaviour
     {
+        private const int SecondsToStartRound = 3;
+        private const int MaxPoints = 500;
+
         [SerializeField]
         private Timer _timer;
         [SerializeField]
@@ -21,6 +25,10 @@ namespace Assets.Scripts.Game
         private GameObject _networkedObjectsRoot;
         [SerializeField]
         private ActionButtonsPanelCreator _actionButtonsPanelCreator;
+        [SerializeField]
+        private GameObject _endOfRoundPanel;
+        [SerializeField]
+        private MatchPointsCounter _matchPointsCounter;
 
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
@@ -95,26 +103,20 @@ namespace Assets.Scripts.Game
             {
                 actionCountdown.SetTotalTime(roundDifficulty.ActionSeconds);
             }
+
+            _matchPointsCounter.SetMaxPoints(MaxPoints);
+            _matchPointsCounter.SetPoints(0);
         }
 
-        public void StartRound()
+        public void ScheduleRoundStart()
         {
-            foreach (var player in _players)
-            {
-                _actionButtonsPanelCreator.EnableActionButtonsPannel(player.connectionToClient);
-            }
-
-            _timer.StartTimer();
-
-            foreach(var player in _players)
-            {
-                _playerGoalManagers[player.peerId].StartNextGoal();
-            }
+            StartCoroutine(StartRoundWithDelay());
         }
 
         protected void Awake()
         {
             _random = new System.Random();
+            _timer.onTimerEnded += EndRound;
         }
 
         protected void Start()
@@ -134,6 +136,11 @@ namespace Assets.Scripts.Game
                 var actionCountdown = InstantiateActionCountdown(player);
                 InstantiatePlayerGoalManager(player, actionCountdown);
             }
+        }
+
+        protected void OnDisable()
+        {
+            _timer.onTimerEnded -= EndRound;
         }
 
         private void SetRoundTime(int roundNumber, GameDifficulty roundDifficulty)
@@ -182,6 +189,38 @@ namespace Assets.Scripts.Game
         private void ImportGoals()
         {
             _goals = GoalImporter.ImportGoals("Config/Goals", true, 2).ToList();
+        }
+
+        private void EndRound()
+        {
+            foreach(var playerGoalManager in _playerGoalManagers.Values)
+            {
+                playerGoalManager.RemoveGoals();
+            }
+
+            _endOfRoundPanel.SetActive(true);
+            SetUpRound(_currentRound++);
+        }
+
+        private IEnumerator StartRoundWithDelay()
+        {
+            yield return new WaitForSeconds(SecondsToStartRound);
+            StartRound();
+        }
+
+        private void StartRound()
+        {
+            foreach (var player in _players)
+            {
+                _actionButtonsPanelCreator.EnableActionButtonsPannel(player.connectionToClient);
+            }
+
+            _timer.StartTimer();
+
+            foreach (var player in _players)
+            {
+                _playerGoalManagers[player.peerId].StartNextGoal();
+            }
         }
     }
 }

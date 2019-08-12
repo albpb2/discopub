@@ -45,6 +45,12 @@ namespace Assets.Scripts.Game.Goals
             _actionCountdown.onActionCountdownFinished += FailGoal;
         }
 
+        public void RemoveGoals()
+        {
+            _actionCountdown.StopCountdown();
+            _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>());
+        }
+
         protected void Awake()
         {
             if (isServer)

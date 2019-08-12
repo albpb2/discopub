@@ -14,6 +14,9 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private TMPro.TMP_Text _timerText;
 
+        public delegate void TimerEndedHandler();
+        public event TimerEndedHandler onTimerEnded;
+
         private float _remainingSeconds;
         private bool _started;
         private Coroutine _refreshClientsCoroutine;
@@ -77,13 +80,13 @@ namespace Assets.Scripts.Game
 
             if (_remainingSeconds <= 0)
             {
-                StopTimer();
+                EndTimer();
             }
 
             RefreshTimerText();
         }
 
-        private void StopTimer()
+        private void EndTimer()
         {
             _started = false;
             _remainingSeconds = 0;
@@ -93,6 +96,8 @@ namespace Assets.Scripts.Game
                 Debug.Log("Sending final time to client (0)");
                 StopCoroutine(_refreshClientsCoroutine);
                 RpcSetRemainingTime(0);
+
+                onTimerEnded?.Invoke();
             }
         }
 
