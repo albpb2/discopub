@@ -199,6 +199,7 @@ namespace Assets.Scripts.Game
             }
 
             _endOfRoundPanel.SetActive(true);
+            _actionButtonsPanelCreator.RpcDestroyPanel();
             SetUpRound(_currentRound++);
         }
 

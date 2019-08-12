@@ -29,9 +29,15 @@ namespace Assets.Scripts.Buttons
         }
 
         [TargetRpc]
-        public void EnableActionButtonsPannel(NetworkConnection connection)
+        public void TargetEnableActionButtonsPannel(NetworkConnection connection)
         {
             actionButtonsPanel.SetActive(true);
+        }
+
+        [ClientRpc]
+        public void RpcDestroyPanel()
+        {
+            Destroy(actionButtonsPanel.gameObject);
         }
 
         private LayoutType CalculateInitialLayoutType()
