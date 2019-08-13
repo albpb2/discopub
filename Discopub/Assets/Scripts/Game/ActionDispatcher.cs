@@ -18,12 +18,19 @@ namespace Assets.Scripts.Game
 
         public void DispatchAction(string actionName, string actionValue, string peerId)
         {
-            if (IsRightAction(actionName, actionValue))
+            bool isRightAction = false;
+            foreach (var playerGoalAction in _playerGoalActions)
             {
-                _matchPointsCounter.IncreasePoints(PointsToWinPerRightAction);
-                _playerGoalManagers[peerId].StartNextGoal();
+                var requiredAction = playerGoalAction.Value.FirstOrDefault();
+                if (requiredAction.Name == actionName &&  requiredAction.Value == actionValue)
+                {
+                    isRightAction = true;
+                    _matchPointsCounter.IncreasePoints(PointsToWinPerRightAction);
+                    _playerGoalManagers[playerGoalAction.Key].StartNextGoal();
+                }
             }
-            else
+
+            if (!isRightAction)
             {
                 FailAction(peerId);
             }
@@ -48,12 +55,6 @@ namespace Assets.Scripts.Game
         {
             _playerGoalActions = new Dictionary<string, List<GoalAction>>();
             _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
-        }
-
-        private bool IsRightAction(string actionName, string actionValue)
-        {
-            var activeActions = _playerGoalActions.Select(a => a.Value.FirstOrDefault()).Where(a => a != null);
-            return activeActions.Any(a => a.Name == actionName && a.Value == actionValue);
         }
 
         private void RemoveGoalAction(string actionName, string actionValue)
