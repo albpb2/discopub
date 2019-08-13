@@ -6,9 +6,7 @@ namespace Assets.Scripts.Game.Goals
 {
     public class PlayerGoalManager : NetworkBehaviour
     {
-        [SerializeField]
         private TMPro.TMP_Text _goalText;
-
         private Player.Player _player;
         private GoalProvider _goalProvider;
         private Goal _activeGoal;
@@ -49,6 +47,11 @@ namespace Assets.Scripts.Game.Goals
         {
             _actionCountdown.StopCountdown();
             _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>());
+        }
+
+        protected void Awake()
+        {
+            _goalText = GameObject.FindWithTag(Tags.GoalText).GetComponent<TMPro.TMP_Text>();
         }
 
         protected void Start()
