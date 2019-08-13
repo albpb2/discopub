@@ -12,29 +12,29 @@ namespace Assets.Scripts.Game.Goals
         private const int MaxGoalActions = 4;
 
         private List<Goal> _goals;
-        private LinkedList<Goal> _availableGoals;
-        private LinkedListNode<Goal> _lastGoal;
+        private List<Goal> _availableGoals;
+        private int _currentGoalIndex;
 
         public Goal GetNextGoal()
         {
-            var nextGoal = _lastGoal.Next;
-            _lastGoal = nextGoal;
-            return nextGoal.Value;
+            var nextGoal = _availableGoals[_currentGoalIndex];
+            _currentGoalIndex = (_currentGoalIndex + 1) % _availableGoals.Count;
+            return nextGoal;
         }
 
         public void SetAvailableGoals(List<Action> roundActions)
         {
             _goals.Shuffle();
 
-            _availableGoals = new LinkedList<Goal>();
+            _availableGoals = new List<Goal>();
             foreach(var goal in _goals)
             {
                 if (goal.RequiredActions.All(a => roundActions.Any(ra => ra.Name == a.Name)))
                 {
-                    _availableGoals.AddLast(CloneGoal(goal));
+                    _availableGoals.Add(CloneGoal(goal));
                 }
             }
-            _lastGoal = _availableGoals.Last;
+            _currentGoalIndex = 0;
         }
 
         protected void Awake()
