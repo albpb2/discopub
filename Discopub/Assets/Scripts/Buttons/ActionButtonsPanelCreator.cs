@@ -82,6 +82,8 @@ namespace Assets.Scripts.Buttons
             {
                 var prefab = ResolveActionPrefab(actions[0].ControlType);
                 var controlGameObject = Instantiate(prefab, layoutGameObject.transform);
+                var controlText = controlGameObject.GetComponentInChildren<Text>();
+                controlText.text = actions.Single().Values.Single();
             }
             else
             {
