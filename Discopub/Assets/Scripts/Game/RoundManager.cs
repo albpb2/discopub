@@ -62,6 +62,7 @@ namespace Assets.Scripts.Game
 
             foreach (var player in _players)
             {
+                Debug.Log($"Creating actions for player {player.peerId}.");
                 var playerActions = new List<Action>();
 
                 const int MinSimpleActions = 2;
@@ -84,7 +85,7 @@ namespace Assets.Scripts.Game
                     remainingActionPoints -= action.ActionPoints;
                 }
 
-                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, playerActions.ToArray(), player.peerId);
+                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
 
                 _roundActions.AddRange(playerActions);
             }
@@ -207,6 +208,7 @@ namespace Assets.Scripts.Game
         {
             foreach (var player in _players)
             {
+                Debug.Log($"Enabling actions for player {player.peerId}.");
                 _actionButtonsPanelCreator.TargetEnableActionButtonsPannel(player.connectionToClient);
             }
 

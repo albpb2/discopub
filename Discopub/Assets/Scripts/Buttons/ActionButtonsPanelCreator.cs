@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Game;
 using Assets.Scripts.UI;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -20,8 +21,10 @@ namespace Assets.Scripts.Buttons
         private GameObject _emptyLayoutPrefab;
 
         [TargetRpc]
-        public void TargetCreateActionButtonsPanels(NetworkConnection connection, Action[] actions, string playerPeerId)
+        public void TargetCreateActionButtonsPanels(NetworkConnection connection, string parsedActions, string playerPeerId)
         {
+            Debug.Log($"Received rpc to create actions panel");
+            var actions = JsonConvert.DeserializeObject<List<Action>>(parsedActions);
             var initialLayoutType = CalculateInitialLayoutType();
             actionButtonsPanel = InstantiateLayout(initialLayoutType, _actionButtonsPanelParent);
             FillLayout(actionButtonsPanel, initialLayoutType, actions.ToList(), playerPeerId);
@@ -31,12 +34,14 @@ namespace Assets.Scripts.Buttons
         [TargetRpc]
         public void TargetEnableActionButtonsPannel(NetworkConnection connection)
         {
+            Debug.Log($"Received rpc to enable actions panel");
             actionButtonsPanel.SetActive(true);
         }
 
         [ClientRpc]
         public void RpcDestroyPanel()
         {
+            Debug.Log($"Received rpc to disable actions panel");
             Destroy(actionButtonsPanel.gameObject);
         }
 

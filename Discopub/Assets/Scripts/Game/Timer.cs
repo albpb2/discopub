@@ -35,7 +35,6 @@ namespace Assets.Scripts.Game
                 return;
             }
 
-            Debug.Log($"Received remaining seconds: {seconds}");
             _remainingSeconds = seconds;
             RefreshTimerText();
         }
@@ -64,7 +63,6 @@ namespace Assets.Scripts.Game
             while (_started)
             {
                 yield return new WaitForSeconds(ClientRefreshPeriodSeconds);
-                Debug.Log("Sending time to client");
                 RpcSetRemainingTime(_remainingSeconds);
             }
         }
