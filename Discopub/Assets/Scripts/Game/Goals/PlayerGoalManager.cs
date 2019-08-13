@@ -60,6 +60,7 @@ namespace Assets.Scripts.Game.Goals
             {
                 _goalProvider = FindObjectOfType<GoalProvider>();
                 _actionDispatcher = FindObjectOfType<ActionDispatcher>();
+                _actionDispatcher.SetPlayerGoalManager(_player.peerId, this);
             }
         }
 

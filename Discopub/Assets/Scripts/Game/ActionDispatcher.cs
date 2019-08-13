@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Game.Goals;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
 
+        private Dictionary<string, PlayerGoalManager> _playerGoalManagers;
         private Dictionary<string, List<GoalAction>> _playerGoalActions;
 
         public void DispatchAction(string actionName, string actionValue, string peerId)
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Game
             if (IsRightAction(actionName, actionValue))
             {
                 _matchPointsCounter.IncreasePoints(PointsToWinPerRightAction);
+                _playerGoalManagers[peerId].StartNextGoal();
             }
             else
             {
@@ -36,9 +39,15 @@ namespace Assets.Scripts.Game
             _playerGoalActions[playerPeerId] = goalActions;
         }
 
+        public void SetPlayerGoalManager(string playerPeerId, PlayerGoalManager playerGoalManager)
+        {
+            _playerGoalManagers[playerPeerId] = playerGoalManager;
+        }
+
         protected void Awake()
         {
             _playerGoalActions = new Dictionary<string, List<GoalAction>>();
+            _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
         }
 
         private bool IsRightAction(string actionName, string actionValue)
