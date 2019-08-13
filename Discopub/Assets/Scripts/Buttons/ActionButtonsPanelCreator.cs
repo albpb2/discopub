@@ -21,7 +21,7 @@ namespace Assets.Scripts.Buttons
         private GameObject _emptyLayoutPrefab;
 
         [TargetRpc]
-        public void TargetCreateActionButtonsPanels(NetworkConnection connection, string parsedActions, string playerPeerId)
+        public void TargetCreateActionButtonsPanel(NetworkConnection connection, string parsedActions, string playerPeerId)
         {
             Debug.Log($"Received rpc to create actions panel");
             var actions = JsonConvert.DeserializeObject<List<Action>>(parsedActions);

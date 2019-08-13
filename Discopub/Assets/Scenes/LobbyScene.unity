@@ -653,7 +653,7 @@ PrefabInstance:
     - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
         type: 3}
       propertyPath: m_SpawnPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
         type: 3}
@@ -676,6 +676,12 @@ PrefabInstance:
       propertyPath: m_Channels.Array.data[0]
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4701610259257129693, guid: 27fdbd974548df4419662c37d852e3a8,
+        type: 3}
+      propertyPath: m_SpawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4481783186034129868, guid: 598c5809f7af37d42aaae99565b51abe,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27fdbd974548df4419662c37d852e3a8, type: 3}
 --- !u!1 &1003280886
@@ -1043,7 +1049,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613474316}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2131100753
 MonoBehaviour:
@@ -1063,7 +1069,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1480037890, guid: 26c046dba52060a479955f9b04c36ba4, type: 3}
   countdownDuration: 3
   listener: {fileID: 2142994883}
-  verboseLogging: 0
+  verboseLogging: 1
   useDebugGUI: 0
   forceServer: 0
 --- !u!1 &2142994881
@@ -1095,7 +1101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 613474316}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2142994883
 MonoBehaviour:

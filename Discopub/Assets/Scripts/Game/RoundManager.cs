@@ -85,7 +85,7 @@ namespace Assets.Scripts.Game
                     remainingActionPoints -= action.ActionPoints;
                 }
 
-                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
+                _actionButtonsPanelCreator.TargetCreateActionButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
 
                 _roundActions.AddRange(playerActions);
             }
@@ -133,7 +133,7 @@ namespace Assets.Scripts.Game
                 InstantiatePlayerGoalManager(player, actionCountdown);
             }
 
-            SetUpRound(1);
+            StartCoroutine(SetUpRoundWithDelay(1, 1));
             ScheduleRoundStart();
         }
 
@@ -196,6 +196,12 @@ namespace Assets.Scripts.Game
 
             _endOfRoundPanel.RpcShowPanel();
             SetUpRound(_currentRound++);
+        }
+
+        private IEnumerator SetUpRoundWithDelay(int roundNumber, int secondsToWait)
+        {
+            yield return new WaitForSeconds(secondsToWait);
+            SetUpRound(roundNumber);
         }
 
         private IEnumerator StartRoundWithDelay()
