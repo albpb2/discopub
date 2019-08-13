@@ -27,6 +27,10 @@ namespace Assets.Scripts.Game
         public void SetPoints(int currentPoints)
         {
             _currentPoints = Math.Min(currentPoints, _maxPoints);
+
+            const int minimumPoints = 0;
+            _currentPoints = Math.Max(_currentPoints, minimumPoints);
+
             RpcPrintPoints(_currentPoints, _maxPoints);
         }
 
