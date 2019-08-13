@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TextSentLabel
   - Textbox
+  - GoalText
   layers:
   - Default
   - TransparentFX
