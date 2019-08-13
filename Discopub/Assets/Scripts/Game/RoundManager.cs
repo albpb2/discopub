@@ -84,7 +84,7 @@ namespace Assets.Scripts.Game
                     remainingActionPoints -= action.ActionPoints;
                 }
 
-                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, playerActions.ToArray());
+                _actionButtonsPanelCreator.TargetCreateActionButtonsPanels(player.connectionToClient, playerActions.ToArray(), player.peerId);
 
                 _roundActions.AddRange(playerActions);
             }

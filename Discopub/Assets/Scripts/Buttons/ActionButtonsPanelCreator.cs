@@ -20,11 +20,11 @@ namespace Assets.Scripts.Buttons
         private GameObject _emptyLayoutPrefab;
 
         [TargetRpc]
-        public void TargetCreateActionButtonsPanels(NetworkConnection connection, Action[] actions)
+        public void TargetCreateActionButtonsPanels(NetworkConnection connection, Action[] actions, string playerPeerId)
         {
             var initialLayoutType = CalculateInitialLayoutType();
             actionButtonsPanel = InstantiateLayout(initialLayoutType, _actionButtonsPanelParent);
-            FillLayout(actionButtonsPanel, initialLayoutType, actions.ToList());
+            FillLayout(actionButtonsPanel, initialLayoutType, actions.ToList(), playerPeerId);
             actionButtonsPanel.SetActive(false);
         }
 
@@ -76,14 +76,14 @@ namespace Assets.Scripts.Buttons
             return layoutGameObject;
         }
 
-        private void FillLayout(GameObject layoutGameObject, LayoutType layoutType, List<Action> actions)
+        private void FillLayout(GameObject layoutGameObject, LayoutType layoutType, List<Action> actions, string playerPeerId)
         {
             if (actions.Count == 1)
             {
                 var prefab = ResolveActionPrefab(actions[0].ControlType);
                 var controlGameObject = Instantiate(prefab, layoutGameObject.transform);
-                var controlText = controlGameObject.GetComponentInChildren<Text>();
-                controlText.text = actions.Single().Values.Single();
+                var controller = controlGameObject.GetComponentInChildren<ActionButtonController>();
+                controller.SetUp(actions.Single().Name, actions.Single().Values.Single(), playerPeerId);
             }
             else
             {
@@ -94,10 +94,10 @@ namespace Assets.Scripts.Buttons
                 var inverseLayoutType = CalculateInverseLayout(layoutType);
 
                 var firstLayout = InstantiateLayout(inverseLayoutType, layoutGameObject);
-                FillLayout(firstLayout, inverseLayoutType, firstHalfOfActions);
+                FillLayout(firstLayout, inverseLayoutType, firstHalfOfActions, playerPeerId);
 
                 var secondLayout = InstantiateLayout(inverseLayoutType, layoutGameObject);
-                FillLayout(secondLayout, inverseLayoutType, secondHalfOfActions);
+                FillLayout(secondLayout, inverseLayoutType, secondHalfOfActions, playerPeerId);
             }
         }
 

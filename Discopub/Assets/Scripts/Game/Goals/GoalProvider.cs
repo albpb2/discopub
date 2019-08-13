@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Extensions;
 using Assets.Scripts.Importers;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -44,19 +45,8 @@ namespace Assets.Scripts.Game.Goals
 
         private Goal CloneGoal(Goal goal)
         {
-            var clonedGoal = new Goal();
-            clonedGoal.Name = goal.Name;
-            clonedGoal.Text = goal.Text;
-            clonedGoal.RequiredActions = new List<GoalAction>();
-            foreach (var goalAction in goal.RequiredActions)
-            {
-                var clonedGoalAction = new GoalAction
-                {
-                    Name = goalAction.Name,
-                    Value = goalAction.Value
-                };
-            }
-            return clonedGoal;
+            var serializedGoal = JsonConvert.SerializeObject(goal);
+            return JsonConvert.DeserializeObject<Goal>(serializedGoal);
         }
     }
 }
