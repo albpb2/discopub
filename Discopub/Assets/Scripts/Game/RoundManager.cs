@@ -108,13 +108,14 @@ namespace Assets.Scripts.Game
         protected void Awake()
         {
             _random = new System.Random();
-            _timer.onTimerEnded += EndRound;
-            _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
-            _actionCountdowns = new Dictionary<string, ActionCountdown>();
         }
 
         protected void Start()
         {
+            _timer.onTimerEnded += EndRound;
+            _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
+            _actionCountdowns = new Dictionary<string, ActionCountdown>();
+
             ImportActions();
             ImportDifficultyLevels();
 
