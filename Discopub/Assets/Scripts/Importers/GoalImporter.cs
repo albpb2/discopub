@@ -20,7 +20,7 @@ namespace Assets.Scripts.Importers
         {
             var resource = Resources.Load<TextAsset>(filePath);
             string text = resource.text;
-            string[] lines = Regex.Split(text, "\r\n");
+            string[] lines = Regex.Split(text, Environment.NewLine);
 
             if (hasHeaderLine)
             {
