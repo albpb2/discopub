@@ -1,7 +1,5 @@
 ﻿using Assets.Scripts.Buttons;
-using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.Goals;
-using Assets.Scripts.Importers;
 using Assets.Scripts.UI;
 using Newtonsoft.Json;
 using System.Collections;
@@ -15,7 +13,6 @@ namespace Assets.Scripts.Game
     public class RoundManager : MonoBehaviour
     {
         private const int SecondsToStartRound = 3;
-        private const int MaxPoints = 500;
 
         [SerializeField]
         private Timer _timer;
@@ -37,67 +34,12 @@ namespace Assets.Scripts.Game
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
         private Dictionary<string, PlayerGoalManager> _playerGoalManagers;
-        private List<Action> _actions;
         private int _currentRound;
         private bool _isCurrentRoundActive;
         private System.Random _random;
         private List<Action> _roundActions;
         private DifficultyLevelManager _difficultyLevelManager;
-
-        public void SetUpRound(int roundNumber)
-        {
-            _currentRound = roundNumber;
-
-            var roundDifficulty = _difficultyLevelManager.GetDifficultyLevel(roundNumber);
-
-            SetRoundTime(roundNumber, roundDifficulty);
-
-            var serializedActions = JsonConvert.SerializeObject(_actions);
-            var clonedActions = JsonConvert.DeserializeObject<List<Action>>(serializedActions);
-            clonedActions.Shuffle();
-            
-            _roundActions = new List<Action>();
-
-            foreach (var player in _players)
-            {
-                Debug.Log($"Creating actions for player {player.peerId}.");
-                var playerActions = new List<Action>();
-
-                const int MinSimpleActions = 2;
-                const int MaxSimpleActions = 3;
-                var numberOfActionButtons = _random.Next(MinSimpleActions, MaxSimpleActions + 1);
-                for (var i = 0; i < numberOfActionButtons; i++)
-                {
-                    var action = clonedActions.First(a => a.ActionPoints == 1);
-                    playerActions.Add(action);
-                    clonedActions.Remove(action);
-                }
-
-                var remainingActionPoints = roundDifficulty.ActionPoints - numberOfActionButtons;
-
-                while (remainingActionPoints > 0)
-                {
-                    var action = clonedActions.First(a => a.ActionPoints <= remainingActionPoints);
-                    playerActions.Add(action);
-                    clonedActions.Remove(action);
-                    remainingActionPoints -= action.ActionPoints;
-                }
-
-                _actionButtonsPanelCreator.TargetCreateActionButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
-
-                _roundActions.AddRange(playerActions);
-            }
-
-            _goalProvider.SetAvailableGoals(_roundActions);
-
-            foreach(var actionCountdown in _actionCountdowns.Values)
-            {
-                actionCountdown.SetTotalTime(roundDifficulty.ActionSeconds);
-            }
-
-            _matchPointsCounter.SetMaxPoints(MaxPoints);
-            _matchPointsCounter.SetPoints(0);
-        }
+        private ActionsManager _actionsManager;
 
         public void ScheduleRoundStart()
         {
@@ -115,8 +57,6 @@ namespace Assets.Scripts.Game
             _timer.onTimerEnded += EndRound;
             _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
             _actionCountdowns = new Dictionary<string, ActionCountdown>();
-
-            ImportActions();
 
             var networkManager = CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager;
 
@@ -143,6 +83,7 @@ namespace Assets.Scripts.Game
         private void LoadDependencies()
         {
             _difficultyLevelManager = new DifficultyLevelManager();
+            _actionsManager = new ActionsManager();
         }
 
         private void SetRoundTime(int roundNumber, GameDifficulty roundDifficulty)
@@ -150,6 +91,59 @@ namespace Assets.Scripts.Game
             const int MinActionsPerPlayer = 5;
             var minRoundActionsPerPlayer = MinActionsPerPlayer + roundNumber;
             _timer.SetTime(roundDifficulty.ActionSeconds * minRoundActionsPerPlayer);
+        }
+
+        private List<Action> ChooseRoundActions(GameDifficulty roundDifficulty)
+        {
+            var actions = _actionsManager.GetShuffledActionsList();
+            var roundActions = new List<Action>();
+
+            foreach (var player in _players)
+            {
+                Debug.Log($"Creating actions for player {player.peerId}.");
+                var playerActions = ChoosePlayerActions(actions, roundDifficulty);
+
+                _actionButtonsPanelCreator.TargetCreateActionButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
+
+                roundActions.AddRange(playerActions);
+            }
+
+            return roundActions;
+        }
+
+        private List<Action> ChoosePlayerActions(List<Action> actions, GameDifficulty roundDifficulty)
+        {
+            var playerActions = new List<Action>();
+
+            const int MinSimpleActions = 2;
+            const int MaxSimpleActions = 3;
+            var numberOfActionButtons = _random.Next(MinSimpleActions, MaxSimpleActions + 1);
+            for (var i = 0; i < numberOfActionButtons; i++)
+            {
+                var action = actions.First(a => a.ActionPoints == 1);
+                playerActions.Add(action);
+                actions.Remove(action);
+            }
+
+            var remainingActionPoints = roundDifficulty.ActionPoints - numberOfActionButtons;
+
+            while (remainingActionPoints > 0)
+            {
+                var action = actions.First(a => a.ActionPoints <= remainingActionPoints);
+                playerActions.Add(action);
+                actions.Remove(action);
+                remainingActionPoints -= action.ActionPoints;
+            }
+
+            return playerActions;
+        }
+
+        private void SetActionTimes(GameDifficulty roundDifficulty)
+        {
+            foreach (var actionCountdown in _actionCountdowns.Values)
+            {
+                actionCountdown.SetTotalTime(roundDifficulty.ActionSeconds);
+            }
         }
 
         private ActionCountdown InstantiateActionCountdown(Player.Player player)
@@ -178,11 +172,6 @@ namespace Assets.Scripts.Game
             return playerGoalManager;
         }
 
-        private void ImportActions()
-        {
-            _actions = ActionImporter.ImportActions("Config/Actions", true).ToList();
-        }
-
         private void EndRound()
         {
             foreach(var playerGoalManager in _playerGoalManagers.Values)
@@ -200,6 +189,23 @@ namespace Assets.Scripts.Game
         {
             yield return new WaitForSeconds(secondsToWait);
             SetUpRound(roundNumber);
+        }
+
+        private void SetUpRound(int roundNumber)
+        {
+            _currentRound = roundNumber;
+
+            var roundDifficulty = _difficultyLevelManager.GetDifficultyLevel(roundNumber);
+
+            SetRoundTime(roundNumber, roundDifficulty);
+
+            _roundActions = ChooseRoundActions(roundDifficulty);
+
+            _goalProvider.SetAvailableGoals(_roundActions);
+
+            SetActionTimes(roundDifficulty);
+
+            _matchPointsCounter.ResetCounter();
         }
 
         private IEnumerator StartRoundWithDelay()

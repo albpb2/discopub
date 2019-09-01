@@ -27,6 +27,7 @@ namespace Assets.Scripts.Game
                     isRightAction = true;
                     _matchPointsCounter.IncreasePoints(PointsToWinPerRightAction);
                     _playerGoalManagers[playerGoalAction.Key].StartNextGoal();
+                    break;
                 }
             }
 
