@@ -13,6 +13,7 @@ namespace Assets.Scripts.Game
     public class RoundManager : MonoBehaviour
     {
         private const int SecondsToStartRound = 3;
+        private const int ExpectedRoundSetUpDurationSeconds = 1;
 
         [SerializeField]
         private Timer _timer;
@@ -71,8 +72,8 @@ namespace Assets.Scripts.Game
                 InstantiatePlayerGoalManager(player, actionCountdown);
             }
 
-            StartCoroutine(SetUpRoundWithDelay(1, 1));
             ScheduleRoundStart();
+            StartCoroutine(SetUpRoundWithDelay(1, ExpectedRoundSetUpDurationSeconds));
         }
 
         protected void OnDisable()
@@ -182,6 +183,8 @@ namespace Assets.Scripts.Game
             _actionButtonsPanelCreator.RpcDestroyPanel();
 
             _endOfRoundPanel.RpcShowPanel();
+
+            ScheduleRoundStart();
             SetUpRound(_currentRound++);
         }
 
