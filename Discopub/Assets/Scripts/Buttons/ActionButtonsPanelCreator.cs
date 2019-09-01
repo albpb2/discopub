@@ -19,6 +19,15 @@ namespace Assets.Scripts.Buttons
         private GameObject _actionButtonPrefab;
         [SerializeField]
         private GameObject _emptyLayoutPrefab;
+        [SerializeField]
+        private ButtonInstantiator _buttonInstantiator;
+
+        private Dictionary<string, ButtonCreator> _buttonCreators;
+
+        public void Awake()
+        {
+            InitializeButtonCreators();
+        }
 
         [TargetRpc]
         public void TargetCreateActionButtonsPanel(NetworkConnection connection, string parsedActions, string playerPeerId)
@@ -81,14 +90,20 @@ namespace Assets.Scripts.Buttons
             return layoutGameObject;
         }
 
+        private void InitializeButtonCreators()
+        {
+            _buttonCreators = new Dictionary<string, ButtonCreator>
+            {
+                [ActionControlType.ActionButton] = new ActionButtonCreator(_buttonInstantiator, _actionButtonPrefab)
+            };
+        }
+
         private void FillLayout(GameObject layoutGameObject, LayoutType layoutType, List<Action> actions, string playerPeerId)
         {
             if (actions.Count == 1)
             {
-                var prefab = ResolveActionPrefab(actions[0].ControlType);
-                var controlGameObject = Instantiate(prefab, layoutGameObject.transform);
-                var controller = controlGameObject.GetComponentInChildren<ActionButtonController>();
-                controller.SetUp(actions.Single().Name, actions.Single().Values.Single(), playerPeerId);
+                var buttonCreator = _buttonCreators[actions[0].ControlType];
+                buttonCreator.CreateButton(actions[0], layoutGameObject, playerPeerId);
             }
             else
             {
@@ -103,17 +118,6 @@ namespace Assets.Scripts.Buttons
 
                 var secondLayout = InstantiateLayout(inverseLayoutType, layoutGameObject);
                 FillLayout(secondLayout, inverseLayoutType, secondHalfOfActions, playerPeerId);
-            }
-        }
-
-        private GameObject ResolveActionPrefab(string actionControlType)
-        {
-            switch (actionControlType)
-            {
-                case ActionControlType.ActionButton:
-                    return _actionButtonPrefab;
-                default:
-                    throw new System.Exception($"Trying to instantiate invalid control type: {actionControlType}");
             }
         }
 
