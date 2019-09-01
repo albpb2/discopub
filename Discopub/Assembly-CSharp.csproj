@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
     <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
+    <Compile Include="Assets\Scripts\Game\DifficultyLevelManager.cs" />
     <Compile Include="Assets\Scripts\Game\GameDifficulty.cs" />
     <Compile Include="Assets\Scripts\Game\Goal.cs" />
     <Compile Include="Assets\Scripts\Game\GoalAction.cs" />

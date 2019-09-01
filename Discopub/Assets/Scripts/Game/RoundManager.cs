@@ -40,17 +40,15 @@ namespace Assets.Scripts.Game
         private List<Action> _actions;
         private int _currentRound;
         private bool _isCurrentRoundActive;
-        private List<GameDifficulty> _difficultyLevels;
         private System.Random _random;
         private List<Action> _roundActions;
+        private DifficultyLevelManager _difficultyLevelManager;
 
         public void SetUpRound(int roundNumber)
         {
             _currentRound = roundNumber;
 
-            var roundDifficulty = _difficultyLevels.Single(d => 
-                (!d.MinRound.HasValue || roundNumber >= d.MinRound.Value)
-                && (!d.MaxRound.HasValue || roundNumber <= d.MaxRound.Value));
+            var roundDifficulty = _difficultyLevelManager.GetDifficultyLevel(roundNumber);
 
             SetRoundTime(roundNumber, roundDifficulty);
 
@@ -109,6 +107,7 @@ namespace Assets.Scripts.Game
         protected void Awake()
         {
             _random = new System.Random();
+            LoadDependencies();
         }
 
         protected void Start()
@@ -118,7 +117,6 @@ namespace Assets.Scripts.Game
             _actionCountdowns = new Dictionary<string, ActionCountdown>();
 
             ImportActions();
-            ImportDifficultyLevels();
 
             var networkManager = CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager;
 
@@ -140,6 +138,11 @@ namespace Assets.Scripts.Game
         protected void OnDisable()
         {
             _timer.onTimerEnded -= EndRound;
+        }
+
+        private void LoadDependencies()
+        {
+            _difficultyLevelManager = new DifficultyLevelManager();
         }
 
         private void SetRoundTime(int roundNumber, GameDifficulty roundDifficulty)
@@ -178,11 +181,6 @@ namespace Assets.Scripts.Game
         private void ImportActions()
         {
             _actions = ActionImporter.ImportActions("Config/Actions", true).ToList();
-        }
-
-        private void ImportDifficultyLevels()
-        {
-            _difficultyLevels = GameDifficultyImporter.ImportGamedifficultyLevels("Config/DifficultyLevels", true).ToList();
         }
 
         private void EndRound()
