@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Assets.Scripts.Game
 {
-    public class ActionsManager
+    public class ActionsManager : Singleton<ActionsManager>
     {
         private List<Action> _actions;
 

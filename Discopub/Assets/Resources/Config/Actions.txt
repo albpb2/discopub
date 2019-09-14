@@ -1,4 +1,5 @@
 Name;ControlType;Values;ActionPoints
+
 ExpulsarBorracho;ActionButton;Expulsar borracho;1
 CobrarDatafono;ActionButton;Cobrar con datáfono;1
 CobrarEfectivo;ActionButton;Cobrar en efectivo;1
@@ -44,3 +45,14 @@ LavarVasos;ActionButton;Lavar vasos ;1
 LigarConClientes;ActionButton;Ligar con clientes;1
 InvitarRonda;ActionButton;Invitar a ronda;1
 HacerseElInteresante;ActionButton;Hacerse el interesante;1
+
+Luces;OnOffButton;Luces;2
+MaquinaHielo;OnOffButton;Máquina de hielo;2
+Wifi;OnOffButton;WiFi;2
+Musica;OnOffButton;Música;2
+MaquinaTabaco;OnOffButton;Máquina de tabaco;2
+Lavavajinas;OnOffButton;Lavavajinas;2
+Megatron;OnOffButton;Megatrón;2
+Laseres;OnOffButton;Láseres;2
+Ventiladores;OnOffButton;Ventiladores;2
+AireAcondicionado;OnOffButton;Aire acondicionado;2

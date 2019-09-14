@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Assets.Scripts.Buttons;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -12,6 +13,8 @@ namespace Assets.Scripts.Game.Goals
         private Goal _activeGoal;
         private ActionCountdown _actionCountdown;
         private ActionDispatcher _actionDispatcher;
+        private MultiValueControlsManager _multiValueControlsManager;
+        private ActionsManager _actionsManager;
 
         public Goal ActiveGoal
         {
@@ -22,7 +25,8 @@ namespace Assets.Scripts.Game.Goals
             private set
             {
                 _activeGoal = value;
-                TargetSetGoalText(_player.connectionToClient, _activeGoal.Text);
+                var goalText = GetGoalText(_activeGoal);
+                TargetSetGoalText(_player.connectionToClient, goalText);
             }
         }
 
@@ -30,7 +34,11 @@ namespace Assets.Scripts.Game.Goals
         {
             if (isServer)
             {
-                ActiveGoal = _goalProvider.GetNextGoal();
+                var nextGoal = _goalProvider.GetNextGoal();
+                nextGoal.RequiredActions[0].Value = SelectUnusedControlValueForRequiredAction(nextGoal);
+
+                ActiveGoal = nextGoal;
+
                 _actionCountdown.StartCountdown();
                 _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>(ActiveGoal.RequiredActions));
             }
@@ -52,6 +60,7 @@ namespace Assets.Scripts.Game.Goals
         protected void Awake()
         {
             _goalText = GameObject.FindWithTag(Tags.GoalText).GetComponent<TMPro.TMP_Text>();
+            _actionsManager = ActionsManager.Instance;
         }
 
         protected void Start()
@@ -60,6 +69,8 @@ namespace Assets.Scripts.Game.Goals
             {
                 _goalProvider = FindObjectOfType<GoalProvider>();
                 _actionDispatcher = FindObjectOfType<ActionDispatcher>();
+                _multiValueControlsManager = FindObjectOfType<MultiValueControlsManager>();
+
                 _actionDispatcher.SetPlayerGoalManager(_player.peerId, this);
             }
         }
@@ -72,6 +83,21 @@ namespace Assets.Scripts.Game.Goals
             }
         }
 
+        private string GetGoalText(Goal goal)
+        {
+            if (goal.ControlType == ActionControlType.OnOffButton)
+            {
+                if (goal.RequiredActions[0].Value == OnOfButtonController.OnValue)
+                {
+                    return $"Encender {goal.Text}";
+                }
+
+                return $"Apagar {goal.Text}";
+            }
+
+            return goal.Text;
+        }
+
         [TargetRpc]
         private void TargetSetGoalText(NetworkConnection connection, string goalText)
         {
@@ -82,6 +108,16 @@ namespace Assets.Scripts.Game.Goals
         {
             _actionDispatcher.FailAction(_player.peerId);
             StartNextGoal();
+        }
+
+        private string SelectUnusedControlValueForRequiredAction(Goal nextGoal)
+        {
+            if (nextGoal.ControlType == ActionControlType.OnOffButton)
+            {
+                return _multiValueControlsManager.GetDifferentOnOffControlValue(nextGoal.RequiredActions[0].Name);
+            }
+
+            return nextGoal.RequiredActions[0].Value;
         }
     }
 }

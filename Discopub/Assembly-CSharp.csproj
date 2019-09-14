@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Buttons\ButtonCreator.cs" />
     <Compile Include="Assets\Scripts\Buttons\ButtonInstantiator.cs" />
     <Compile Include="Assets\Scripts\Buttons\OnOfButtonController.cs" />
+    <Compile Include="Assets\Scripts\Buttons\OnOffButtonCreator.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtensions.cs" />
     <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Assets\Scripts\Game\Goals\GoalProvider.cs" />
     <Compile Include="Assets\Scripts\Game\Goals\PlayerGoalManager.cs" />
     <Compile Include="Assets\Scripts\Game\MatchPointsCounter.cs" />
+    <Compile Include="Assets\Scripts\Game\MultiValueControlsManager.cs" />
     <Compile Include="Assets\Scripts\Game\RoundManager.cs" />
     <Compile Include="Assets\Scripts\Game\Timer.cs" />
     <Compile Include="Assets\Scripts\Importers\ActionImporter.cs" />
@@ -105,6 +107,7 @@
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCommandSender.cs" />
     <Compile Include="Assets\Scripts\Scenes\LobbyManager.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />
     <Compile Include="Assets\Scripts\UI\EndOfRoundPanel.cs" />
     <Compile Include="Assets\Scripts\UI\LayoutType.cs" />

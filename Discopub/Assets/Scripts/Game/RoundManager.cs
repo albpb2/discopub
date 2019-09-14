@@ -31,6 +31,8 @@ namespace Assets.Scripts.Game
         private MatchPointsCounter _matchPointsCounter;
         [SerializeField]
         private GoalProvider _goalProvider;
+        [SerializeField]
+        private MultiValueControlsManager _multiValueControlsManager;
 
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
@@ -84,7 +86,7 @@ namespace Assets.Scripts.Game
         private void LoadDependencies()
         {
             _difficultyLevelManager = new DifficultyLevelManager();
-            _actionsManager = new ActionsManager();
+            _actionsManager = ActionsManager.Instance;
         }
 
         private void SetRoundTime(int roundNumber, GameDifficulty roundDifficulty)
@@ -205,6 +207,8 @@ namespace Assets.Scripts.Game
             _roundActions = ChooseRoundActions(roundDifficulty);
 
             _goalProvider.SetAvailableGoals(_roundActions);
+
+            _multiValueControlsManager.SetUp(_roundActions);
 
             SetActionTimes(roundDifficulty);
 

@@ -12,6 +12,8 @@ namespace Assets.Scripts.Game
 
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
+        [SerializeField]
+        private MultiValueControlsManager _multiValueControlsManager;
 
         private Dictionary<string, PlayerGoalManager> _playerGoalManagers;
         private Dictionary<string, List<GoalAction>> _playerGoalActions;
@@ -19,6 +21,7 @@ namespace Assets.Scripts.Game
         public void DispatchAction(string actionName, string actionValue, string peerId)
         {
             bool isRightAction = false;
+
             foreach (var playerGoalAction in _playerGoalActions)
             {
                 var requiredAction = playerGoalAction.Value.FirstOrDefault();
@@ -34,6 +37,10 @@ namespace Assets.Scripts.Game
             if (!isRightAction)
             {
                 FailAction(peerId);
+            }
+            else
+            {
+                _multiValueControlsManager.ChangeOnOffControlValue(actionName, actionValue);
             }
         }
 

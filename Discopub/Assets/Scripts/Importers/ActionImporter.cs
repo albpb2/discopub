@@ -31,7 +31,7 @@ namespace Assets.Scripts.Importers
             
             try
             {
-                return lines.Select((l, i) => ParseLine(l, i)).ToList();
+                return lines.Select((l, i) => ParseLine(l, i)).Where(a => !string.IsNullOrEmpty(a.Name)).ToList();
             }
             catch (Exception e)
             {
@@ -49,7 +49,7 @@ namespace Assets.Scripts.Importers
         {
             if (string.IsNullOrWhiteSpace(line))
             {
-                throw new Exception($"Actions line {lineIndex} is empty.");
+                return new Action();
             }
 
             var lineParts = line.Split(LineSeparator);

@@ -19,5 +19,11 @@ namespace Assets.Scripts.Extensions
                 list[n] = value;
             }
         }
+
+        public static T SelectRandomValue<T>(this IList<T> list)
+        {
+            var randomNumber = rng.Next(list.Count);
+            return list[randomNumber];
+        }
     }
 }

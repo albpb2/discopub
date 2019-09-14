@@ -9,12 +9,13 @@ namespace Assets.Scripts.Importers
 {
     public class GoalImporter
     {
-        private const int MinimumExpectedLineParts = 4; // Name, text and at least one action (name and value)
+        private const int MinimumExpectedLineParts = 5; // Name, type, text and at least one action (name and value)
         private const char LineSeparator = ';';
 
         private const int NameLinePartIndex = 0;
-        private const int TextLinePartIndex = 1;
-        private const int FirstGoalActionLinePartIndex = 2;
+        private const int ControlTypeLinePartIndex = 1;
+        private const int TextLinePartIndex = 2;
+        private const int FirstGoalActionLinePartIndex = 3;
 
         public static List<Goal> ImportGoals(string filePath, bool hasHeaderLine, int maxRequiredActions)
         {
@@ -31,7 +32,7 @@ namespace Assets.Scripts.Importers
 
             try
             {
-                return lines.Select((l, i) => ParseLine(l, i, maxLineParts)).ToList();
+                return lines.Select((l, i) => ParseLine(l, i, maxLineParts)).Where(g => g != null).ToList();
             }
             catch (Exception e)
             {
@@ -49,7 +50,7 @@ namespace Assets.Scripts.Importers
         {
             if (string.IsNullOrWhiteSpace(line))
             {
-                throw new Exception($"Goals line {lineIndex} is empty.");
+                return null;
             }
 
             var lineParts = line.Split(LineSeparator);
@@ -68,6 +69,7 @@ namespace Assets.Scripts.Importers
             var goal = new Goal
             {
                 Name = lineParts[NameLinePartIndex],
+                ControlType = lineParts[ControlTypeLinePartIndex],
                 Text = lineParts[TextLinePartIndex],
                 RequiredActions = requiredActions
             };

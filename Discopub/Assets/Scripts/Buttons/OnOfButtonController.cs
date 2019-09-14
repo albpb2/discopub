@@ -6,6 +6,9 @@ namespace Assets.Scripts.Buttons
 {
     public class OnOfButtonController : MonoBehaviour
     {
+        [SerializeField]
+        private Text _text;
+
         private bool _enabled = false;
 
         public const string OnValue = "ON";
@@ -21,8 +24,7 @@ namespace Assets.Scripts.Buttons
             var captainsMessNetworkManager = CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager;
             _player = captainsMessNetworkManager.LobbyPlayers().Single(p => p.peerId == playerPeerId) as Player.Player;
 
-            var buttonText = GetComponentInChildren<Text>();
-            buttonText.text = actionText;
+            _text.text = actionText;
         }
 
         public void SetOn()
