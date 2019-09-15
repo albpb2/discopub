@@ -46,11 +46,6 @@ namespace Assets.Scripts.Game
         private DifficultyLevelManager _difficultyLevelManager;
         private ActionsManager _actionsManager;
 
-        public void ScheduleRoundStart()
-        {
-            StartCoroutine(StartRoundWithDelay());
-        }
-
         protected void Awake()
         {
             _random = new System.Random();
@@ -83,6 +78,11 @@ namespace Assets.Scripts.Game
         protected void OnDisable()
         {
             _timer.onTimerEnded -= EndRound;
+        }
+
+        public void ScheduleRoundStart()
+        {
+            StartCoroutine(StartRoundWithDelay());
         }
 
         private void LoadDependencies()
