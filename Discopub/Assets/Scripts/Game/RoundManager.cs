@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Buttons;
+using Assets.Scripts.Extensions;
 using Assets.Scripts.Game.Goals;
 using Assets.Scripts.UI;
 using Newtonsoft.Json;
@@ -147,6 +148,8 @@ namespace Assets.Scripts.Game
                 actions.Remove(action);
                 remainingActionPoints -= action.ActionPoints;
             }
+
+            playerActions.Shuffle();
 
             return playerActions;
         }
