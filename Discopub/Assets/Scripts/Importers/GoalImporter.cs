@@ -57,7 +57,8 @@ namespace Assets.Scripts.Importers
 
             if (lineParts.Length < MinimumExpectedLineParts || lineParts.Length > maxLineParts)
             {
-                throw new Exception($"Goals line {lineIndex} has {lineParts.Length}.");
+                throw new Exception($"Goals line {lineIndex} has {lineParts.Length}, " +
+                    $"expected between {MinimumExpectedLineParts} and {maxLineParts}.");
             }
 
             var requiredActions = ParseRequiredActions(lineParts).ToList();

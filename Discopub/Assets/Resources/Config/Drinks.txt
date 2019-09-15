@@ -1,0 +1,52 @@
+Name;Text
+
+WhiskeySour;Whiskey Sour
+Kalimotxo;Kalimotxo
+Kalifresa;Kalifresa
+ZumoDeMipalo;Zumo de mipalo
+LecheDePantera;Leche de Pantera
+LecheDeBrontosaurio;Leche de Brontosaurio
+Birra;Birra
+Cerveza;Cerveza
+Michelada;Michelada
+Submarino;Submarino
+Gintonic;Gintonic
+Ginejito;Ginejito
+Margarita;Margarita
+Caipirinha;Caipirinha
+OnTheRocks;On the rocks
+SexOnTheBeach;Sex on the beach
+TequilaSunrise;Tequila Sunrise
+Mojito;Mojito
+Daiquiri;Daiquiri
+JagerBomb;Jager Bomb
+Chispazo;Chispazo
+Kaipiroska;Kaipiroska
+OrgasmoDeMora;Orgasmo de mora
+Destornillador;Destornillador
+WhiskeyCola;Whiskey Cola
+Pinta;Pinta
+FlameadoDeMoe;Flameado de Moe
+AguaDeValencia;Agua de Valencia
+Mimosa;Mimosa
+Spritz;Spritz
+RonCola;Ron Cola
+BloodyMary;Bloody Mary
+Cosmopolitan;Cosmopolitan
+Cubalitro;Cubalitro
+Cubalibre;Cubalibre
+DryMartini;Dry Martini
+LongIceland;Long Iceland
+BlueHawaii;Blue Hawaii
+Cosmopolitan;Cosmopolitan
+Cointreaupolitan;Cointreaupolitan
+DirtyMartini;Dirty Martini
+EspressoMartini;Espresso Martini
+GinFizz;Gin Fizz
+VinoBlanco;Vino Blanco
+Prosecco;Prosecco
+VinoTinto;Vino Tinto
+Grasshoper;Grasshoper
+MoscowMule;Moscow Mule
+TintoDeVerano;Tinto de verano
+PasiónCanaria;Pasión canaria

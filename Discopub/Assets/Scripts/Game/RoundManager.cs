@@ -103,17 +103,21 @@ namespace Assets.Scripts.Game
 
         private List<Action> ChooseRoundActions(GameDifficulty roundDifficulty)
         {
-            var actions = _actionsManager.GetShuffledActionsList();
+            var actions = _actionsManager.GetSuffledActionsList();
+            var drinks = _actionsManager.GetShuffledDrinksList();
             var roundActions = new List<Action>();
 
             foreach (var player in _players)
             {
                 Debug.Log($"Creating actions for player {player.peerId}.");
-                var playerActions = ChoosePlayerActions(actions, roundDifficulty);
 
+                var playerActions = ChoosePlayerActions(actions, roundDifficulty);
                 _actionButtonsPanelCreator.TargetCreateActionButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
-                
                 roundActions.AddRange(playerActions);
+
+                var playerDrinks = ChoosePlayerDrinks(drinks, roundDifficulty);
+                _drinkButtonsPanelCreator.TargetCreateDrinkButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerDrinks), player.peerId);
+                roundActions.AddRange(playerDrinks);
             }
 
             roundActions.Shuffle();
@@ -173,6 +177,15 @@ namespace Assets.Scripts.Game
             }
 
             return selectedActions;
+        }
+
+        private List<Action> ChoosePlayerDrinks(List<Action> drinks, GameDifficulty roundDifficulty)
+        {
+            var chosenDrinks = drinks.Take(4).ToList();
+
+            drinks.RemoveAll(d => chosenDrinks.Contains(d));
+
+            return chosenDrinks;
         }
 
         private void SetActionTimes(GameDifficulty roundDifficulty)

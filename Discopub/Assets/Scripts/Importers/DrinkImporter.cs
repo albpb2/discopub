@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.Buttons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -7,18 +8,17 @@ using Action = Assets.Scripts.Game.Action;
 
 namespace Assets.Scripts.Importers
 {
-    public static class ActionImporter
+    public static class DrinkImporter
     {
-        private const int ExpectedLineParts = 4;
+        private const int ExpectedLineParts = 2;
         private const char LineSeparator = ';';
-        private const char ValuesSeparator = ',';
 
         private const int NameLinePartIndex = 0;
-        private const int ControlTypeLinePartIndex = 1;
-        private const int ValuesLinePartIndex = 2;
-        private const int ActionPointsLinePartIndex = 3;
+        private const int TextLinePartIndex = 1;
 
-        public static List<Action> ImportActions(string filePath, bool hasHeaderLine)
+        private const int DrinkActionPoints = 0;
+
+        public static List<Action> ImportDrinks(string filePath, bool hasHeaderLine)
         {
             var resource = Resources.Load<TextAsset>(filePath);
             string text = resource.text;
@@ -56,15 +56,15 @@ namespace Assets.Scripts.Importers
 
             if (lineParts.Length != ExpectedLineParts)
             {
-                throw new Exception($"Actions line {lineIndex} has {lineParts.Length}, expected {ExpectedLineParts}.");
+                throw new Exception($"Drinks line {lineIndex} has {lineParts.Length} parts, expected {ExpectedLineParts}.");
             }
 
             var action = new Action
             {
                 Name = lineParts[NameLinePartIndex],
-                ControlType = lineParts[ControlTypeLinePartIndex],
-                Values = lineParts[ValuesLinePartIndex].Split(ValuesSeparator),
-                ActionPoints = int.Parse(lineParts[ActionPointsLinePartIndex])
+                ControlType = ActionControlType.DrinkButton,
+                Values = new[] { lineParts[TextLinePartIndex] },
+                ActionPoints = DrinkActionPoints
             };
 
             return action;

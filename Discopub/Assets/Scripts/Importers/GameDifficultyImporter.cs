@@ -57,7 +57,7 @@ namespace Assets.Scripts.Importers
 
             if (lineParts.Length != ExpectedLineParts)
             {
-                throw new Exception($"Game difficulty levels line {lineIndex} has {lineParts.Length}.");
+                throw new Exception($"Game difficulty levels line {lineIndex} has {lineParts.Length}, expected {ExpectedLineParts}.");
             }
 
             var minRound = string.IsNullOrWhiteSpace(lineParts[MinRoundLinePartIndex])
