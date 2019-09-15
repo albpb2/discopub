@@ -13,8 +13,5 @@ EditorBuildSettings:
     guid: f966c4acc87c9bb46a1ee6aae6f156ad
   - enabled: 1
     path: Assets/Scenes/MatchScene.unity
-    guid: d6a50128481d9104ea78f1f95569c6f9
-  - enabled: 1
-    path: Assets/Scenes/MatchSceneArt.unity
     guid: 5b422854cdfd149ffb3526a34433660c
   m_configObjects: {}

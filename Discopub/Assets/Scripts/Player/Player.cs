@@ -22,7 +22,7 @@ namespace Assets.Scripts.Player
         public void StartMatch()
         {
             Debug.Log("Starting match");
-            CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchSceneArt");
+            CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchScene");
         }
 
         [Command]
