@@ -114,6 +114,8 @@ namespace Assets.Scripts.Game
                 roundActions.AddRange(playerActions);
             }
 
+            roundActions.Shuffle();
+
             return roundActions;
         }
 
