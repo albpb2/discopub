@@ -181,7 +181,7 @@ namespace Assets.Scripts.Game
 
         private List<Action> ChoosePlayerDrinks(List<Action> drinks, GameDifficulty roundDifficulty)
         {
-            var chosenDrinks = drinks.Take(4).ToList();
+            var chosenDrinks = drinks.Take(roundDifficulty.NumberOfDrinks).ToList();
 
             drinks.RemoveAll(d => chosenDrinks.Contains(d));
 

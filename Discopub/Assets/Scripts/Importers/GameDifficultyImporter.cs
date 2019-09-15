@@ -9,13 +9,14 @@ namespace Assets.Scripts.Importers
 {
     public static class GameDifficultyImporter
     {
-        private const int ExpectedLineParts = 4;
+        private const int ExpectedLineParts = 5;
         private const char LineSeparator = ';';
 
         private const int MinRoundLinePartIndex = 0;
         private const int MaxRoundLinePartIndex = 1;
         private const int ActionPointsLinePartIndex = 2;
         private const int ActionSecondsLinePartIndex = 3;
+        private const int NumberOfDrinksLinePartIndex = 4;
 
         public static List<GameDifficulty> ImportGamedifficultyLevels(string filePath, bool hasHeaderLine)
         {
@@ -71,7 +72,8 @@ namespace Assets.Scripts.Importers
                 MinRound = minRound,
                 MaxRound = maxRound,
                 ActionPoints = int.Parse(lineParts[ActionPointsLinePartIndex]),
-                ActionSeconds = int.Parse(lineParts[ActionSecondsLinePartIndex])
+                ActionSeconds = int.Parse(lineParts[ActionSecondsLinePartIndex]),
+                NumberOfDrinks = int.Parse(lineParts[NumberOfDrinksLinePartIndex]),
             };
 
             return gameDifficulty;
