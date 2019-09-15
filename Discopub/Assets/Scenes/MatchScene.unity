@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 108790411}
   - component: {fileID: 108790412}
   m_Layer: 5
-  m_Name: TestPanel
+  m_Name: MainButtonsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
