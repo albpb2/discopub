@@ -1996,6 +1996,8 @@ MonoBehaviour:
   _matchPointsCounter: {fileID: 170051762}
   _goalProvider: {fileID: 1873416029}
   _multiValueControlsManager: {fileID: 1035877921}
+  _debugForceActionControlTypes:
+  - OnOffButton
 --- !u!1 &1203759403
 GameObject:
   m_ObjectHideFlags: 0

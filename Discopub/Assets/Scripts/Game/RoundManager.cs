@@ -33,6 +33,8 @@ namespace Assets.Scripts.Game
         private GoalProvider _goalProvider;
         [SerializeField]
         private MultiValueControlsManager _multiValueControlsManager;
+        [SerializeField]
+        private List<string> _debugForceActionControlTypes;
 
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
@@ -117,18 +119,26 @@ namespace Assets.Scripts.Game
         private List<Action> ChoosePlayerActions(List<Action> actions, GameDifficulty roundDifficulty)
         {
             var playerActions = new List<Action>();
+            var remainingActionPoints = roundDifficulty.ActionPoints;
+
+            if (Debug.isDebugBuild)
+            {
+                var debugForcedActions = GetDebugForcedActions(actions);
+                playerActions.AddRange(debugForcedActions);
+                remainingActionPoints -= debugForcedActions.Sum(a => a.ActionPoints);
+            }
 
             const int MinSimpleActions = 2;
             const int MaxSimpleActions = 3;
             var numberOfActionButtons = _random.Next(MinSimpleActions, MaxSimpleActions + 1);
-            for (var i = 0; i < numberOfActionButtons; i++)
+            for (var i = 0; i < numberOfActionButtons && remainingActionPoints > 0; i++)
             {
                 var action = actions.First(a => a.ActionPoints == 1);
                 playerActions.Add(action);
                 actions.Remove(action);
-            }
 
-            var remainingActionPoints = roundDifficulty.ActionPoints - numberOfActionButtons;
+                remainingActionPoints -= action.ActionPoints;
+            }
 
             while (remainingActionPoints > 0)
             {
@@ -139,6 +149,23 @@ namespace Assets.Scripts.Game
             }
 
             return playerActions;
+        }
+
+        private List<Action> GetDebugForcedActions(List<Action> actions)
+        {
+            var selectedActions = new List<Action>();
+
+            if (_debugForceActionControlTypes != null && _debugForceActionControlTypes.Any())
+            {
+                foreach (var controlType in _debugForceActionControlTypes)
+                {
+                    var action = actions.First(a => a.ControlType == controlType);
+                    selectedActions.Add(action);
+                    actions.Remove(action);
+                }
+            }
+
+            return selectedActions;
         }
 
         private void SetActionTimes(GameDifficulty roundDifficulty)
