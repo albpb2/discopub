@@ -114,7 +114,7 @@ namespace Assets.Scripts.Game.Goals
         {
             if (nextGoal.ControlType == ActionControlType.OnOffButton)
             {
-                return _multiValueControlsManager.GetDifferentOnOffControlValue(nextGoal.RequiredActions[0].Name);
+                return _multiValueControlsManager.GetRandomControlValue(nextGoal.RequiredActions[0].Name);
             }
 
             return nextGoal.RequiredActions[0].Value;

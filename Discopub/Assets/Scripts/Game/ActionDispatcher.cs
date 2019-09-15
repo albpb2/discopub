@@ -38,10 +38,6 @@ namespace Assets.Scripts.Game
             {
                 FailAction(peerId);
             }
-            else
-            {
-                _multiValueControlsManager.ChangeOnOffControlValue(actionName, actionValue);
-            }
         }
 
         public void FailAction(string playerPeerId)

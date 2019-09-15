@@ -2,16 +2,16 @@
 using Assets.Scripts.Extensions;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Assets.Scripts.Game
 {
-    public class MultiValueControlsManager : MonoBehaviour
+    public class MultiValueControlsManager : NetworkBehaviour
     {
         private const string DefaultOnOffControllerValue = OnOffButtonController.OffValue;
 
-        private Dictionary<string, string> _onOffControls;
-        private Dictionary<string, List<string>> _onOffControlValues;
+        private Dictionary<string, string> _controls;
+        private Dictionary<string, List<string>> _controlValues;
 
         public void Awake()
         {
@@ -20,42 +20,34 @@ namespace Assets.Scripts.Game
 
         public void AddOnOffControl(string actionName)
         {
-            _onOffControls[actionName] = DefaultOnOffControllerValue;
-            _onOffControlValues[actionName] = new List<string>
+            _controls[actionName] = DefaultOnOffControllerValue;
+            _controlValues[actionName] = new List<string>
             {
                 OnOffButtonController.OnValue,
                 OnOffButtonController.OffValue
             };
         }
-        
-        public void ChangeOnOffControlValue(string actionName, string value)
-        {
-            if (_onOffControls.ContainsKey(actionName))
-            {
-                _onOffControls[actionName] = value;
-            }
-        }
 
-        public string GetOnOffControlValue(string actionName)
+        public string GetControlValue(string actionName)
         {
-            if (_onOffControls.TryGetValue(actionName, out var value))
+            if (_controls.TryGetValue(actionName, out var value))
             {
                 return value;
             }
 
-            return OnOfButtonController.OffValue;
+            return OnOffButtonController.OffValue;
         }
 
-        public string GetDifferentOnOffControlValue(string actionName)
+        public string GetRandomControlValue(string actionName)
         {
-            var currentValue = GetOnOffControlValue(actionName);
-            return _onOffControlValues[actionName].Where(v => v != currentValue).ToList().SelectRandomValue();
+            var currentValue = GetControlValue(actionName);
+            return _controlValues[actionName].Where(v => v != currentValue).ToList().SelectRandomValue();
         }
 
         public void ResetControls()
         {
-            _onOffControls = new Dictionary<string, string>();
-            _onOffControlValues = new Dictionary<string, List<string>>();
+            _controls = new Dictionary<string, string>();
+            _controlValues = new Dictionary<string, List<string>>();
         }
 
         public void SetUp(List<Action> actions)
@@ -69,6 +61,12 @@ namespace Assets.Scripts.Game
                     AddOnOffControl(action.Name);
                 }
             }
+        }
+
+        [Command]
+        public void CmdSetButtonValue(string controlName, string value)
+        {
+            _controls[controlName] = value;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Assets.Scripts.Game;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ namespace Assets.Scripts.Buttons
 
         private string _actionName;
         private Player.Player _player;
+        private MultiValueControlsManager _multiValueControlsManager;
 
         public void SetUp(string actionName, string actionText, string playerPeerId)
         {
@@ -23,6 +25,7 @@ namespace Assets.Scripts.Buttons
 
             var captainsMessNetworkManager = CaptainsMessNetworkManager.singleton as CaptainsMessNetworkManager;
             _player = captainsMessNetworkManager.LobbyPlayers().Single(p => p.peerId == playerPeerId) as Player.Player;
+            _multiValueControlsManager = FindObjectOfType<MultiValueControlsManager>();
 
             _text.text = actionText;
         }
@@ -35,6 +38,7 @@ namespace Assets.Scripts.Buttons
             }
 
             _player.CmdSubmitAction(_actionName, OnValue);
+            _multiValueControlsManager.CmdSetButtonValue(_actionName, OnValue);
         }
 
         public void SetOff()
@@ -45,6 +49,7 @@ namespace Assets.Scripts.Buttons
             }
 
             _player.CmdSubmitAction(_actionName, OffValue);
+            _multiValueControlsManager.CmdSetButtonValue(_actionName, OffValue);
         }
     }
 }
