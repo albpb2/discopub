@@ -87,7 +87,7 @@ namespace Assets.Scripts.Game.Goals
         {
             if (goal.ControlType == ActionControlType.OnOffButton)
             {
-                if (goal.RequiredActions[0].Value == OnOfButtonController.OnValue)
+                if (goal.RequiredActions[0].Value == OnOffButtonController.OnValue)
                 {
                     return $"Encender {goal.Text}";
                 }

@@ -8,7 +8,7 @@ namespace Assets.Scripts.Game
 {
     public class MultiValueControlsManager : MonoBehaviour
     {
-        private const string DefaultOnOffControllerValue = OnOfButtonController.OffValue;
+        private const string DefaultOnOffControllerValue = OnOffButtonController.OffValue;
 
         private Dictionary<string, string> _onOffControls;
         private Dictionary<string, List<string>> _onOffControlValues;
@@ -23,8 +23,8 @@ namespace Assets.Scripts.Game
             _onOffControls[actionName] = DefaultOnOffControllerValue;
             _onOffControlValues[actionName] = new List<string>
             {
-                OnOfButtonController.OnValue,
-                OnOfButtonController.OffValue
+                OnOffButtonController.OnValue,
+                OnOffButtonController.OffValue
             };
         }
         

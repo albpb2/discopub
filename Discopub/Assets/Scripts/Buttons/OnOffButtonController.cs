@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.Buttons
 {
-    public class OnOfButtonController : MonoBehaviour
+    public class OnOffButtonController : MonoBehaviour
     {
         [SerializeField]
         private Text _text;

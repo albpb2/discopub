@@ -12,7 +12,7 @@ namespace Assets.Scripts.Buttons
 
         protected override void SetUpButton(GameObject button, Action action, string playerPeerId)
         {
-            var controller = button.GetComponent<OnOfButtonController>();
+            var controller = button.GetComponent<OnOffButtonController>();
             controller.SetUp(action.Name, action.Values[0], playerPeerId);
 
             var parentLayout = button.GetComponentInParent<HorizontalOrVerticalLayoutGroup>();
