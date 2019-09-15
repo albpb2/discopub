@@ -4,5 +4,6 @@
     {
         public const string ActionButton = "ActionButton";
         public const string OnOffButton = "OnOffButton";
+        public const string DrinkButton = "DrinkButton";
     }
 }
