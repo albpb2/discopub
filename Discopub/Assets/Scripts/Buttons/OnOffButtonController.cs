@@ -37,6 +37,7 @@ namespace Assets.Scripts.Buttons
                 return;
             }
 
+            _enabled = true;
             _player.CmdSubmitAction(_actionName, OnValue);
             _multiValueControlsManager.CmdSetButtonValue(_actionName, OnValue);
         }
@@ -48,6 +49,7 @@ namespace Assets.Scripts.Buttons
                 return;
             }
 
+            _enabled = false;
             _player.CmdSubmitAction(_actionName, OffValue);
             _multiValueControlsManager.CmdSetButtonValue(_actionName, OffValue);
         }
