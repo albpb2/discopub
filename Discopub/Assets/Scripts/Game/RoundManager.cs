@@ -27,6 +27,8 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private ActionButtonsPanelCreator _actionButtonsPanelCreator;
         [SerializeField]
+        private DrinkButtonsPanelCreator _drinkButtonsPanelCreator;
+        [SerializeField]
         private EndOfRoundPanel _endOfRoundPanel;
         [SerializeField]
         private MatchPointsCounter _matchPointsCounter;
@@ -110,7 +112,7 @@ namespace Assets.Scripts.Game
                 var playerActions = ChoosePlayerActions(actions, roundDifficulty);
 
                 _actionButtonsPanelCreator.TargetCreateActionButtonsPanel(player.connectionToClient, JsonConvert.SerializeObject(playerActions), player.peerId);
-
+                
                 roundActions.AddRange(playerActions);
             }
 
@@ -215,6 +217,7 @@ namespace Assets.Scripts.Game
             }
 
             _actionButtonsPanelCreator.RpcDestroyPanel();
+            _drinkButtonsPanelCreator.RpcDestroyPanel();
 
             _endOfRoundPanel.RpcShowPanel();
 
@@ -259,6 +262,7 @@ namespace Assets.Scripts.Game
             {
                 Debug.Log($"Enabling actions for player {player.peerId}.");
                 _actionButtonsPanelCreator.TargetEnableActionButtonsPannel(player.connectionToClient);
+                _drinkButtonsPanelCreator.TargetEnableDrinkButtonsPannel(player.connectionToClient);
             }
 
             _timer.StartTimer();
