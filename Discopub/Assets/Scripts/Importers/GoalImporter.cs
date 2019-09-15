@@ -88,7 +88,7 @@ namespace Assets.Scripts.Importers
                     yield return new GoalAction
                     {
                         Name = lineParts[i],
-                        Value = lineParts[i + 1],
+                        Value = lineParts[i + 1].Replace("\r", "")
                     };
                 }
             }
