@@ -12,6 +12,7 @@ namespace Assets.Scripts.Game
 
         private Dictionary<string, string> _controls;
         private Dictionary<string, List<string>> _controlValues;
+        private Dictionary<string, List<string>> _controlTexts;
 
         public void Awake()
         {
@@ -26,6 +27,18 @@ namespace Assets.Scripts.Game
                 OnOffButtonController.OnValue,
                 OnOffButtonController.OffValue
             };
+            _controlTexts[actionName] = new List<string>
+            {
+                OnOffButtonController.OnValue,
+                OnOffButtonController.OffValue
+            };
+        }
+
+        public void AddMultiValueControl(string actionName, string[] values, string[] texts)
+        {
+            _controls[actionName] = values.Last();
+            _controlValues[actionName] = values.ToList();
+            _controlTexts[actionName] = texts.ToList();
         }
 
         public string GetControlValue(string actionName)
@@ -38,16 +51,19 @@ namespace Assets.Scripts.Game
             return OnOffButtonController.OffValue;
         }
 
-        public string GetRandomControlValue(string actionName)
+        public (string value, string text) GetRandomControlValue(string actionName)
         {
             var currentValue = GetControlValue(actionName);
-            return _controlValues[actionName].Where(v => v != currentValue).ToList().SelectRandomValue();
+            var selectedValue = _controlValues[actionName].Where(v => v != currentValue).ToList().SelectRandomValue();
+            var index = _controlValues[actionName].IndexOf(selectedValue);
+            return (selectedValue, _controlTexts[actionName][index]);
         }
 
         public void ResetControls()
         {
             _controls = new Dictionary<string, string>();
             _controlValues = new Dictionary<string, List<string>>();
+            _controlTexts = new Dictionary<string, List<string>>();
         }
 
         public void SetUp(List<Action> actions)
@@ -59,6 +75,10 @@ namespace Assets.Scripts.Game
                 if (action.ControlType == ActionControlType.OnOffButton)
                 {
                     AddOnOffControl(action.Name);
+                }
+                else if (action.ControlType == ActionControlType.MultiValueButton)
+                {
+                    AddMultiValueControl(action.Name, action.Values, action.ValuesTexts);
                 }
             }
         }

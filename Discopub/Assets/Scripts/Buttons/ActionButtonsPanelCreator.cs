@@ -20,6 +20,10 @@ namespace Assets.Scripts.Buttons
         [SerializeField]
         private GameObject _onOffButtonPrefab;
         [SerializeField]
+        private GameObject _multiValueButtonPrefab;
+        [SerializeField]
+        private GameObject _multiValueChildButtonPrefab;
+        [SerializeField]
         private GameObject _emptyLayoutPrefab;
         [SerializeField]
         private ButtonInstantiator _buttonInstantiator;
@@ -98,6 +102,7 @@ namespace Assets.Scripts.Buttons
             {
                 [ActionControlType.ActionButton] = new ActionButtonCreator(_buttonInstantiator, _actionButtonPrefab),
                 [ActionControlType.OnOffButton] = new OnOffButtonCreator(_buttonInstantiator, _onOffButtonPrefab),
+                [ActionControlType.MultiValueButton] = new MultiValueButtonCreator(_buttonInstantiator, _multiValueButtonPrefab, _multiValueChildButtonPrefab),
             };
         }
 

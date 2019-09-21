@@ -58,4 +58,4 @@ Ventiladores;OnOffButton;Ventiladores;;;2
 AireAcondicionado;OnOffButton;Aire acondicionado;;;2
 
 DevolverCambio;MultiValueButton;Devolver cambio;5,10,15;5€,10€,20€;2
-CobrarPropina;MultiValueButton;Devolver cambio;5,10,15;5€,10€,20€;2
+CobrarPropina;MultiValueButton;Cobrar propina;5,10,15;5€,10€,20€;2
