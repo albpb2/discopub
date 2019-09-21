@@ -18,7 +18,7 @@ namespace Assets.Scripts.Buttons
             var controller = button.GetComponentInChildren<ActionButtonController>();
             controller.SetUp(action.Name, action.Text, playerPeerId);
 
-            // ChangeButtonColor(button); TODO: Enable when we decide the colors
+            ChangeButtonColor(button);
         }
 
         private void ChangeButtonColor(GameObject button)
