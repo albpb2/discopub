@@ -63,7 +63,7 @@ namespace Assets.Scripts.Importers
             {
                 Name = lineParts[NameLinePartIndex],
                 ControlType = ActionControlType.DrinkButton,
-                Values = new[] { lineParts[TextLinePartIndex] },
+                Text = lineParts[TextLinePartIndex],
                 ActionPoints = DrinkActionPoints
             };
 

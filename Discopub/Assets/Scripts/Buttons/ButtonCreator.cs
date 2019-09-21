@@ -17,9 +17,7 @@ namespace Assets.Scripts.Buttons
         public void CreateButton(Action action, GameObject layoutGameObject, string playerPeerId)
         {
             var controlGameObject = InstantiateButton(layoutGameObject);
-            //var controller = controlGameObject.GetComponentInChildren<ActionButtonController>();
             SetUpButton(controlGameObject, action, playerPeerId);
-            //controller.SetUp(action.Name, action.Values[0], playerPeerId);
         }
 
         protected abstract void SetUpButton(GameObject button, Action action, string playerPeerId);
