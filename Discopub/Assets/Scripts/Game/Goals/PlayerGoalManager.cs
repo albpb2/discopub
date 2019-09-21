@@ -16,31 +16,27 @@ namespace Assets.Scripts.Game.Goals
         private MultiValueControlsManager _multiValueControlsManager;
         private ActionsManager _actionsManager;
 
-        public Goal ActiveGoal
+        private HashSet<string> _multiValueButtonTypes = new HashSet<string>
         {
-            get
-            {
-                return _activeGoal;
-            }
-            private set
-            {
-                _activeGoal = value;
-                var goalText = GetGoalText(_activeGoal);
-                TargetSetGoalText(_player.connectionToClient, goalText);
-            }
-        }
+            ActionControlType.OnOffButton,
+            ActionControlType.MultiValueButton
+        };
 
         public void StartNextGoal()
         {
             if (isServer)
             {
                 var nextGoal = _goalProvider.GetNextGoal();
-                nextGoal.RequiredActions[0].Value = SelectUnusedControlValueForRequiredAction(nextGoal);
+                var (goalValue, goalText) = SelectUnusedControlValueForRequiredAction(nextGoal);
+                nextGoal.RequiredActions[0].Value = goalValue;
 
-                ActiveGoal = nextGoal;
+                _activeGoal = nextGoal;
+
+                goalText = GetGoalText(_activeGoal, goalText);
+                TargetSetGoalText(_player.connectionToClient, goalText);
 
                 _actionCountdown.StartCountdown();
-                _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>(ActiveGoal.RequiredActions));
+                _actionDispatcher.SetPlayerGoalActions(_player.peerId, new List<GoalAction>(_activeGoal.RequiredActions));
             }
         }
 
@@ -83,7 +79,7 @@ namespace Assets.Scripts.Game.Goals
             }
         }
 
-        private string GetGoalText(Goal goal)
+        private string GetGoalText(Goal goal, string currentGoalText)
         {
             if (goal.ControlType == ActionControlType.OnOffButton)
             {
@@ -93,6 +89,10 @@ namespace Assets.Scripts.Game.Goals
                 }
 
                 return $"Apagar {goal.Text}";
+            }
+            else if (goal.ControlType == ActionControlType.MultiValueButton)
+            {
+                return $"{goal.Text} ({currentGoalText})";
             }
 
             return goal.Text;
@@ -110,14 +110,14 @@ namespace Assets.Scripts.Game.Goals
             StartNextGoal();
         }
 
-        private string SelectUnusedControlValueForRequiredAction(Goal nextGoal)
+        private (string value, string text) SelectUnusedControlValueForRequiredAction(Goal nextGoal)
         {
-            if (nextGoal.ControlType == ActionControlType.OnOffButton)
+            if (_multiValueButtonTypes.Contains(nextGoal.ControlType))
             {
                 return _multiValueControlsManager.GetRandomControlValue(nextGoal.RequiredActions[0].Name);
             }
 
-            return nextGoal.RequiredActions[0].Value;
+            return (nextGoal.RequiredActions[0].Value, nextGoal.Text);
         }
     }
 }

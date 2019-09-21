@@ -16,9 +16,9 @@ namespace Assets.Scripts.Buttons
         protected override void SetUpButton(GameObject button, Action action, string playerPeerId)
         {
             var controller = button.GetComponentInChildren<ActionButtonController>();
-            controller.SetUp(action.Name, action.Values[0], playerPeerId);
+            controller.SetUp(action.Name, action.Text, playerPeerId);
 
-            ChangeButtonColor(button);
+            // ChangeButtonColor(button); TODO: Enable when we decide the colors
         }
 
         private void ChangeButtonColor(GameObject button)

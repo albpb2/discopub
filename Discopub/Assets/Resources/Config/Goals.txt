@@ -46,6 +46,9 @@ LigarConClientes;ActionButton;Ligar con clientes;LigarConClientes;
 InvitarRonda;ActionButton;Invitar a ronda;InvitarRonda;
 HacerseElInteresante;ActionButton;Hacerse el interesante;HacerseElInteresante;
 
+DevolverCambio;MultiValueButton;Devolver cambio;DevolverCambio;
+CobrarPropina;MultiValueButton;Cobrar propina;CobrarPropina;
+
 Luces;OnOffButton;las luces;Luces;
 MaquinaHielo;OnOffButton;la máquina de hielo;MaquinaHielo;
 Wifi;OnOffButton;el wifi;Wifi;

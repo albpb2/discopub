@@ -2210,7 +2210,7 @@ MonoBehaviour:
   _goalProvider: {fileID: 1873416029}
   _multiValueControlsManager: {fileID: 1035877921}
   _debugForceActionControlTypes:
-  - OnOffButton
+  - MultiValueButton
 --- !u!1 &1203759403
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,6 +2791,10 @@ MonoBehaviour:
   _actionButtonPrefab: {fileID: 8055017098623295236, guid: b8f00a8edf4a4824cb8d94c3b7cd6aec,
     type: 3}
   _onOffButtonPrefab: {fileID: 6820137813151900388, guid: 0a452eaccda3f8c438188cf52544ee2d,
+    type: 3}
+  _multiValueButtonPrefab: {fileID: 1602988296954083093, guid: a5fd2fe5f7ef7c348bc7ebc2f8d03aa9,
+    type: 3}
+  _multiValueChildButtonPrefab: {fileID: 4759753975231368610, guid: e53a274d9723adb499ea208980f55ee2,
     type: 3}
   _emptyLayoutPrefab: {fileID: 290579084025201794, guid: 5311cf3176121ee4bbc55b3c6087f67a,
     type: 3}

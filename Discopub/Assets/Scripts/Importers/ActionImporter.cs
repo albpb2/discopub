@@ -9,14 +9,16 @@ namespace Assets.Scripts.Importers
 {
     public static class ActionImporter
     {
-        private const int ExpectedLineParts = 4;
+        private const int ExpectedLineParts = 6;
         private const char LineSeparator = ';';
         private const char ValuesSeparator = ',';
 
         private const int NameLinePartIndex = 0;
         private const int ControlTypeLinePartIndex = 1;
-        private const int ValuesLinePartIndex = 2;
-        private const int ActionPointsLinePartIndex = 3;
+        private const int TextLinePartIndex = 2;
+        private const int ValuesLinePartIndex = 3;
+        private const int ValuesTextsLinePartIndex = 4;
+        private const int ActionPointsLinePartIndex = 5;
 
         public static List<Action> ImportActions(string filePath, bool hasHeaderLine)
         {
@@ -63,7 +65,9 @@ namespace Assets.Scripts.Importers
             {
                 Name = lineParts[NameLinePartIndex],
                 ControlType = lineParts[ControlTypeLinePartIndex],
+                Text = lineParts[TextLinePartIndex],
                 Values = lineParts[ValuesLinePartIndex].Split(ValuesSeparator),
+                ValuesTexts = lineParts[ValuesTextsLinePartIndex].Split(ValuesSeparator),
                 ActionPoints = int.Parse(lineParts[ActionPointsLinePartIndex])
             };
 
