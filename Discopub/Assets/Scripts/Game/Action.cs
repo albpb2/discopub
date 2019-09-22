@@ -1,12 +1,12 @@
 ﻿namespace Assets.Scripts.Game
 {
-    public struct Action
+    public class Action
     {
-        public string Name;
-        public string ControlType;
-        public string Text;
-        public string[] Values;
-        public string[] ValuesTexts;
-        public int ActionPoints;
+        public string Name { get; set; }
+        public string ControlType { get; set; }
+        public string Text { get; set; }
+        public string[] Values { get; set; }
+        public string[] ValuesTexts { get; set; }
+        public int ActionPoints { get; set; }
     }
 }
