@@ -1201,7 +1201,7 @@ MonoBehaviour:
   _drinkButtonsPanelParent: {fileID: 799488423}
   _drinkButtonPrefab: {fileID: 8425596926886625085, guid: b289ef1c04594884faea39735c478c7b,
     type: 3}
-  _beerButtonPrefab: {fileID: 8425596926886625085, guid: b289ef1c04594884faea39735c478c7b,
+  _beerButtonPrefab: {fileID: 763163764848717470, guid: 81c7c467a269e2348bc8259d25128177,
     type: 3}
   _emptyLayoutPrefab: {fileID: 290579084025201794, guid: 5311cf3176121ee4bbc55b3c6087f67a,
     type: 3}
