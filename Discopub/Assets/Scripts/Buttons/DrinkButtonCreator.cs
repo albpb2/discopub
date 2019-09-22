@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Game;
+﻿using Assets.Scripts.Actions;
 using UnityEngine;
 
 namespace Assets.Scripts.Buttons

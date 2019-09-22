@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using Action = Assets.Scripts.Game.Action;
+using Action = Assets.Scripts.Actions.Action;
 
 namespace Assets.Scripts.Importers
 {
@@ -15,6 +15,7 @@ namespace Assets.Scripts.Importers
 
         private const int NameLinePartIndex = 0;
         private const int TextLinePartIndex = 1;
+        private const int DrinkTypeLinePartIndex = 1;
 
         private const int DrinkActionPoints = 0;
 

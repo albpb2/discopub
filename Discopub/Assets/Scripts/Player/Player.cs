@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.Game;
-using System;
 using UnityEngine;
 using UnityEngine.Networking;
 

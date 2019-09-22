@@ -74,6 +74,7 @@
     <Compile Include="Assets\ProgressBar\Scene\Demo.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
+    <Compile Include="Assets\Scripts\Actions\Action.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionButtonController.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionButtonCreator.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionButtonsPanelCreator.cs" />
@@ -89,7 +90,6 @@
     <Compile Include="Assets\Scripts\Buttons\OnOffButtonController.cs" />
     <Compile Include="Assets\Scripts\Buttons\OnOffButtonCreator.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtensions.cs" />
-    <Compile Include="Assets\Scripts\Game\Action.cs" />
     <Compile Include="Assets\Scripts\Game\ActionCountdown.cs" />
     <Compile Include="Assets\Scripts\Game\ActionDispatcher.cs" />
     <Compile Include="Assets\Scripts\Game\ActionsManager.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
-using Action = Assets.Scripts.Game.Action;
+using Action = Assets.Scripts.Actions.Action;
 
 namespace Assets.Scripts.Importers
 {
