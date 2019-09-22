@@ -75,7 +75,7 @@ namespace Assets.Scripts.Importers
                 ActionPoints = DrinkActionPoints,
                 AdditionalProperties = new Dictionary<string, string>
                 {
-                    {DrinkAdditionalProperties.DrinkType, lineParts[NameLinePartIndex] }
+                    {DrinkAdditionalProperties.DrinkType, lineParts[DrinkTypeLinePartIndex] }
                 }
             };
 
