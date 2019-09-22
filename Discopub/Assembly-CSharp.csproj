@@ -75,7 +75,6 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBar.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressBarCircle.cs" />
     <Compile Include="Assets\Scripts\Actions\Action.cs" />
-    <Compile Include="Assets\Scripts\Actions\DrinkAction.cs" />
     <Compile Include="Assets\Scripts\Actions\DrinkAdditionalProperties.cs" />
     <Compile Include="Assets\Scripts\Actions\DrinkType.cs" />
     <Compile Include="Assets\Scripts\Buttons\ActionButtonController.cs" />

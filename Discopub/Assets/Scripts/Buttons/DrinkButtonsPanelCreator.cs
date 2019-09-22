@@ -17,6 +17,8 @@ namespace Assets.Scripts.Buttons
         [SerializeField]
         private GameObject _drinkButtonPrefab;
         [SerializeField]
+        private GameObject _beerButtonPrefab;
+        [SerializeField]
         private GameObject _emptyLayoutPrefab;
         [SerializeField]
         private ButtonInstantiator _buttonInstantiator;
@@ -25,7 +27,7 @@ namespace Assets.Scripts.Buttons
 
         public void Awake()
         {
-            _drinkButtonCreator = new DrinkButtonCreator(_buttonInstantiator, _drinkButtonPrefab);
+            _drinkButtonCreator = new DrinkButtonCreator(_buttonInstantiator, _drinkButtonPrefab, _beerButtonPrefab);
         }
 
         [TargetRpc]

@@ -20,7 +20,7 @@ namespace Assets.Scripts.Importers
 
         private const int DrinkActionPoints = 0;
 
-        private static Dictionary<string, DrinkType> _drinkTypesDictionary = new Dictionary<string, DrinkType>
+        private static Dictionary<string, string> _drinkTypesDictionary = new Dictionary<string, string>
         {
             {"Drink", DrinkType.Drink },
             {"Beer", DrinkType.Beer }
@@ -67,13 +67,16 @@ namespace Assets.Scripts.Importers
                 throw new Exception($"Drinks line {lineIndex} has {lineParts.Length} parts, expected {ExpectedLineParts}.");
             }
 
-            var action = new DrinkAction
+            var action = new Action
             {
                 Name = lineParts[NameLinePartIndex],
                 ControlType = ActionControlType.DrinkButton,
                 Text = lineParts[TextLinePartIndex],
                 ActionPoints = DrinkActionPoints,
-                DrinkType = _drinkTypesDictionary[lineParts[DrinkTypeLinePartIndex]]
+                AdditionalProperties = new Dictionary<string, string>
+                {
+                    {DrinkAdditionalProperties.DrinkType, lineParts[NameLinePartIndex] }
+                }
             };
 
             return action;

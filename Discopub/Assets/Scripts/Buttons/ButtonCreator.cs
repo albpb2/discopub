@@ -6,25 +6,27 @@ namespace Assets.Scripts.Buttons
     public abstract class ButtonCreator
     {
         protected readonly ButtonInstantiator _buttonInstantiator;
-        protected readonly GameObject _buttonPrefab;
+        protected readonly GameObject _defaultButtonPrefab;
 
-        public ButtonCreator(ButtonInstantiator buttonInstantiator, GameObject buttonPrefab)
+        public ButtonCreator(ButtonInstantiator buttonInstantiator, GameObject defaultButtonPrefab)
         {
             _buttonInstantiator = buttonInstantiator;
-            _buttonPrefab = buttonPrefab;
+            _defaultButtonPrefab = defaultButtonPrefab;
         }
 
         public void CreateButton(Action action, GameObject layoutGameObject, string playerPeerId)
         {
-            var controlGameObject = InstantiateButton(layoutGameObject);
+            var controlGameObject = InstantiateButton(layoutGameObject, action);
             SetUpButton(controlGameObject, action, playerPeerId);
         }
 
         protected abstract void SetUpButton(GameObject button, Action action, string playerPeerId);
 
-        private GameObject InstantiateButton(GameObject layoutGameObject)
+        protected virtual GameObject GetButtonPrefab(Action action) => _defaultButtonPrefab;
+
+        private GameObject InstantiateButton(GameObject layoutGameObject, Action action)
         {
-            return _buttonInstantiator.InstantiateButton(_buttonPrefab, layoutGameObject.transform);
+            return _buttonInstantiator.InstantiateButton(GetButtonPrefab(action), layoutGameObject.transform);
         }
     }
 }

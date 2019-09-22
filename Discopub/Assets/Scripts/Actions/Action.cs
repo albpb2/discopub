@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.Actions
+﻿using System.Collections.Generic;
+
+namespace Assets.Scripts.Actions
 {
     public class Action
     {
@@ -8,5 +10,6 @@
         public string[] Values { get; set; }
         public string[] ValuesTexts { get; set; }
         public int ActionPoints { get; set; }
+        public Dictionary<string, string> AdditionalProperties { get; set; }
     }
 }

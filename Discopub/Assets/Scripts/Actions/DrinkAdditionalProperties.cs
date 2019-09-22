@@ -1,9 +1,7 @@
-﻿using Assets.Scripts.Buttons;
-
-namespace Assets.Scripts.Actions
+﻿namespace Assets.Scripts.Actions
 {
-    public struct DrinkAdditionalProperties
+    public static class DrinkAdditionalProperties
     {
-        public DrinkType DrinkType;
+        public const string DrinkType = nameof(DrinkType);
     }
 }

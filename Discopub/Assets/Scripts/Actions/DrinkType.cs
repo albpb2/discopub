@@ -1,8 +1,8 @@
 ﻿namespace Assets.Scripts.Actions
 {
-    public enum DrinkType
+    public static class DrinkType
     {
-        Drink = 0,
-        Beer = 1
+        public const string Drink = nameof(Drink);
+        public const string Beer = nameof(Beer);
     }
 }
