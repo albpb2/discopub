@@ -1,52 +1,52 @@
-Name;Text
+Name;Text;DrinkType
 
-WhiskeySour;Whiskey Sour
-Kalimotxo;Kalimotxo
-Kalifresa;Kalifresa
-ZumoDeMipalo;Zumo de mipalo
-LecheDePantera;Leche de Pantera
-LecheDeBrontosaurio;Leche de Brontosaurio
-Birra;Birra
-Cerveza;Cerveza
-Michelada;Michelada
-Submarino;Submarino
-Gintonic;Gintonic
-Ginejito;Ginejito
-Margarita;Margarita
-Caipirinha;Caipirinha
-OnTheRocks;On the rocks
-SexOnTheBeach;Sex on the beach
-TequilaSunrise;Tequila Sunrise
-Mojito;Mojito
-Daiquiri;Daiquiri
-JagerBomb;Jager Bomb
-Chispazo;Chispazo
-Kaipiroska;Kaipiroska
-OrgasmoDeMora;Orgasmo de mora
-Destornillador;Destornillador
-WhiskeyCola;Whiskey Cola
-Pinta;Pinta
-FlameadoDeMoe;Flameado de Moe
-AguaDeValencia;Agua de Valencia
-Mimosa;Mimosa
-Spritz;Spritz
-RonCola;Ron Cola
-BloodyMary;Bloody Mary
-Cosmopolitan;Cosmopolitan
-Cubalitro;Cubalitro
-Cubalibre;Cubalibre
-DryMartini;Dry Martini
-LongIceland;Long Iceland
-BlueHawaii;Blue Hawaii
-Cosmopolitan;Cosmopolitan
-Cointreaupolitan;Cointreaupolitan
-DirtyMartini;Dirty Martini
-EspressoMartini;Espresso Martini
-GinFizz;Gin Fizz
-VinoBlanco;Vino Blanco
-Prosecco;Prosecco
-VinoTinto;Vino Tinto
-Grasshoper;Grasshoper
-MoscowMule;Moscow Mule
-TintoDeVerano;Tinto de verano
-PasiónCanaria;Pasión canaria
+WhiskeySour;Whiskey Sour;Drink
+Kalimotxo;Kalimotxo;Drink
+Kalifresa;Kalifresa;Drink
+ZumoDeMipalo;Zumo de mipalo;Drink
+LecheDePantera;Leche de Pantera;Drink
+LecheDeBrontosaurio;Leche de Brontosaurio;Drink
+Birra;Birra;Beer
+Cerveza;Cerveza;Beer
+Michelada;Michelada;Beer
+Submarino;Submarino;Drink
+Gintonic;Gintonic;Drink
+Ginejito;Ginejito;Drink
+Margarita;Margarita;Drink
+Caipirinha;Caipirinha;Drink
+OnTheRocks;On the rocks;Drink
+SexOnTheBeach;Sex on the beach;Drink
+TequilaSunrise;Tequila Sunrise;Drink
+Mojito;Mojito;Drink
+Daiquiri;Daiquiri;Drink
+JagerBomb;Jager Bomb;Drink
+Chispazo;Chispazo;Drink
+Kaipiroska;Kaipiroska;Drink
+OrgasmoDeMora;Orgasmo de mora;Drink
+Destornillador;Destornillador;Drink
+WhiskeyCola;Whiskey Cola;Drink
+Pinta;Pinta;Drink
+FlameadoDeMoe;Flameado de Moe;Drink
+AguaDeValencia;Agua de Valencia;Drink
+Mimosa;Mimosa;Drink
+Spritz;Spritz;Drink
+RonCola;Ron Cola;Drink
+BloodyMary;Bloody Mary;Drink
+Cosmopolitan;Cosmopolitan;Drink
+Cubalitro;Cubalitro;Drink
+Cubalibre;Cubalibre;Drink
+DryMartini;Dry Martini;Drink
+LongIceland;Long Iceland;Drink
+BlueHawaii;Blue Hawaii;Drink
+Cosmopolitan;Cosmopolitan;Drink
+Cointreaupolitan;Cointreaupolitan;Drink
+DirtyMartini;Dirty Martini;Drink
+EspressoMartini;Espresso Martini;Drink
+GinFizz;Gin Fizz;Drink
+VinoBlanco;Vino Blanco;Drink
+Prosecco;Prosecco;Drink
+VinoTinto;Vino Tinto;Drink
+Grasshoper;Grasshoper;Drink
+MoscowMule;Moscow Mule;Drink
+TintoDeVerano;Tinto de verano;Drink
+PasiónCanaria;Pasión canaria;Drink

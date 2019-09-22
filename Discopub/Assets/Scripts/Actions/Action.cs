@@ -1,4 +1,4 @@
-﻿namespace Assets.Scripts.Game
+﻿namespace Assets.Scripts.Actions
 {
     public class Action
     {

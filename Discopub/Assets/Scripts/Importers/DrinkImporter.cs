@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Buttons;
+﻿using Assets.Scripts.Actions;
+using Assets.Scripts.Buttons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,20 @@ namespace Assets.Scripts.Importers
 {
     public static class DrinkImporter
     {
-        private const int ExpectedLineParts = 2;
+        private const int ExpectedLineParts = 3;
         private const char LineSeparator = ';';
 
         private const int NameLinePartIndex = 0;
         private const int TextLinePartIndex = 1;
-        private const int DrinkTypeLinePartIndex = 1;
+        private const int DrinkTypeLinePartIndex = 2;
 
         private const int DrinkActionPoints = 0;
+
+        private static Dictionary<string, DrinkType> _drinkTypesDictionary = new Dictionary<string, DrinkType>
+        {
+            {"Drink", DrinkType.Drink },
+            {"Beer", DrinkType.Beer }
+        };
 
         public static List<Action> ImportDrinks(string filePath, bool hasHeaderLine)
         {
@@ -60,12 +67,13 @@ namespace Assets.Scripts.Importers
                 throw new Exception($"Drinks line {lineIndex} has {lineParts.Length} parts, expected {ExpectedLineParts}.");
             }
 
-            var action = new Action
+            var action = new DrinkAction
             {
                 Name = lineParts[NameLinePartIndex],
                 ControlType = ActionControlType.DrinkButton,
                 Text = lineParts[TextLinePartIndex],
-                ActionPoints = DrinkActionPoints
+                ActionPoints = DrinkActionPoints,
+                DrinkType = _drinkTypesDictionary[lineParts[DrinkTypeLinePartIndex]]
             };
 
             return action;
