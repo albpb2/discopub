@@ -22,7 +22,7 @@ namespace Assets.Scripts.Buttons
             _player = captainsMessNetworkManager.LobbyPlayers().Single(p => p.peerId == playerPeerId) as Player.Player;
             _multiValueControlsManager = FindObjectOfType<MultiValueControlsManager>();
 
-            _text.text = actionText;
+            _text.text = actionText.ToUpper();
         }
 
         public void SetValue(string value)

@@ -19,7 +19,7 @@ namespace Assets.Scripts.Buttons
             _player = captainsMessNetworkManager.LobbyPlayers().Single(p => p.peerId == playerPeerId) as Player.Player;
 
             var buttonText = GetComponentInChildren<Text>();
-            buttonText.text = actionText;
+            buttonText.text = actionText.ToUpper();
         }
 
         public void SubmitAction()
