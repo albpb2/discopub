@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Scenes
 {
@@ -7,17 +6,32 @@ namespace Assets.Scripts.Scenes
     {
         [SerializeField]
         private CaptainsMess _captainsMess;
+        [SerializeField]
+        private GameObject _introPanel;
 
-        public void Awake()
+        private GameObject _activePanel;
+
+        public void Connect()
         {
-            StartCoroutine(AutoConnect());
+            _introPanel.SetActive(false);
+
+            _captainsMess.AutoConnect();
         }
 
-        public IEnumerator AutoConnect()
+        public void OpenPanel(GameObject panel)
         {
-            const int secondsToWaitToAutoconnect = 1; // To allow for the captainsMess object to be active
-            yield return new WaitForSeconds(secondsToWaitToAutoconnect);
-            _captainsMess.AutoConnect();
+            _introPanel.SetActive(false);
+
+            panel.SetActive(true);
+
+            _activePanel = panel;
+        }
+
+        public void GoBackToIntroPanel()
+        {
+            _activePanel.SetActive(false);
+
+            _introPanel.SetActive(true);
         }
     }
 }
