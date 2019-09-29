@@ -89,6 +89,8 @@
     <Compile Include="Assets\Scripts\Buttons\DrinkButtonsPanelCreator.cs" />
     <Compile Include="Assets\Scripts\Buttons\MultiValueButtonController.cs" />
     <Compile Include="Assets\Scripts\Buttons\MultiValueButtonCreator.cs" />
+    <Compile Include="Assets\Scripts\Buttons\MultiValueSliderController.cs" />
+    <Compile Include="Assets\Scripts\Buttons\MultiValueSliderCreator.cs" />
     <Compile Include="Assets\Scripts\Buttons\OnOffButtonController.cs" />
     <Compile Include="Assets\Scripts\Buttons\OnOffButtonCreator.cs" />
     <Compile Include="Assets\Scripts\Extensions\ListExtensions.cs" />

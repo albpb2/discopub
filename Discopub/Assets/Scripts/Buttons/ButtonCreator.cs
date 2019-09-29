@@ -22,11 +22,11 @@ namespace Assets.Scripts.Buttons
 
         protected abstract void SetUpButton(GameObject button, Action action, string playerPeerId);
 
-        protected virtual GameObject GetButtonPrefab(Action action) => _defaultButtonPrefab;
+        protected virtual GameObject GetButtonPrefab(Action action, GameObject layoutGameObject) => _defaultButtonPrefab;
 
         private GameObject InstantiateButton(GameObject layoutGameObject, Action action)
         {
-            return _buttonInstantiator.InstantiateButton(GetButtonPrefab(action), layoutGameObject.transform);
+            return _buttonInstantiator.InstantiateButton(GetButtonPrefab(action, layoutGameObject), layoutGameObject.transform);
         }
     }
 }

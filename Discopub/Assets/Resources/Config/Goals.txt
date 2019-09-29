@@ -110,3 +110,10 @@ Grasshoper;Drink;Grasshoper;Grasshoper;
 MoscowMule;Drink;Moscow Mule;MoscowMule;
 TintoDeVerano;Drink;Tinto de verano;TintoDeVerano;
 PasiónCanaria;Drink;Pasión canaria;PasiónCanaria;
+
+Congelador;MultiValueSlider;Poner congelador a;Congelador;
+MusicaSlider;MultiValueSlider;Poner la música al;MusicaSlider;
+PicadoraHielo;MultiValueSlider;Picadora de hielo al;PicadoraHielo;
+MegatronSlider;MultiValueSlider;Megatrón al;MegatronSlider;
+AireAcondicionadoSlider;MultiValueSlider;Aire acondicionado al;AireAcondicionadoSlider;
+VentiladorSlider;MultiValueSlider;Ventilador al;VentiladorSlider;

@@ -27,6 +27,10 @@ namespace Assets.Scripts.Buttons
         private GameObject _emptyLayoutPrefab;
         [SerializeField]
         private ButtonInstantiator _buttonInstantiator;
+        [SerializeField]
+        private GameObject _multiValueSliderHorizontal5Prefab;
+        [SerializeField]
+        private GameObject _multiValueSliderVertical5Prefab;
 
         private Dictionary<string, ButtonCreator> _buttonCreators;
 
@@ -102,7 +106,14 @@ namespace Assets.Scripts.Buttons
             {
                 [ActionControlType.ActionButton] = new ActionButtonCreator(_buttonInstantiator, _actionButtonPrefab),
                 [ActionControlType.OnOffButton] = new OnOffButtonCreator(_buttonInstantiator, _onOffButtonPrefab),
-                [ActionControlType.MultiValueButton] = new MultiValueButtonCreator(_buttonInstantiator, _multiValueButtonPrefab, _multiValueChildButtonPrefab),
+                [ActionControlType.MultiValueButton] = new MultiValueButtonCreator(
+                    _buttonInstantiator, 
+                    _multiValueButtonPrefab, 
+                    _multiValueChildButtonPrefab),
+                [ActionControlType.MultiValueSlider] = new MultiValueSliderCreator(
+                    _buttonInstantiator,
+                    _multiValueSliderHorizontal5Prefab,
+                    _multiValueSliderVertical5Prefab)
             };
         }
 

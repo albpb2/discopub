@@ -19,7 +19,8 @@ namespace Assets.Scripts.Game.Goals
         private HashSet<string> _multiValueButtonTypes = new HashSet<string>
         {
             ActionControlType.OnOffButton,
-            ActionControlType.MultiValueButton
+            ActionControlType.MultiValueButton,
+            ActionControlType.MultiValueSlider
         };
 
         public void StartNextGoal()
@@ -93,6 +94,10 @@ namespace Assets.Scripts.Game.Goals
             else if (goal.ControlType == ActionControlType.MultiValueButton)
             {
                 return $"{goal.Text} ({currentGoalText})";
+            }
+            else if (goal.ControlType == ActionControlType.MultiValueSlider)
+            {
+                return $"{currentGoalText} {currentGoalText}";
             }
 
             return goal.Text;

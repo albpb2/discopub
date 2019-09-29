@@ -59,3 +59,10 @@ AireAcondicionado;OnOffButton;Aire acondicionado;;;2
 
 DevolverCambio;MultiValueButton;Devolver cambio;5,10,15;5€,10€,20€;2
 CobrarPropina;MultiValueButton;Cobrar propina;5,10,15;5€,10€,20€;2
+
+Congelador;MultiValueSlider;Congelador;1,2,3,4,5;-1ºC,-2ºC,-3ºC,-4ºC,-5ºC;2
+MusicaSlider;MultiValueSlider;Música;1,2,3,4,5;1,2,3,4,5;2
+PicadoraHielo;MultiValueSlider;Picadora de hielo;1,2,3,4,5;1,2,3,4,5;2
+MegatronSlider;MultiValueSlider;Megatrón;10,20,30,40,50;10,20,30,40,50;2
+AireAcondicionadoSlider;MultiValueSlider;Aire acondicionado;1,2,3,4,5;1,2,3,4,5;2
+VentiladorSlider;MultiValueSlider;Ventilador;1,2,3,4,5;1,2,3,4,5;2

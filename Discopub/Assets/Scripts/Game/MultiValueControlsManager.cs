@@ -77,7 +77,7 @@ namespace Assets.Scripts.Game
                 {
                     AddOnOffControl(action.Name);
                 }
-                else if (action.ControlType == ActionControlType.MultiValueButton)
+                else if (action.ControlType == ActionControlType.MultiValueButton || action.ControlType == ActionControlType.MultiValueSlider)
                 {
                     AddMultiValueControl(action.Name, action.Values, action.ValuesTexts);
                 }

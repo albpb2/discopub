@@ -16,7 +16,7 @@ namespace Assets.Scripts.Buttons
             _buttonColorManager = GameObject.FindObjectOfType<ButtonColorManager>();
         }
 
-        protected override GameObject GetButtonPrefab(Action action)
+        protected override GameObject GetButtonPrefab(Action action, GameObject layoutGameObject)
         {
             return action.AdditionalProperties[DrinkAdditionalProperties.DrinkType] == DrinkType.Drink
                 ? _drinkPrefab
