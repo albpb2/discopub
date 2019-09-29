@@ -254,8 +254,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10b12916ff75746b2806fa5b84977bcf, type: 2}
-  m_sharedMaterial: {fileID: -3740143094252386103, guid: 10b12916ff75746b2806fa5b84977bcf,
+  m_fontAsset: {fileID: 11400000, guid: ba60a8bb24751479b9d98f611a087e7d, type: 2}
+  m_sharedMaterial: {fileID: 8192959755421295709, guid: ba60a8bb24751479b9d98f611a087e7d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -281,13 +281,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 34.1
+  m_fontSize: 50
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_textAlignment: 258
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -714,7 +714,7 @@ SpriteRenderer:
   m_SortingLayerID: 357198165
   m_SortingLayer: 0
   m_SortingOrder: -200
-  m_Sprite: {fileID: 21300000, guid: 03b96342399d14fb99222087c08f30d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 71f39d2a149714844b97a1166d230903, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -953,7 +953,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10b12916ff75746b2806fa5b84977bcf, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ba60a8bb24751479b9d98f611a087e7d, type: 2}
   m_sharedMaterial: {fileID: -3740143094252386103, guid: 10b12916ff75746b2806fa5b84977bcf,
     type: 2}
   m_fontSharedMaterials: []
@@ -986,7 +986,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1032,7 +1032,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}

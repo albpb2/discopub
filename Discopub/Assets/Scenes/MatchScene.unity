@@ -1483,8 +1483,8 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: SACAR LAVAVAJINAS
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 10b12916ff75746b2806fa5b84977bcf, type: 2}
-  m_sharedMaterial: {fileID: -3740143094252386103, guid: 10b12916ff75746b2806fa5b84977bcf,
+  m_fontAsset: {fileID: 11400000, guid: ba60a8bb24751479b9d98f611a087e7d, type: 2}
+  m_sharedMaterial: {fileID: 8192959755421295709, guid: ba60a8bb24751479b9d98f611a087e7d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1514,9 +1514,9 @@ MonoBehaviour:
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 18
+  m_fontSizeMin: 60
   m_fontSizeMax: 72
-  m_fontStyle: 32
+  m_fontStyle: 16
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
