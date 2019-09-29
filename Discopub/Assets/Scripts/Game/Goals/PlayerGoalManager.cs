@@ -97,7 +97,7 @@ namespace Assets.Scripts.Game.Goals
             }
             else if (goal.ControlType == ActionControlType.MultiValueSlider)
             {
-                return $"{currentGoalText} {currentGoalText}";
+                return $"{goal.Text} {currentGoalText}";
             }
 
             return goal.Text;
