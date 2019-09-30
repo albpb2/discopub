@@ -14,8 +14,6 @@ namespace Assets.Scripts.Player
 
             var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
             playerCommandSender.SetPlayer(this);
-
-            SendReadyToBeginMessage();
         }
 
         public void StartMatch()
