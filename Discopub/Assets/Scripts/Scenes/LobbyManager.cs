@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes
 {
@@ -8,6 +10,10 @@ namespace Assets.Scripts.Scenes
         private CaptainsMess _captainsMess;
         [SerializeField]
         private GameObject _introPanel;
+        [SerializeField]
+        private TMP_InputField _nameText;
+        [SerializeField]
+        private Button _readyButton;
 
         private GameObject _activePanel;
 
@@ -32,6 +38,11 @@ namespace Assets.Scripts.Scenes
             _activePanel.SetActive(false);
 
             _introPanel.SetActive(true);
+        }
+
+        public void OnNameEdited()
+        {
+            _readyButton.interactable = !string.IsNullOrEmpty(_nameText.text);
         }
     }
 }
