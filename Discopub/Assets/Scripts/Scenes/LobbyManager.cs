@@ -57,6 +57,11 @@ namespace Assets.Scripts.Scenes
             captainsMess.LocalPlayer().SendReadyToBeginMessage();
         }
 
+        public void EnableLobbyControls()
+        {
+            _nameText.interactable = true;
+        }
+
         private void AssignPlayer()
         {
             var captainsMess = FindObjectOfType<CaptainsMess>();
