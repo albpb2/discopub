@@ -32,7 +32,8 @@ namespace Assets.Scripts.Network
         public override void OnJoinedLobby()
         {
             base.OnJoinedLobby();
-            
+
+            //_lobbyManager.NotifyPlayerJoined();
             _lobbyManager.EnableLobbyControls();
         }
 

@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Players;
+﻿using System.Collections;
+using Assets.Scripts.Players;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ namespace Assets.Scripts.Scenes
         [SerializeField] private TMP_InputField _nameText;
         [SerializeField] private Button _readyButton;
         [SerializeField] private PlayersManager _playersManager;
+        [SerializeField] private Text[] _waiterNames;
+        [SerializeField] private GameObject[] _waiters;
 
         private GameObject _activePanel;
         private string _playerPeerId;
@@ -53,13 +56,32 @@ namespace Assets.Scripts.Scenes
 
         public void SetReady()
         {
+            _nameText.interactable = false;
+            
             var captainsMess = FindObjectOfType<CaptainsMess>();
             captainsMess.LocalPlayer().SendReadyToBeginMessage();
+        }
+
+        public void NotifyPlayerJoined()
+        {
+            AssignPlayer();
+            _playersManager.CmdNotifyPlayerJoined(_playerPeerId);
         }
 
         public void EnableLobbyControls()
         {
             _nameText.interactable = true;
+        }
+
+        public void ShowWaiter(int waiterIndex)
+        {
+            _waiterNames[waiterIndex].gameObject.SetActive(true);
+            _waiters[waiterIndex].SetActive(true);
+        }
+
+        public void SetWaiterName(int waiterIndex, string waiterName)
+        {
+            _waiterNames[waiterIndex].text = waiterName;
         }
 
         private void AssignPlayer()

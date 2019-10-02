@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts.Scenes;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -8,8 +9,7 @@ namespace Assets.Scripts.Players
 {
     public class PlayersManager : NetworkBehaviour
     {
-        [SerializeField] 
-        private Text[] _playerNameTexts;
+        [SerializeField] private LobbyManager _lobbyManager;
         
         private SyncListString _playerNames;
         private CaptainsMessNetworkManager _captainsMessNetworkManager;
@@ -34,7 +34,20 @@ namespace Assets.Scripts.Players
             var playerIndex = _players.IndexOf(player);
 
             _playerNames[playerIndex] = playerName;
-            _playerNameTexts[playerIndex].text = playerName;
+        }
+
+        [Command]
+        public void CmdNotifyPlayerJoined(string peerId)
+        {
+            RefreshPlayers();
+            var joinedPlayer = _players.Single(p => p.peerId == peerId);
+            RpcShowWaiter(_players.IndexOf(joinedPlayer));
+        }
+
+        [ClientRpc]
+        private void RpcShowWaiter(int playerIndex)
+        {
+            _lobbyManager.ShowWaiter(playerIndex);
         }
 
         private void RefreshPlayers()
@@ -54,7 +67,7 @@ namespace Assets.Scripts.Players
         
         private void PlayerNamesChanged(SyncListString.Operation op, int itemIndex)
         {
-            _playerNameTexts[itemIndex].text = _playerNames[itemIndex];
+            _lobbyManager.SetWaiterName(itemIndex, _playerNames[itemIndex]);
         }
     }
 }
