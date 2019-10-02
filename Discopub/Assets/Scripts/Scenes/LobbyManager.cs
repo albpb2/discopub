@@ -48,7 +48,7 @@ namespace Assets.Scripts.Scenes
                 AssignPlayer();
             }
             
-            _playersManager.SetPlayerName(_playerPeerId, _nameText.text);
+            _playersManager.CmdSetPlayerName(_playerPeerId, _nameText.text);
         }
 
         public void SetReady()

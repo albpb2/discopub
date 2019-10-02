@@ -20,7 +20,13 @@ namespace Assets.Scripts.Players
             _playerNames = new SyncListString();
         }
 
-        public void SetPlayerName(string peerId, string playerName)
+        protected void Start()
+        {
+            _playerNames.Callback = PlayerNamesChanged;
+        }
+
+        [Command]
+        public void CmdSetPlayerName(string peerId, string playerName)
         {
             RefreshPlayers();
 
@@ -44,6 +50,11 @@ namespace Assets.Scripts.Players
             {
                 _playerNames.Add("");
             }
+        }
+        
+        private void PlayerNamesChanged(SyncListString.Operation op, int itemIndex)
+        {
+            _playerNameTexts[itemIndex].text = _playerNames[itemIndex];
         }
     }
 }
