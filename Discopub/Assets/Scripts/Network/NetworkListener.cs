@@ -29,14 +29,6 @@ namespace Assets.Scripts.Network
             }
         }
 
-        public override void OnJoinedLobby()
-        {
-            base.OnJoinedLobby();
-
-            //_lobbyManager.NotifyPlayerJoined();
-            _lobbyManager.EnableLobbyControls();
-        }
-
         public override void OnCountdownStarted()
         {
             _loadingText.gameObject.SetActive(false);

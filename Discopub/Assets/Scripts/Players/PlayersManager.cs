@@ -26,21 +26,25 @@ namespace Assets.Scripts.Players
         }
 
         [Command]
-        public void CmdSetPlayerName(string peerId, string playerName)
+        public void CmdSetPlayerName(int playerConnectionId, string playerName)
         {
             RefreshPlayers();
 
-            var player = _players.Single(p => p.peerId == peerId);
+            var player = _players.Single(p => p.connectionToServer.connectionId == playerConnectionId);
             var playerIndex = _players.IndexOf(player);
 
             _playerNames[playerIndex] = playerName;
         }
 
-        [Command]
-        public void CmdNotifyPlayerJoined(string peerId)
+        public void NotifyPlayerJoined(int connectionId)
         {
+            if (!isServer)
+            {
+                return;
+            }
+
             RefreshPlayers();
-            var joinedPlayer = _players.Single(p => p.peerId == peerId);
+            var joinedPlayer = _players.Single(p => p.connectionToServer.connectionId == connectionId);
             RpcShowWaiter(_players.IndexOf(joinedPlayer));
         }
 

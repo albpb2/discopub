@@ -113,6 +113,7 @@
     <Compile Include="Assets\Scripts\Importers\GoalImporter.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Lobby\UI\LobbyCountdown.cs" />
+    <Compile Include="Assets\Scripts\Network\DiscoPubNetworkManager.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
     <Compile Include="Assets\Scripts\Network\ServerObjectsManager.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />

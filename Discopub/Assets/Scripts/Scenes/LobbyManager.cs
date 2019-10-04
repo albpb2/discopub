@@ -17,7 +17,7 @@ namespace Assets.Scripts.Scenes
         [SerializeField] private GameObject[] _waiters;
 
         private GameObject _activePanel;
-        private string _playerPeerId;
+        private int? _playerConnectionId;
 
         public void Connect()
         {
@@ -46,12 +46,15 @@ namespace Assets.Scripts.Scenes
         {
             _readyButton.interactable = !string.IsNullOrEmpty(_nameText.text);
 
-            if (string.IsNullOrEmpty(_playerPeerId))
+            if (!_playerConnectionId.HasValue)
             {
                 AssignPlayer();
             }
-            
-            _playersManager.CmdSetPlayerName(_playerPeerId, _nameText.text);
+
+            if (_playerConnectionId.HasValue)
+            {
+                _playersManager.CmdSetPlayerName(_playerConnectionId.Value, _nameText.text);
+            }
         }
 
         public void SetReady()
@@ -62,21 +65,12 @@ namespace Assets.Scripts.Scenes
             captainsMess.LocalPlayer().SendReadyToBeginMessage();
         }
 
-        public void NotifyPlayerJoined()
-        {
-            AssignPlayer();
-            _playersManager.CmdNotifyPlayerJoined(_playerPeerId);
-        }
-
-        public void EnableLobbyControls()
-        {
-            _nameText.interactable = true;
-        }
-
         public void ShowWaiter(int waiterIndex)
         {
             _waiterNames[waiterIndex].gameObject.SetActive(true);
             _waiters[waiterIndex].SetActive(true);
+
+            OnNameEdited();
         }
 
         public void SetWaiterName(int waiterIndex, string waiterName)
@@ -87,7 +81,7 @@ namespace Assets.Scripts.Scenes
         private void AssignPlayer()
         {
             var captainsMess = FindObjectOfType<CaptainsMess>();
-            _playerPeerId = captainsMess.LocalPlayer().peerId;
+            _playerConnectionId = captainsMess.LocalPlayer()?.connectionToServer?.connectionId;
         }
     }
 }
