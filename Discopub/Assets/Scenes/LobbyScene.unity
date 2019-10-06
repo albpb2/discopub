@@ -1982,7 +1982,7 @@ PrefabInstance:
     - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
@@ -3886,7 +3886,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Waiter 1
+  m_Text: 
 --- !u!222 &1316224407
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4551,7 +4551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1912179238
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4604,7 +4604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Waiter 1
+  m_Text: 
 --- !u!222 &1912179240
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4683,7 +4683,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Waiter 1
+  m_Text: 
 --- !u!222 &1942226902
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4926,7 +4926,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Waiter 1
+  m_Text: 
 --- !u!222 &2065334877
 CanvasRenderer:
   m_ObjectHideFlags: 0

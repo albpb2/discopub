@@ -68,7 +68,6 @@ namespace Assets.Scripts.Player
         public void RpcStopStatusUpdates()
         {
             _updatePlayerLobbyInfo = false;
-            StopCoroutine(_updatesRequestCoroutine);
         }
 
         protected void Awake()

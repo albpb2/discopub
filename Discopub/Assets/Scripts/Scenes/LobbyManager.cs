@@ -53,6 +53,11 @@ namespace Assets.Scripts.Scenes
             {
                 SendPlayerUpdate();
             }
+            else
+            {
+                // If there's not an online lobby yet we'll update the first waiter which will always be displayed
+                SetWaiterName(0, _nameText.text);
+            }
         }
 
         public void SendPlayerUpdate()
