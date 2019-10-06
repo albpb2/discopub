@@ -70,6 +70,12 @@ namespace Assets.Scripts.Player
             _updatePlayerLobbyInfo = false;
         }
 
+        [TargetRpc]
+        public void TargetHideReadyButton(NetworkConnection connection)
+        {
+            _lobbyManager.HidePlayerInputs();
+        }
+
         protected void Awake()
         {
             DontDestroyOnLoad(this);

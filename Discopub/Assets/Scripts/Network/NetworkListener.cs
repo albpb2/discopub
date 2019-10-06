@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Scenes;
 using TMPro;
 using UnityEngine;
+using System.Linq;
 
 namespace Assets.Scripts.Network
 {
@@ -14,6 +15,8 @@ namespace Assets.Scripts.Network
         private LobbyCountdown _lobbyCountdown;
         [SerializeField]
         private LobbyManager _lobbyManager;
+        [SerializeField]
+        private CaptainsMess _captainsMess;
 
         public override void OnStartGame(List<CaptainsMessPlayer> aStartingPlayers)
         {
@@ -31,7 +34,12 @@ namespace Assets.Scripts.Network
 
         public override void OnCountdownStarted()
         {
-            _loadingText.gameObject.SetActive(false);
+            foreach (var player in _captainsMess.Players().Cast<Player.Player>())
+            {
+                player.TargetHideReadyButton(player.connectionToClient);
+            }
+
+            _loadingText.gameObject.SetActive(true);
             _lobbyCountdown.gameObject.SetActive(true);
         }
     }

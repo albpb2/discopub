@@ -3073,7 +3073,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: 54}
+  m_AnchoredPosition: {x: 6, y: -484.34}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003280888
@@ -3099,7 +3099,7 @@ MonoBehaviour:
   m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ba60a8bb24751479b9d98f611a087e7d, type: 2}
-  m_sharedMaterial: {fileID: -3740143094252386103, guid: 10b12916ff75746b2806fa5b84977bcf,
+  m_sharedMaterial: {fileID: 8192959755421295709, guid: ba60a8bb24751479b9d98f611a087e7d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3125,8 +3125,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 400
-  m_fontSizeBase: 400
+  m_fontSize: 200
+  m_fontSizeBase: 200
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3177,7 +3177,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -5037,6 +5037,7 @@ MonoBehaviour:
   _loadingText: {fileID: 435138361}
   _lobbyCountdown: {fileID: 1003280890}
   _lobbyManager: {fileID: 265427649}
+  _captainsMess: {fileID: 2131100753}
 --- !u!114 &1510930084712774922
 MonoBehaviour:
   m_ObjectHideFlags: 0

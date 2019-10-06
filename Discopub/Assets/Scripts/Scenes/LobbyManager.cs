@@ -90,6 +90,12 @@ namespace Assets.Scripts.Scenes
             _waiterNames[connectionId].text = waiterName;
         }
 
+        public void HidePlayerInputs()
+        {
+            _readyButton.gameObject.SetActive(false);
+            _nameText.gameObject.SetActive(false);
+        }
+
         private void AssignPlayer()
         {
             _localPlayer = _captainsMess.LocalPlayer() as Player.Player;
