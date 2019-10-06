@@ -46,6 +46,7 @@ public class CaptainsMessClient : NetworkDiscovery
 	{
 		networkManager = aNetworkManager;
 		broadcastKey = Mathf.Abs(aNetworkManager.broadcastIdentifier.GetHashCode()); // Make sure broadcastKey matches server
+        Debug.Log($"Broadcast key set to {broadcastKey} on client");
 	}
 
 	public void Reset()

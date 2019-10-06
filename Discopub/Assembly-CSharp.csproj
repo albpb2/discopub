@@ -65,7 +65,6 @@
     <Compile Include="Assets\CaptainMess\CaptainsMess.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessClient.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessDebugGUI.cs" />
-    <Compile Include="Assets\CaptainMess\CaptainsMessEditor.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessListener.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessLobbyManager.cs" />
     <Compile Include="Assets\CaptainMess\CaptainsMessNetworkManager.cs" />
@@ -113,12 +112,10 @@
     <Compile Include="Assets\Scripts\Importers\GoalImporter.cs" />
     <Compile Include="Assets\Scripts\Labels.cs" />
     <Compile Include="Assets\Scripts\Lobby\UI\LobbyCountdown.cs" />
-    <Compile Include="Assets\Scripts\Network\DiscoPubNetworkManager.cs" />
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
     <Compile Include="Assets\Scripts\Network\ServerObjectsManager.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCommandSender.cs" />
-    <Compile Include="Assets\Scripts\Players\PlayersManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />

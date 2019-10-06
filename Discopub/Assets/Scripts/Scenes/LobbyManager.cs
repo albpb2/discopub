@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using Assets.Scripts.Players;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,12 +11,11 @@ namespace Assets.Scripts.Scenes
         [SerializeField] private GameObject _introPanel;
         [SerializeField] private TMP_InputField _nameText;
         [SerializeField] private Button _readyButton;
-        [SerializeField] private PlayersManager _playersManager;
         [SerializeField] private Text[] _waiterNames;
         [SerializeField] private GameObject[] _waiters;
 
         private GameObject _activePanel;
-        private int? _playerConnectionId;
+        private Player.Player _localPlayer;
 
         public void Connect()
         {
@@ -46,15 +44,25 @@ namespace Assets.Scripts.Scenes
         {
             _readyButton.interactable = !string.IsNullOrEmpty(_nameText.text);
 
-            if (!_playerConnectionId.HasValue)
+            if (_localPlayer == null)
             {
                 AssignPlayer();
             }
 
-            if (_playerConnectionId.HasValue)
+            if (_localPlayer != null)
             {
-                _playersManager.CmdSetPlayerName(_playerConnectionId.Value, _nameText.text);
+                SendPlayerUpdate();
             }
+        }
+
+        public void SendPlayerUpdate()
+        {
+            if (_localPlayer == null)
+            {
+                AssignPlayer();
+            }
+
+            _localPlayer.CmdPlayerUpdated(_nameText.text, _localPlayer.connectionToServer.connectionId);
         }
 
         public void SetReady()
@@ -65,23 +73,21 @@ namespace Assets.Scripts.Scenes
             captainsMess.LocalPlayer().SendReadyToBeginMessage();
         }
 
-        public void ShowWaiter(int waiterIndex)
+        public void ShowWaiter(int connectionId)
         {
-            _waiterNames[waiterIndex].gameObject.SetActive(true);
-            _waiters[waiterIndex].SetActive(true);
-
-            OnNameEdited();
+            _waiterNames[connectionId].gameObject.SetActive(true);
+            _waiters[connectionId].SetActive(true);
         }
 
-        public void SetWaiterName(int waiterIndex, string waiterName)
+        public void SetWaiterName(int connectionId, string waiterName)
         {
-            _waiterNames[waiterIndex].text = waiterName;
+            ShowWaiter(connectionId);
+            _waiterNames[connectionId].text = waiterName;
         }
 
         private void AssignPlayer()
         {
-            var captainsMess = FindObjectOfType<CaptainsMess>();
-            _playerConnectionId = captainsMess.LocalPlayer()?.connectionToServer?.connectionId;
+            _localPlayer = _captainsMess.LocalPlayer() as Player.Player;
         }
     }
 }

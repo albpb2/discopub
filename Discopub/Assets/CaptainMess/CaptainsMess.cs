@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-using UnityEngine.SceneManagement;
 
 public class CaptainsMess : MonoBehaviour
 {
@@ -15,6 +12,7 @@ public class CaptainsMess : MonoBehaviour
     public bool verboseLogging = false;
     public bool useDebugGUI = true;
     public bool forceServer = false;
+    public List<GameObject> spawnableObjects;
 
     private CaptainsMessNetworkManager networkManager;
 
@@ -49,6 +47,14 @@ public class CaptainsMess : MonoBehaviour
             // Optionally create Debug GUI
             if (useDebugGUI) {
                 networkManager.GetComponent<CaptainsMessDebugGUI>().enabled = true;
+            }
+            
+            if (spawnableObjects != null)
+            {
+                foreach(var spawnableObject in spawnableObjects)
+                {
+                    networkManager.spawnPrefabs.Add(spawnableObject);
+                }
             }
         }
         else
