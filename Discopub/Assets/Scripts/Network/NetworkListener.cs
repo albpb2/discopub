@@ -22,7 +22,7 @@ namespace Assets.Scripts.Network
         {
             base.OnStartGame(aStartingPlayers);
 
-            foreach(var player in aStartingPlayers)
+            foreach (var player in aStartingPlayers)
             {
                 if (player.isServer)
                 {
@@ -37,6 +37,10 @@ namespace Assets.Scripts.Network
             foreach (var player in _captainsMess.Players().Cast<Player.Player>())
             {
                 player.TargetHideReadyButton(player.connectionToClient);
+                if (player.isServer)
+                {
+                    player.RequestUpdatesStop();
+                }
             }
 
             _loadingText.gameObject.SetActive(true);

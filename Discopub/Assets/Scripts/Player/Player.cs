@@ -31,11 +31,18 @@ namespace Assets.Scripts.Player
             _updatesRequestCoroutine = StartCoroutine(RequestForPlayerUpdates());
         }
 
+        public void RequestUpdatesStop()
+        {
+            if (isServer)
+            {
+                RpcStopStatusUpdates();
+            }
+        }
+
         public void StartMatch()
         {
             Debug.Log("Starting match");
             _updatePlayerLobbyInfo = false;
-            RpcStopStatusUpdates();
             CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchScene");
         }
 
