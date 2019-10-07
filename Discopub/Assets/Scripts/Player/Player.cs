@@ -83,6 +83,18 @@ namespace Assets.Scripts.Player
             _lobbyManager.HidePlayerInputs();
         }
 
+        [Command]
+        public void CmdSetWaiterReadyStatus(bool ready)
+        {
+            RpcSetReadyStatus(ready);
+        }
+
+        [ClientRpc]
+        public void RpcSetReadyStatus(bool ready)
+        {
+            _lobbyManager.SetReadyStatus(this.connectionToServer.connectionId, ready);
+        }
+
         protected void Awake()
         {
             DontDestroyOnLoad(this);

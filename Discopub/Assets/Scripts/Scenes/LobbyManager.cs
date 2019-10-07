@@ -13,6 +13,7 @@ namespace Assets.Scripts.Scenes
         [SerializeField] private Button _readyButton;
         [SerializeField] private Text[] _waiterNames;
         [SerializeField] private GameObject[] _waiters;
+        [SerializeField] private Image[] _waiterChecks;
 
         private GameObject _activePanel;
         private Player.Player _localPlayer;
@@ -72,10 +73,28 @@ namespace Assets.Scripts.Scenes
 
         public void SetReady()
         {
-            _nameText.interactable = false;
+            if (_localPlayer == null)
+            {
+                AssignPlayer();
+            }
+
+            if (_localPlayer == null)
+            {
+                return;
+            }
             
-            var captainsMess = FindObjectOfType<CaptainsMess>();
-            captainsMess.LocalPlayer().SendReadyToBeginMessage();
+            if (_localPlayer.IsReady())
+            {
+                _localPlayer.CmdSetWaiterReadyStatus(false);
+                _readyButton.GetComponentInChildren<Text>().text = "¡Estoy lista!";
+                _localPlayer.SendNotReadyToBeginMessage();
+            }
+            else
+            {
+                _localPlayer.CmdSetWaiterReadyStatus(true);
+                _readyButton.GetComponentInChildren<Text>().text = "¡Espera!";
+                _localPlayer.SendReadyToBeginMessage();
+            }
         }
 
         public void ShowWaiter(int connectionId)
@@ -94,6 +113,11 @@ namespace Assets.Scripts.Scenes
         {
             _readyButton.gameObject.SetActive(false);
             _nameText.gameObject.SetActive(false);
+        }
+
+        public void SetReadyStatus(int connectionId, bool ready)
+        {
+            _waiterChecks[connectionId].gameObject.SetActive(ready);
         }
 
         private void AssignPlayer()
