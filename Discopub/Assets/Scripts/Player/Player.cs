@@ -31,12 +31,9 @@ namespace Assets.Scripts.Player
             _updatesRequestCoroutine = StartCoroutine(RequestForPlayerUpdates());
         }
 
-        public void RequestUpdatesStop()
+        public void StopUpdates()
         {
-            if (isServer)
-            {
-                RpcStopStatusUpdates();
-            }
+            _updatePlayerLobbyInfo = false;
         }
 
         public void StartMatch()
@@ -71,12 +68,6 @@ namespace Assets.Scripts.Player
             _lobbyManager.SetWaiterName(connectionId, name);
         }
 
-        [ClientRpc]
-        public void RpcStopStatusUpdates()
-        {
-            _updatePlayerLobbyInfo = false;
-        }
-
         [TargetRpc]
         public void TargetHideReadyButton(NetworkConnection connection)
         {
@@ -84,15 +75,15 @@ namespace Assets.Scripts.Player
         }
 
         [Command]
-        public void CmdSetWaiterReadyStatus(bool ready)
+        public void CmdSetWaiterReadyStatus(bool ready, int connectionId)
         {
-            RpcSetReadyStatus(ready);
+            RpcSetReadyStatus(ready, connectionId);
         }
 
         [ClientRpc]
-        public void RpcSetReadyStatus(bool ready)
+        public void RpcSetReadyStatus(bool ready, int connectionId)
         {
-            _lobbyManager.SetReadyStatus(this.connectionToServer.connectionId, ready);
+            _lobbyManager.SetReadyStatus(connectionId, ready);
         }
 
         protected void Awake()

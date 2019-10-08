@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Lobby.UI;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,13 +8,24 @@ namespace Assets.Scripts.Scenes
 {
     public class LobbyManager : MonoBehaviour
     {
-        [SerializeField] private CaptainsMess _captainsMess;
-        [SerializeField] private GameObject _introPanel;
-        [SerializeField] private TMP_InputField _nameText;
-        [SerializeField] private Button _readyButton;
-        [SerializeField] private Text[] _waiterNames;
-        [SerializeField] private GameObject[] _waiters;
-        [SerializeField] private Image[] _waiterChecks;
+        [SerializeField]
+        private CaptainsMess _captainsMess;
+        [SerializeField]
+        private GameObject _introPanel;
+        [SerializeField]
+        private TMP_InputField _nameText;
+        [SerializeField]
+        private Button _readyButton;
+        [SerializeField]
+        private Text[] _waiterNames;
+        [SerializeField]
+        private GameObject[] _waiters;
+        [SerializeField]
+        private Image[] _waiterChecks;
+        [SerializeField]
+        private TMP_Text _loadingText;
+        [SerializeField]
+        private LobbyCountdown _lobbyCountdown;
 
         private GameObject _activePanel;
         private Player.Player _localPlayer;
@@ -85,14 +97,20 @@ namespace Assets.Scripts.Scenes
             
             if (_localPlayer.IsReady())
             {
-                _localPlayer.CmdSetWaiterReadyStatus(false);
+                _localPlayer.CmdSetWaiterReadyStatus(false, _localPlayer.connectionToServer.connectionId);
+
                 _readyButton.GetComponentInChildren<Text>().text = "¡Estoy lista!";
+                _nameText.interactable = true;
+
                 _localPlayer.SendNotReadyToBeginMessage();
             }
             else
             {
-                _localPlayer.CmdSetWaiterReadyStatus(true);
+                _localPlayer.CmdSetWaiterReadyStatus(true, _localPlayer.connectionToServer.connectionId);
+
                 _readyButton.GetComponentInChildren<Text>().text = "¡Espera!";
+                _nameText.interactable = false;
+
                 _localPlayer.SendReadyToBeginMessage();
             }
         }
@@ -113,6 +131,9 @@ namespace Assets.Scripts.Scenes
         {
             _readyButton.gameObject.SetActive(false);
             _nameText.gameObject.SetActive(false);
+
+            _loadingText.gameObject.SetActive(true);
+            _lobbyCountdown.gameObject.SetActive(true);
         }
 
         public void SetReadyStatus(int connectionId, bool ready)

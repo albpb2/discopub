@@ -1,18 +1,11 @@
-﻿using Assets.Scripts.Lobby.UI;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Assets.Scripts.Scenes;
-using TMPro;
 using UnityEngine;
-using System.Linq;
 
 namespace Assets.Scripts.Network
 {
     public class NetworkListener : CaptainsMessListener
     {
-        [SerializeField]
-        private TMP_Text _loadingText;
-        [SerializeField]
-        private LobbyCountdown _lobbyCountdown;
         [SerializeField]
         private LobbyManager _lobbyManager;
         [SerializeField]
@@ -22,29 +15,19 @@ namespace Assets.Scripts.Network
         {
             base.OnStartGame(aStartingPlayers);
 
-            foreach (var player in aStartingPlayers)
+            if (_captainsMess.LocalPlayer().isServer)
             {
-                if (player.isServer)
-                {
-                    var discoPubPlayer = player as Player.Player;
-                    discoPubPlayer.StartMatch();
-                }
+                var localPlayer = _captainsMess.LocalPlayer() as Player.Player;
+                localPlayer.StartMatch();
             }
         }
 
         public override void OnCountdownStarted()
         {
-            foreach (var player in _captainsMess.Players().Cast<Player.Player>())
-            {
-                player.TargetHideReadyButton(player.connectionToClient);
-                if (player.isServer)
-                {
-                    player.RequestUpdatesStop();
-                }
-            }
+            _lobbyManager.HidePlayerInputs();
 
-            _loadingText.gameObject.SetActive(true);
-            _lobbyCountdown.gameObject.SetActive(true);
+            var localPlayer = _captainsMess.LocalPlayer() as Player.Player;
+            localPlayer.StopUpdates();
         }
     }
 }

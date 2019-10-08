@@ -603,6 +603,8 @@ MonoBehaviour:
   - {fileID: 961558569}
   - {fileID: 305435233}
   - {fileID: 324306847}
+  _loadingText: {fileID: 435138361}
+  _lobbyCountdown: {fileID: 1003280890}
 --- !u!4 &265427650
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +805,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1746759681}
+  m_Father: {fileID: 1489883302}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -878,7 +880,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1746759681}
+  m_Father: {fileID: 1489883302}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1823,7 +1825,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1746759681}
+  m_Father: {fileID: 1489883302}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2213,7 +2215,7 @@ PrefabInstance:
     - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
@@ -3298,7 +3300,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1746759681}
+  m_Father: {fileID: 1489883302}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4390,7 +4392,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1746759681}
+  - {fileID: 658247373}
+  - {fileID: 961558568}
+  - {fileID: 305435232}
+  - {fileID: 324306846}
   m_Father: {fileID: 692559917}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4683,45 +4688,6 @@ RectTransform:
   - {fileID: 1825046483}
   m_Father: {fileID: 692559917}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1746759680
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1746759681}
-  m_Layer: 5
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1746759681
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746759680}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 658247373}
-  - {fileID: 961558568}
-  - {fileID: 305435232}
-  - {fileID: 324306846}
-  m_Father: {fileID: 1489883302}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5360,13 +5326,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broadcastIdentifier: DiscoPub
-  minPlayers: 1
+  minPlayers: 2
   maxPlayers: 4
   playerPrefab: {fileID: 1480037890, guid: 26c046dba52060a479955f9b04c36ba4, type: 3}
   countdownDuration: 3
   listener: {fileID: 2142994883}
   verboseLogging: 1
-  useDebugGUI: 1
+  useDebugGUI: 0
   forceServer: 0
   spawnableObjects:
   - {fileID: 5727469083266383406, guid: 7caf5ba8980450c419f72853ec9bef4e, type: 3}
@@ -5415,8 +5381,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mess: {fileID: 0}
-  _loadingText: {fileID: 435138361}
-  _lobbyCountdown: {fileID: 1003280890}
   _lobbyManager: {fileID: 265427649}
   _captainsMess: {fileID: 2131100753}
 --- !u!114 &1510930084712774922
