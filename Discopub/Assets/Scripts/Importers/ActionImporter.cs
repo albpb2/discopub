@@ -54,7 +54,7 @@ namespace Assets.Scripts.Importers
                 return new Action();
             }
 
-            var lineParts = line.Split(LineSeparator);
+            var lineParts = line.Replace("\r", "").Split(LineSeparator);
 
             if (lineParts.Length != ExpectedLineParts)
             {

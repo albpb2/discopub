@@ -53,7 +53,7 @@ namespace Assets.Scripts.Importers
                 return null;
             }
 
-            var lineParts = line.Split(LineSeparator);
+            var lineParts = line.Replace("\r", "").Split(LineSeparator);
 
             if (lineParts.Length < MinimumExpectedLineParts || lineParts.Length > maxLineParts)
             {
@@ -88,7 +88,7 @@ namespace Assets.Scripts.Importers
                     yield return new GoalAction
                     {
                         Name = lineParts[i],
-                        Value = lineParts[i + 1].Replace("\r", "")
+                        Value = lineParts[i + 1]
                     };
                 }
             }

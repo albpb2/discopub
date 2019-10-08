@@ -54,7 +54,7 @@ namespace Assets.Scripts.Importers
                 throw new Exception($"Game difficulty levels line {lineIndex} is empty.");
             }
 
-            var lineParts = line.Split(LineSeparator);
+            var lineParts = line.Replace("\r", "").Split(LineSeparator);
 
             if (lineParts.Length != ExpectedLineParts)
             {
