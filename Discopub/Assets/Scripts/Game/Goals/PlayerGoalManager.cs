@@ -56,7 +56,6 @@ namespace Assets.Scripts.Game.Goals
 
         protected void Awake()
         {
-            _goalText = GameObject.FindWithTag(Tags.GoalText).GetComponent<TMPro.TMP_Text>();
             _actionsManager = ActionsManager.Instance;
         }
 
@@ -106,6 +105,11 @@ namespace Assets.Scripts.Game.Goals
         [TargetRpc]
         private void TargetSetGoalText(NetworkConnection connection, string goalText)
         {
+            if (_goalText == null)
+            {
+                _goalText = GameObject.FindWithTag(Tags.GoalText).GetComponent<TMPro.TMP_Text>();
+            }
+            
             _goalText.text = goalText;
         }
 

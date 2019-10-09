@@ -14,8 +14,9 @@ namespace Assets.Scripts.Game
 {
     public class RoundManager : MonoBehaviour
     {
-        private const int SecondsToStartRound = 3;
-        private const int ExpectedRoundSetUpDurationSeconds = 1;
+        private const float MinSecondsToStartRound = 0.3f;
+        private const float AdditionalSecondsToStartRoundPerPlayer = 0.2f;
+        private const int FirstRoundNumber = 1;
 
         [SerializeField]
         private Timer _timer;
@@ -39,6 +40,8 @@ namespace Assets.Scripts.Game
         private MultiValueControlsManager _multiValueControlsManager;
         [SerializeField]
         private List<string> _debugForceActionControlTypes;
+        [SerializeField] 
+        private MatchUIComponentsManager _matchUiComponentsManager;
 
         private List<Player.Player> _players;
         private Dictionary<string, ActionCountdown> _actionCountdowns;
@@ -76,7 +79,7 @@ namespace Assets.Scripts.Game
             }
 
             ScheduleRoundStart();
-            StartCoroutine(SetUpRoundWithDelay(1, ExpectedRoundSetUpDurationSeconds));
+            SetUpRound(FirstRoundNumber);
         }
 
         protected void OnDisable()
@@ -225,6 +228,8 @@ namespace Assets.Scripts.Game
 
         private void EndRound()
         {
+            _matchUiComponentsManager.RpcDisableMatchUIComponents();
+            
             foreach(var playerGoalManager in _playerGoalManagers.Values)
             {
                 playerGoalManager.RemoveGoals();
@@ -237,12 +242,6 @@ namespace Assets.Scripts.Game
 
             ScheduleRoundStart();
             SetUpRound(_currentRound++);
-        }
-
-        private IEnumerator SetUpRoundWithDelay(int roundNumber, int secondsToWait)
-        {
-            yield return new WaitForSeconds(secondsToWait);
-            SetUpRound(roundNumber);
         }
 
         private void SetUpRound(int roundNumber)
@@ -266,12 +265,15 @@ namespace Assets.Scripts.Game
 
         private IEnumerator StartRoundWithDelay()
         {
-            yield return new WaitForSeconds(SecondsToStartRound);
+            var secondsToStartRound = MinSecondsToStartRound + _players.Count * AdditionalSecondsToStartRoundPerPlayer;
+            yield return new WaitForSeconds(secondsToStartRound);
             StartRound();
         }
 
         private void StartRound()
         {
+            _matchUiComponentsManager.RpcEnableMatchUIComponents();
+            
             foreach (var player in _players)
             {
                 Debug.Log($"Enabling actions for player {player.peerId}.");
