@@ -25,7 +25,7 @@ Kaipiroska;Kaipiroska;Drink
 OrgasmoDeMora;Orgasmo de mora;Drink
 Destornillador;Destornillador;Drink
 WhiskeyCola;Whiskey Cola;Drink
-Pinta;Pinta;Drink
+Pinta;Pinta;Beer
 FlameadoDeMoe;Flameado de Moe;Drink
 AguaDeValencia;Agua de Valencia;Drink
 Mimosa;Mimosa;Drink

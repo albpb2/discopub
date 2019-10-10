@@ -228,20 +228,28 @@ namespace Assets.Scripts.Game
 
         private void EndRound()
         {
-            _matchUiComponentsManager.RpcDisableMatchUIComponents();
-            
-            foreach(var playerGoalManager in _playerGoalManagers.Values)
+            foreach (var player in _players)
             {
-                playerGoalManager.RemoveGoals();
+                if (player.isServer)
+                {
+                    player.EndMatch();
+                }
             }
-
-            _actionButtonsPanelCreator.RpcDestroyPanel();
-            _drinkButtonsPanelCreator.RpcDestroyPanel();
-
-            _endOfRoundPanel.RpcShowPanel();
-
-            ScheduleRoundStart();
-            SetUpRound(_currentRound++);
+            
+//            _matchUiComponentsManager.RpcDisableMatchUIComponents();
+//            
+//            foreach(var playerGoalManager in _playerGoalManagers.Values)
+//            {
+//                playerGoalManager.RemoveGoals();
+//            }
+//
+//            _actionButtonsPanelCreator.RpcDestroyPanel();
+//            _drinkButtonsPanelCreator.RpcDestroyPanel();
+//
+//            _endOfRoundPanel.RpcShowPanel();
+//
+//            ScheduleRoundStart();
+//            SetUpRound(_currentRound++);
         }
 
         private void SetUpRound(int roundNumber)

@@ -13,7 +13,6 @@ namespace Assets.Scripts.Player
         private CaptainsMess _captainsMess;
 
         private bool _updatePlayerLobbyInfo;
-        private Coroutine _updatesRequestCoroutine;
 
         protected void Start()
         {
@@ -28,7 +27,7 @@ namespace Assets.Scripts.Player
             playerCommandSender.SetPlayer(this);
 
             _updatePlayerLobbyInfo = true;
-            _updatesRequestCoroutine = StartCoroutine(RequestForPlayerUpdates());
+            StartCoroutine(RequestForPlayerUpdates());
         }
 
         public void StopUpdates()
@@ -41,6 +40,13 @@ namespace Assets.Scripts.Player
             Debug.Log("Starting match");
             _updatePlayerLobbyInfo = false;
             CaptainsMessNetworkManager.singleton.ServerChangeScene("MatchScene");
+        }
+
+        public void EndMatch()
+        {
+            Debug.Log("Ending match");
+            _updatePlayerLobbyInfo = false;
+            CaptainsMessNetworkManager.singleton.ServerChangeScene("EOGScene");
         }
 
         [Command]

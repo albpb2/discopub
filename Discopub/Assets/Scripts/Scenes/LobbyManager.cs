@@ -30,6 +30,14 @@ namespace Assets.Scripts.Scenes
         private GameObject _activePanel;
         private Player.Player _localPlayer;
 
+        protected void Start()
+        {
+            if (_captainsMess.LocalPlayer() != null)
+            {
+                Destroy(_captainsMess.LocalPlayer().gameObject);
+            }
+        }
+
         public void Connect()
         {
             _introPanel.SetActive(false);
