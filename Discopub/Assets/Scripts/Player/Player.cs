@@ -19,6 +19,24 @@ namespace Assets.Scripts.Player
             _lobbyManager = FindObjectOfType<LobbyManager>();
         }
 
+        protected void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        protected void OnLevelWasLoaded(int level)
+        {
+            if (level == 0)
+            {
+                _lobbyManager = FindObjectOfType<LobbyManager>();
+
+                if (_lobbyManager != null && IsReady())
+                {
+                    _lobbyManager.ChangeReadyStatus();
+                }
+            }
+        }
+
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
@@ -90,11 +108,6 @@ namespace Assets.Scripts.Player
         public void RpcSetReadyStatus(bool ready, int connectionId)
         {
             _lobbyManager.SetReadyStatus(connectionId, ready);
-        }
-
-        protected void Awake()
-        {
-            DontDestroyOnLoad(this);
         }
 
         private IEnumerator RequestForPlayerUpdates()

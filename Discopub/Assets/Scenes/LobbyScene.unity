@@ -448,6 +448,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Waiter
+      objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2093,6 +2098,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Waiter
+      objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2216,6 +2226,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Waiter
       objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
@@ -2503,7 +2518,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 265427649}
-        m_MethodName: SetReady
+        m_MethodName: ChangeReadyStatus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3080,6 +3095,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3175407370201165765, guid: 160dff316db7b1349b74d22e330eb1fc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Waiter
       objectReference: {fileID: 0}
     - target: {fileID: 1938619462310425720, guid: 160dff316db7b1349b74d22e330eb1fc,
         type: 3}
@@ -4137,7 +4157,7 @@ GameObject:
   - component: {fileID: 1316224406}
   m_Layer: 5
   m_Name: WaiterName3
-  m_TagString: Untagged
+  m_TagString: WaiterName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4894,7 +4914,7 @@ GameObject:
   - component: {fileID: 1912179239}
   m_Layer: 5
   m_Name: WaiterName1
-  m_TagString: Untagged
+  m_TagString: WaiterName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4973,7 +4993,7 @@ GameObject:
   - component: {fileID: 1942226901}
   m_Layer: 5
   m_Name: WaiterName2
-  m_TagString: Untagged
+  m_TagString: WaiterName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5216,7 +5236,7 @@ GameObject:
   - component: {fileID: 2065334876}
   m_Layer: 5
   m_Name: WaiterName4
-  m_TagString: Untagged
+  m_TagString: WaiterName
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5326,7 +5346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broadcastIdentifier: DiscoPub
-  minPlayers: 1
+  minPlayers: 2
   maxPlayers: 4
   playerPrefab: {fileID: 1480037890, guid: 26c046dba52060a479955f9b04c36ba4, type: 3}
   countdownDuration: 3
@@ -5536,7 +5556,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 265427649}
-        m_MethodName: Connect
+        m_MethodName: OpenLobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -232,6 +232,8 @@ namespace Assets.Scripts.Game
             {
                 if (player.isServer)
                 {
+                    var captainsMess = FindObjectOfType<CaptainsMessNetworkManager>();
+                    captainsMess.FinishGame();
                     player.EndMatch();
                 }
             }

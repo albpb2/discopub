@@ -30,19 +30,14 @@ namespace Assets.Scripts.Scenes
         private GameObject _activePanel;
         private Player.Player _localPlayer;
 
-        protected void Start()
-        {
-            if (_captainsMess.LocalPlayer() != null)
-            {
-                Destroy(_captainsMess.LocalPlayer().gameObject);
-            }
-        }
-
-        public void Connect()
+        public void OpenLobby()
         {
             _introPanel.SetActive(false);
 
-            _captainsMess.AutoConnect();
+            if (!_captainsMess.IsConnected())
+            {
+                _captainsMess.AutoConnect();
+            }
         }
 
         public void OpenPanel(GameObject panel)
@@ -91,7 +86,7 @@ namespace Assets.Scripts.Scenes
             _localPlayer.CmdPlayerUpdated(_nameText.text, _localPlayer.connectionToServer.connectionId);
         }
 
-        public void SetReady()
+        public void ChangeReadyStatus()
         {
             if (_localPlayer == null)
             {
@@ -125,6 +120,7 @@ namespace Assets.Scripts.Scenes
 
         public void ShowWaiter(int connectionId)
         {
+            var lobbyManagers = FindObjectsOfType<LobbyManager>();
             _waiterNames[connectionId].gameObject.SetActive(true);
             _waiters[connectionId].SetActive(true);
         }
