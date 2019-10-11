@@ -34,6 +34,12 @@ namespace Assets.Scripts.Player
                 {
                     _lobbyManager.ChangeReadyStatus();
                 }
+
+                if (isLocalPlayer)
+                {
+                    _updatePlayerLobbyInfo = true;
+                    StartCoroutine(RequestForPlayerUpdates());
+                }
             }
         }
 
