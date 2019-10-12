@@ -100,9 +100,7 @@ namespace Assets.Scripts.Game
 
         private void SetRoundTime(int roundNumber, GameDifficulty roundDifficulty)
         {
-            const int MinActionsPerPlayer = 5;
-            var minRoundActionsPerPlayer = MinActionsPerPlayer + roundNumber;
-            _timer.SetTime(roundDifficulty.ActionSeconds * minRoundActionsPerPlayer);
+            _timer.SetTime(roundDifficulty.RoundTime);
         }
 
         private List<Action> ChooseRoundActions(GameDifficulty roundDifficulty)

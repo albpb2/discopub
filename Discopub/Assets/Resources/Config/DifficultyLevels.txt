@@ -1,4 +1,5 @@
-MinRound;MaxRound;ActionPoints;ActionSeconds;NumberOfDrinks
-;3;5;10;4
-4;7;5;8;5
-8;;6;7;4
+MinRound;MaxRound;ActionPoints;ActionSeconds;NumberOfDrinks;RoundTime;TargetScore
+;1;5;10;4;50;500
+2;3;5;9;5;45;500
+4;7;5;8;5;50;550
+8;;6;7;4;50;550

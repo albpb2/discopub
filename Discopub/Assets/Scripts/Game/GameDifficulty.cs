@@ -11,5 +11,9 @@
         public int ActionSeconds { get; set; }
 
         public int NumberOfDrinks { get; set; }
+
+        public int RoundTime { get; set; }
+
+        public int TargetScore { get; set; }
     }
 }
