@@ -7,6 +7,8 @@ namespace Assets.Scripts.UI
     {
         [SerializeField]
         private GameObject _panel;
+        [SerializeField]
+        private Animator _animator;
 
         [ClientRpc]
         public void RpcShowPanel()
@@ -16,6 +18,11 @@ namespace Assets.Scripts.UI
 
         [ClientRpc]
         public void RpcHidePanel()
+        {
+            _animator.SetBool("NextRoundStarting", true);
+        }
+
+        public void DisableEndOfRoundPanel()
         {
             _panel.SetActive(false);
         }
