@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\Tags.cs" />
     <Compile Include="Assets\Scripts\UI\EndOfRoundPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\EndOfRoundPanelAnimator.cs" />
     <Compile Include="Assets\Scripts\UI\LayoutType.cs" />
     <Compile Include="Assets\Scripts\UI\MatchUIComponentsManager.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />

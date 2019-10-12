@@ -8,23 +8,19 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private GameObject _panel;
         [SerializeField]
-        private Animator _animator;
+        private EndOfRoundPanelAnimator _endOfRoundPanelAnimator;
 
         [ClientRpc]
         public void RpcShowPanel()
         {
             _panel.SetActive(true);
+            _endOfRoundPanelAnimator.AnimateEndOfRoundPanelEnter();
         }
 
         [ClientRpc]
         public void RpcHidePanel()
         {
-            _animator.SetBool("NextRoundStarting", true);
-        }
-
-        public void DisableEndOfRoundPanel()
-        {
-            _panel.SetActive(false);
+            _endOfRoundPanelAnimator.AnimateEndOfRoundPanelExit();
         }
     }
 }
