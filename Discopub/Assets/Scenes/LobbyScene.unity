@@ -5303,7 +5303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   broadcastIdentifier: DiscoPub
-  minPlayers: 1
+  minPlayers: 2
   maxPlayers: 4
   playerPrefab: {fileID: 1480037890, guid: 26c046dba52060a479955f9b04c36ba4, type: 3}
   countdownDuration: 3
