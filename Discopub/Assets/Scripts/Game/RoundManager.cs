@@ -14,8 +14,9 @@ namespace Assets.Scripts.Game
 {
     public class RoundManager : MonoBehaviour
     {
-        private const float MinSecondsToStartRound = 0.3f;
+        private const float MinSecondsToStartFirstRound = 0.3f;
         private const float AdditionalSecondsToStartRoundPerPlayer = 0.2f;
+        private const float SecondsToStartRound = 4f;
         private const int FirstRoundNumber = 1;
 
         [SerializeField]
@@ -79,7 +80,7 @@ namespace Assets.Scripts.Game
                 InstantiatePlayerGoalManager(player, actionCountdown);
             }
 
-            ScheduleRoundStart();
+            ScheduleRoundStart(FirstRoundNumber);
             StartCoroutine(SetUpFirstRound());
         }
 
@@ -88,9 +89,9 @@ namespace Assets.Scripts.Game
             _timer.onTimerEnded -= EndRoundWithDefeat;
         }
 
-        public void ScheduleRoundStart()
+        public void ScheduleRoundStart(int roundNumber)
         {
-            StartCoroutine(StartRoundWithDelay());
+            StartCoroutine(StartRoundWithDelay(roundNumber));
         }
 
         private void LoadDependencies()
@@ -234,6 +235,8 @@ namespace Assets.Scripts.Game
 
         private void SetUpRound(int roundNumber)
         {
+            Debug.Log($"Setting up round {roundNumber}");
+
             _currentRound = roundNumber;
 
             var roundDifficulty = _difficultyLevelManager.GetDifficultyLevel(roundNumber);
@@ -250,17 +253,23 @@ namespace Assets.Scripts.Game
 
             _matchPointsCounter.SetMaxPoints(roundDifficulty.TargetScore);
             _matchPointsCounter.ResetCounter();
+
+            Debug.Log($"Round {roundNumber} setup finished");
         }
 
-        private IEnumerator StartRoundWithDelay()
+        private IEnumerator StartRoundWithDelay(int roundNumber)
         {
-            var secondsToStartRound = MinSecondsToStartRound + _players.Count * AdditionalSecondsToStartRoundPerPlayer;
+            var secondsToStartRound = roundNumber == FirstRoundNumber 
+                ? MinSecondsToStartFirstRound + _players.Count * AdditionalSecondsToStartRoundPerPlayer
+                : SecondsToStartRound;
             yield return new WaitForSeconds(secondsToStartRound);
             StartRound();
         }
 
         private void StartRound()
         {
+            Debug.Log($"Starting round {_currentRound}");
+
             _matchUiComponentsManager.RpcEnableMatchUIComponents();
             
             foreach (var player in _players)
@@ -310,8 +319,8 @@ namespace Assets.Scripts.Game
 
             _endOfRoundPanel.RpcShowPanel();
 
-            ScheduleRoundStart();
-            SetUpRound(_currentRound++);
+            ScheduleRoundStart(_currentRound + 1);
+            SetUpRound(_currentRound + 1);
         }
     }
 }
