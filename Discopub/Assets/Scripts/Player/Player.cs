@@ -17,6 +17,7 @@ namespace Assets.Scripts.Player
         protected void Start()
         {
             _lobbyManager = FindObjectOfType<LobbyManager>();
+            _captainsMess = FindObjectOfType<CaptainsMess>();
         }
 
         protected void Awake()
@@ -24,31 +25,9 @@ namespace Assets.Scripts.Player
             DontDestroyOnLoad(this);
         }
 
-        protected void OnLevelWasLoaded(int level)
-        {
-            if (level == 0)
-            {
-                _lobbyManager = FindObjectOfType<LobbyManager>();
-
-                if (_lobbyManager != null && IsReady())
-                {
-                    _lobbyManager.ChangeReadyStatus();
-                }
-
-                if (isLocalPlayer)
-                {
-                    _updatePlayerLobbyInfo = true;
-                    StartCoroutine(RequestForPlayerUpdates());
-                }
-            }
-        }
-
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
-            
-            var playerCommandSender = FindObjectOfType<PlayerCommandSender>();
-            playerCommandSender.SetPlayer(this);
 
             _updatePlayerLobbyInfo = true;
             StartCoroutine(RequestForPlayerUpdates());
@@ -87,15 +66,27 @@ namespace Assets.Scripts.Player
         [Command]
         public void CmdPlayerUpdated(string name, int connectionId)
         {
-            Debug.Log("Player update arrived to server. Resending it");
             RpcPlayerUpdated(connectionId, name);
         }
 
         [ClientRpc]
         public void RpcPlayerUpdated(int connectionId, string name)
         {
-            Debug.Log("Player update received");
-            _lobbyManager.SetWaiterName(connectionId, name);
+            if (_captainsMess.IsConnected() && _lobbyManager != null)
+            {
+                _lobbyManager.SetWaiterName(connectionId, name);
+            }
+            else
+            {
+                if (!_captainsMess.IsConnected())
+                {
+                    Debug.Log("Cannot set waiter name because captains mess is not connected");
+                }
+                else
+                {
+                    Debug.Log("Cannot set waiter name because lobbyManager is null");
+                }
+            }
         }
 
         [TargetRpc]
@@ -116,14 +107,41 @@ namespace Assets.Scripts.Player
             _lobbyManager.SetReadyStatus(connectionId, ready);
         }
 
+        public void Reconnect()
+        {
+            _lobbyManager = FindObjectOfType<LobbyManager>();
+            _captainsMess = FindObjectOfType<CaptainsMess>();
+
+            if (isLocalPlayer)
+            {
+                if (_lobbyManager != null && IsReady())
+                {
+                    _lobbyManager.ChangeReadyStatus();
+                }
+
+                _updatePlayerLobbyInfo = true;
+                StartCoroutine(RequestForPlayerUpdates());
+            }
+        }
+
+        protected void OnLevelWasLoaded(int level)
+        {
+            if (level == 0)
+            {
+                _lobbyManager = FindObjectOfType<LobbyManager>();
+                _captainsMess = FindObjectOfType<CaptainsMess>();
+            }
+        }
+
         private IEnumerator RequestForPlayerUpdates()
         {
+            Debug.Log("Starting to send player updates");
             while (_updatePlayerLobbyInfo)
             {
                 yield return new WaitForSeconds(1);
-                Debug.Log("Updating player status");
                 _lobbyManager?.SendPlayerUpdate();
             }
+            Debug.Log("Stopping sending player updates");
         }
     }
 }

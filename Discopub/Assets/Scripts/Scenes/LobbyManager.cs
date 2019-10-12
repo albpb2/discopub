@@ -120,6 +120,11 @@ namespace Assets.Scripts.Scenes
 
         public void ShowWaiter(int connectionId)
         {
+            if (_waiterNames[connectionId] == null)
+            {
+                return;
+            }
+
             var lobbyManagers = FindObjectsOfType<LobbyManager>();
             _waiterNames[connectionId].gameObject.SetActive(true);
             _waiters[connectionId].SetActive(true);
@@ -127,6 +132,11 @@ namespace Assets.Scripts.Scenes
 
         public void SetWaiterName(int connectionId, string waiterName)
         {
+            if (_waiters[connectionId] == null)
+            {
+                return;
+            }
+
             ShowWaiter(connectionId);
             _waiterNames[connectionId].text = waiterName;
         }
@@ -142,7 +152,10 @@ namespace Assets.Scripts.Scenes
 
         public void SetReadyStatus(int connectionId, bool ready)
         {
-            _waiterChecks[connectionId].gameObject.SetActive(ready);
+            if (_waiterChecks[connectionId] != null)
+            {
+                _waiterChecks[connectionId].gameObject.SetActive(ready);
+            }
         }
 
         private void AssignPlayer()

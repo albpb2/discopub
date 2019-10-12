@@ -79,7 +79,7 @@ namespace Assets.Scripts.Game
             }
 
             ScheduleRoundStart();
-            SetUpRound(FirstRoundNumber);
+            StartCoroutine(SetUpFirstRound());
         }
 
         protected void OnDisable()
@@ -228,6 +228,21 @@ namespace Assets.Scripts.Game
 
         private void EndRound()
         {
+            //            _matchUiComponentsManager.RpcDisableMatchUIComponents();
+            //            
+            //            foreach(var playerGoalManager in _playerGoalManagers.Values)
+            //            {
+            //                playerGoalManager.RemoveGoals();
+            //            }
+
+            _actionButtonsPanelCreator.RpcDestroyPanel();
+            _drinkButtonsPanelCreator.RpcDestroyPanel();
+            //
+            //            _endOfRoundPanel.RpcShowPanel();
+            //
+            //            ScheduleRoundStart();
+            //            SetUpRound(_currentRound++);
+
             foreach (var player in _players)
             {
                 if (player.isServer)
@@ -237,21 +252,13 @@ namespace Assets.Scripts.Game
                     player.EndMatch();
                 }
             }
-            
-//            _matchUiComponentsManager.RpcDisableMatchUIComponents();
-//            
-//            foreach(var playerGoalManager in _playerGoalManagers.Values)
-//            {
-//                playerGoalManager.RemoveGoals();
-//            }
-//
-//            _actionButtonsPanelCreator.RpcDestroyPanel();
-//            _drinkButtonsPanelCreator.RpcDestroyPanel();
-//
-//            _endOfRoundPanel.RpcShowPanel();
-//
-//            ScheduleRoundStart();
-//            SetUpRound(_currentRound++);
+        }
+
+        private IEnumerator SetUpFirstRound()
+        {
+            const float secondsToWaitForPlayersToBeInScene = 0.2f;
+            yield return new WaitForSeconds(secondsToWaitForPlayersToBeInScene);
+            SetUpRound(FirstRoundNumber);
         }
 
         private void SetUpRound(int roundNumber)

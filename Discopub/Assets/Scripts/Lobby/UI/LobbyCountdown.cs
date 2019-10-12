@@ -22,11 +22,13 @@ namespace Assets.Scripts.Lobby.UI
             var timer = _captainsMess.countdownDuration;
             while (timer != 0)
             {
-                timer = _captainsMess.CountdownTimer();
                 _text.text = ((int)timer).ToString();
 
                 const float timerRefreshRateSeconds = 0.2f;
                 yield return new WaitForSeconds(timerRefreshRateSeconds);
+
+                timer = timer - timerRefreshRateSeconds;
+                timer = Mathf.Max(timer, 0);
             }
         }
     }

@@ -66,4 +66,8 @@ public class CaptainsMessListener : MonoBehaviour
 	{
 		// Override
 	}
+
+    public virtual void OnReconnect()
+    {
+    }
 }

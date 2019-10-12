@@ -115,7 +115,6 @@
     <Compile Include="Assets\Scripts\Network\NetworkListener.cs" />
     <Compile Include="Assets\Scripts\Network\ServerObjectsManager.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerCommandSender.cs" />
     <Compile Include="Assets\Scripts\Scenes\LobbyManager.cs" />
     <Compile Include="Assets\Scripts\Scenes\SceneManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />

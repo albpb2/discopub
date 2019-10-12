@@ -29,5 +29,13 @@ namespace Assets.Scripts.Network
             var localPlayer = _captainsMess.LocalPlayer() as Player.Player;
             localPlayer.StopUpdates();
         }
+
+        public override void OnReconnect()
+        {
+            base.OnReconnect();
+
+            var localPlayer = _captainsMess.LocalPlayer() as Player.Player;
+            localPlayer.Reconnect();
+        }
     }
 }

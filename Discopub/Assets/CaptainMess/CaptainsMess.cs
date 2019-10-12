@@ -24,6 +24,7 @@ public class CaptainsMess : MonoBehaviour
         var resource = Resources.Load("CaptainsMessNetworkManager");
         var resourceObject = Instantiate(resource) as GameObject;
         networkManager = resourceObject.GetComponent<CaptainsMessNetworkManager>();
+
         if (networkManager != null)
         {
             //networkManager.logLevel = 0;
@@ -89,6 +90,8 @@ public class CaptainsMess : MonoBehaviour
             if (networkManager.verboseLogging) {
                 Debug.Log("#CaptainsMess# !! RECONNECTING !!");
             }
+
+            listener.OnReconnect();
         }
     }
 
