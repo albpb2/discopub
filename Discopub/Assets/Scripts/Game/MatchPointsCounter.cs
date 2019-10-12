@@ -6,10 +6,11 @@ namespace Assets.Scripts.Game
 {
     public class MatchPointsCounter : NetworkBehaviour
     {
-        private const int MaxPoints = 500;
-
         [SerializeField]
         private TMPro.TMP_Text _matchPointsText;
+
+        public delegate void MaxPointsReachedDelegate();
+        public event MaxPointsReachedDelegate onMaxPointsReached;
 
         private int _currentPoints;
         private int _maxPoints;
@@ -22,7 +23,7 @@ namespace Assets.Scripts.Game
 
         public void ResetCounter()
         {
-            SetMaxPoints(MaxPoints);
+            SetMaxPoints(_maxPoints);
             SetPoints(0);
         }
 
@@ -38,6 +39,11 @@ namespace Assets.Scripts.Game
 
             const int minimumPoints = 0;
             _currentPoints = Math.Max(_currentPoints, minimumPoints);
+
+            if (_currentPoints >= _maxPoints)
+            {
+                NotifyMaxPointsReached();
+            }
 
             RpcPrintPoints(_currentPoints, _maxPoints);
         }
@@ -56,6 +62,14 @@ namespace Assets.Scripts.Game
         private void RpcPrintPoints(int currentPoints, int maxPoints)
         {
             _matchPointsText.text = $"{currentPoints}/{maxPoints}";
+        }
+
+        private void NotifyMaxPointsReached()
+        {
+            if (onMaxPointsReached != null)
+            {
+                onMaxPointsReached();
+            }
         }
     }
 }

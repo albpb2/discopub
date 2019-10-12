@@ -61,7 +61,8 @@ namespace Assets.Scripts.Game
 
         protected void Start()
         {
-            _timer.onTimerEnded += EndRound;
+            _timer.onTimerEnded += EndRoundWithDefeat;
+            _matchPointsCounter.onMaxPointsReached += EndRoundWithVictory;
             _playerGoalManagers = new Dictionary<string, PlayerGoalManager>();
             _actionCountdowns = new Dictionary<string, ActionCountdown>();
 
@@ -84,7 +85,7 @@ namespace Assets.Scripts.Game
 
         protected void OnDisable()
         {
-            _timer.onTimerEnded -= EndRound;
+            _timer.onTimerEnded -= EndRoundWithDefeat;
         }
 
         public void ScheduleRoundStart()
@@ -224,34 +225,6 @@ namespace Assets.Scripts.Game
             return playerGoalManager;
         }
 
-        private void EndRound()
-        {
-            //            _matchUiComponentsManager.RpcDisableMatchUIComponents();
-            //            
-            //            foreach(var playerGoalManager in _playerGoalManagers.Values)
-            //            {
-            //                playerGoalManager.RemoveGoals();
-            //            }
-
-            _actionButtonsPanelCreator.RpcDestroyPanel();
-            _drinkButtonsPanelCreator.RpcDestroyPanel();
-            //
-            //            _endOfRoundPanel.RpcShowPanel();
-            //
-            //            ScheduleRoundStart();
-            //            SetUpRound(_currentRound++);
-
-            foreach (var player in _players)
-            {
-                if (player.isServer)
-                {
-                    var captainsMess = FindObjectOfType<CaptainsMessNetworkManager>();
-                    captainsMess.FinishGame();
-                    player.EndMatch();
-                }
-            }
-        }
-
         private IEnumerator SetUpFirstRound()
         {
             const float secondsToWaitForPlayersToBeInScene = 0.2f;
@@ -275,6 +248,7 @@ namespace Assets.Scripts.Game
 
             SetActionTimes(roundDifficulty);
 
+            _matchPointsCounter.SetMaxPoints(roundDifficulty.TargetScore);
             _matchPointsCounter.ResetCounter();
         }
 
@@ -304,6 +278,40 @@ namespace Assets.Scripts.Game
             }
 
             _endOfRoundPanel.RpcHidePanel();
+        }
+
+        private void EndRoundWithDefeat()
+        {
+            _actionButtonsPanelCreator.RpcDestroyPanel();
+            _drinkButtonsPanelCreator.RpcDestroyPanel();
+
+            foreach (var player in _players)
+            {
+                if (player.isServer)
+                {
+                    var captainsMess = FindObjectOfType<CaptainsMessNetworkManager>();
+                    captainsMess.FinishGame();
+                    player.EndMatch();
+                }
+            }
+        }
+
+        private void EndRoundWithVictory()
+        {
+            _matchUiComponentsManager.RpcDisableMatchUIComponents();
+
+            foreach (var playerGoalManager in _playerGoalManagers.Values)
+            {
+                playerGoalManager.RemoveGoals();
+            }
+
+            _actionButtonsPanelCreator.RpcDestroyPanel();
+            _drinkButtonsPanelCreator.RpcDestroyPanel();
+
+            _endOfRoundPanel.RpcShowPanel();
+
+            ScheduleRoundStart();
+            SetUpRound(_currentRound++);
         }
     }
 }
