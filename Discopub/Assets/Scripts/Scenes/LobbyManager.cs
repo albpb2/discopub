@@ -1,7 +1,10 @@
 ﻿using Assets.Scripts.Lobby.UI;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 namespace Assets.Scripts.Scenes
@@ -29,6 +32,25 @@ namespace Assets.Scripts.Scenes
 
         private GameObject _activePanel;
         private Player.Player _localPlayer;
+        private Dictionary<string, int> _waiterIndexesPerPeerId;
+        private Dictionary<string, float> _updateReceivedDates;
+        private int _numberOfPlayers;
+
+        protected void Awake()
+        {
+            _waiterIndexesPerPeerId = new Dictionary<string, int>();
+            _updateReceivedDates = new Dictionary<string, float>();
+        }
+
+        protected void Start()
+        {
+            StartCoroutine(RemoveMissingPlayers());
+        }
+
+        protected void OnDisable()
+        {
+            StopAllCoroutines();
+        }
 
         public void OpenLobby()
         {
@@ -83,7 +105,7 @@ namespace Assets.Scripts.Scenes
                 AssignPlayer();
             }
 
-            _localPlayer.CmdPlayerUpdated(_nameText.text, _localPlayer.connectionToServer.connectionId);
+            _localPlayer.CmdPlayerUpdated(_nameText.text, _localPlayer.peerId);
         }
 
         public void ChangeReadyStatus()
@@ -100,7 +122,7 @@ namespace Assets.Scripts.Scenes
             
             if (_localPlayer.IsReady())
             {
-                _localPlayer.CmdSetWaiterReadyStatus(false, _localPlayer.connectionToServer.connectionId);
+                _localPlayer.CmdSetWaiterReadyStatus(false, _localPlayer.peerId);
 
                 _readyButton.GetComponentInChildren<Text>().text = "¡Estoy lista!";
                 _nameText.interactable = true;
@@ -109,7 +131,7 @@ namespace Assets.Scripts.Scenes
             }
             else
             {
-                _localPlayer.CmdSetWaiterReadyStatus(true, _localPlayer.connectionToServer.connectionId);
+                _localPlayer.CmdSetWaiterReadyStatus(true, _localPlayer.peerId);
 
                 _readyButton.GetComponentInChildren<Text>().text = "¡Espera!";
                 _nameText.interactable = false;
@@ -130,15 +152,15 @@ namespace Assets.Scripts.Scenes
             _waiters[connectionId].SetActive(true);
         }
 
-        public void SetWaiterName(int connectionId, string waiterName)
+        public void SetWaiterName(int waiterIndex, string waiterName)
         {
-            if (_waiters[connectionId] == null)
+            if (_waiters[waiterIndex] == null)
             {
                 return;
             }
 
-            ShowWaiter(connectionId);
-            _waiterNames[connectionId].text = waiterName;
+            ShowWaiter(waiterIndex);
+            _waiterNames[waiterIndex].text = waiterName;
         }
 
         public void HidePlayerInputs()
@@ -157,10 +179,60 @@ namespace Assets.Scripts.Scenes
                 _waiterChecks[connectionId].gameObject.SetActive(ready);
             }
         }
+        
+        public int GetWaiterIndex(string peerId)
+        {
+            if (!_waiterIndexesPerPeerId.TryGetValue(peerId, out int waiterIndex))
+            {
+                waiterIndex = _numberOfPlayers;
+                _waiterIndexesPerPeerId[peerId] = waiterIndex;
+                _numberOfPlayers++;
+            }
+
+            _updateReceivedDates[peerId] = Time.time;
+
+            return waiterIndex;
+        }
 
         private void AssignPlayer()
         {
             _localPlayer = _captainsMess.LocalPlayer() as Player.Player;
+        }
+        
+        private IEnumerator RemoveMissingPlayers()
+        {
+            while(true)
+            {
+                const int updateFrequencySeconds = 5;
+                yield return new WaitForSeconds(updateFrequencySeconds);
+
+                RemoveOldPeers();
+            }
+        }
+
+        private void RemoveOldPeers()
+        {
+            var now = Time.time;
+
+            var peersToRemove = new List<string>();
+
+            const int MaxSecondsToWait = 3;
+
+            foreach (var peerId in _updateReceivedDates.Keys)
+            {
+                if (Time.time - _updateReceivedDates[peerId] > MaxSecondsToWait)
+                {
+                    peersToRemove.Add(peerId);
+                }
+            }
+
+            foreach (var peerId in peersToRemove)
+            {
+                Debug.Log($"Removing all peer {peerId}");
+                _updateReceivedDates.Remove(peerId);
+                _waiterIndexesPerPeerId.Remove(peerId);
+                _numberOfPlayers--;
+            }
         }
     }
 }

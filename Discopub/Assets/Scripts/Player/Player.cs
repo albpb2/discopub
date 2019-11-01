@@ -64,17 +64,19 @@ namespace Assets.Scripts.Player
         }
 
         [Command]
-        public void CmdPlayerUpdated(string name, int connectionId)
+        public void CmdPlayerUpdated(string name, string peerId)
         {
-            RpcPlayerUpdated(connectionId, name);
+            var waiterIndex = _lobbyManager.GetWaiterIndex(peerId);
+
+            RpcPlayerUpdated(waiterIndex, name);
         }
 
         [ClientRpc]
-        public void RpcPlayerUpdated(int connectionId, string name)
+        public void RpcPlayerUpdated(int waiterIndex, string name)
         {
             if (_captainsMess.IsConnected() && _lobbyManager != null)
             {
-                _lobbyManager.SetWaiterName(connectionId, name);
+                _lobbyManager.SetWaiterName(waiterIndex, name);
             }
             else
             {
@@ -96,15 +98,17 @@ namespace Assets.Scripts.Player
         }
 
         [Command]
-        public void CmdSetWaiterReadyStatus(bool ready, int connectionId)
+        public void CmdSetWaiterReadyStatus(bool ready, string peerId)
         {
-            RpcSetReadyStatus(ready, connectionId);
+            var waiterIndex = _lobbyManager.GetWaiterIndex(peerId);
+
+            RpcSetReadyStatus(ready, waiterIndex);
         }
 
         [ClientRpc]
-        public void RpcSetReadyStatus(bool ready, int connectionId)
+        public void RpcSetReadyStatus(bool ready, int waiterIndex)
         {
-            _lobbyManager.SetReadyStatus(connectionId, ready);
+            _lobbyManager.SetReadyStatus(waiterIndex, ready);
         }
 
         public void Reconnect()
